@@ -1,0 +1,4086 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "TSRPC Open API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/analyze/GetActive": {
+      "post": {
+        "tags": [
+          "analyze"
+        ],
+        "operationId": "analyze/GetActive",
+        "requestBody": {
+          "description": "Req<GetActive>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/analyze_PtlGetActive_ReqGetActive"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetActive>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/analyze_PtlGetActive_ResGetActive"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/analyze/GetAdd": {
+      "post": {
+        "tags": [
+          "analyze"
+        ],
+        "operationId": "analyze/GetAdd",
+        "requestBody": {
+          "description": "Req<GetAdd>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/analyze_PtlGetAdd_ReqGetAdd"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetAdd>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/analyze_PtlGetAdd_ResGetAdd"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/analyze/GetRetain": {
+      "post": {
+        "tags": [
+          "analyze"
+        ],
+        "operationId": "analyze/GetRetain",
+        "requestBody": {
+          "description": "Req<GetRetain>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/analyze_PtlGetRetain_ReqGetRetain"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetRetain>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/analyze_PtlGetRetain_ResGetRetain"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/analyze/GetSummary": {
+      "post": {
+        "tags": [
+          "analyze"
+        ],
+        "operationId": "analyze/GetSummary",
+        "requestBody": {
+          "description": "Req<GetSummary>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/analyze_PtlGetSummary_ReqGetSummary"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetSummary>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/analyze_PtlGetSummary_ResGetSummary"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/control/AddControl": {
+      "post": {
+        "tags": [
+          "control"
+        ],
+        "operationId": "control/AddControl",
+        "requestBody": {
+          "description": "Req<AddControl>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/control_PtlAddControl_ReqAddControl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResAddControl>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/control_PtlAddControl_ResAddControl"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/control/RemoveControl": {
+      "post": {
+        "tags": [
+          "control"
+        ],
+        "operationId": "control/RemoveControl",
+        "requestBody": {
+          "description": "Req<RemoveControl>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/control_PtlRemoveControl_ReqRemoveControl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResRemoveControl>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/control_PtlRemoveControl_ResRemoveControl"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/game/GetCheXuan": {
+      "post": {
+        "tags": [
+          "game"
+        ],
+        "operationId": "game/GetCheXuan",
+        "requestBody": {
+          "description": "Req<GetCheXuan>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/game_PtlGetCheXuan_ReqGetCheXuan"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetCheXuan>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/game_PtlGetCheXuan_ResGetCheXuan"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/game/GetFIR": {
+      "post": {
+        "tags": [
+          "game"
+        ],
+        "operationId": "game/GetFIR",
+        "requestBody": {
+          "description": "Req<GetFIR>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/game_PtlGetFIR_ReqGetFIR"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetFIR>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/game_PtlGetFIR_ResGetFIR"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/game/GetFish": {
+      "post": {
+        "tags": [
+          "game"
+        ],
+        "operationId": "game/GetFish",
+        "requestBody": {
+          "description": "Req<GetFish>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/game_PtlGetFish_ReqGetFish"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetFish>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/game_PtlGetFish_ResGetFish"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/game/SetCheXuan": {
+      "post": {
+        "tags": [
+          "game"
+        ],
+        "operationId": "game/SetCheXuan",
+        "requestBody": {
+          "description": "Req<SetCheXuan>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/game_PtlSetCheXuan_ReqSetCheXuan"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResSetCheXuan>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/game_PtlSetCheXuan_ResSetCheXuan"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/game/SetFIR": {
+      "post": {
+        "tags": [
+          "game"
+        ],
+        "operationId": "game/SetFIR",
+        "requestBody": {
+          "description": "Req<SetFIR>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/game_PtlSetFIR_ReqSetFIR"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResSetFIR>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/game_PtlSetFIR_ResSetFIR"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/game/SetFish": {
+      "post": {
+        "tags": [
+          "game"
+        ],
+        "operationId": "game/SetFish",
+        "requestBody": {
+          "description": "Req<SetFish>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/game_PtlSetFish_ReqSetFish"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResSetFish>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/game_PtlSetFish_ResSetFish"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/manager/Get": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "operationId": "manager/Get",
+        "requestBody": {
+          "description": "Req<Get>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/manager_PtlGet_ReqGet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGet>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/manager_PtlGet_ResGet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/manager/Login": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "operationId": "manager/Login",
+        "requestBody": {
+          "description": "Req<Login>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/manager_PtlLogin_ReqLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResLogin>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/manager_PtlLogin_ResLogin"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/manager/LoginLog": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "operationId": "manager/LoginLog",
+        "requestBody": {
+          "description": "Req<LoginLog>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/manager_PtlLoginLog_ReqLoginLog"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResLoginLog>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/manager_PtlLoginLog_ResLoginLog"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/manager/Logout": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "operationId": "manager/Logout",
+        "requestBody": {
+          "description": "Req<Logout>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/manager_PtlLogout_ReqLogout"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResLogout>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/manager_PtlLogout_ResLogout"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/manager/Register": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "operationId": "manager/Register",
+        "requestBody": {
+          "description": "Req<Register>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/manager_PtlRegister_ReqRegister"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResRegister>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/manager_PtlRegister_ResRegister"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/manager/ResetPassword": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "operationId": "manager/ResetPassword",
+        "requestBody": {
+          "description": "Req<ResetPassword>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/manager_PtlResetPassword_ReqResetPassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResResetPassword>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/manager_PtlResetPassword_ResResetPassword"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/manager/Set": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "operationId": "manager/Set",
+        "requestBody": {
+          "description": "Req<Set>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/manager_PtlSet_ReqSet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResSet>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/manager_PtlSet_ResSet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/player/Get": {
+      "post": {
+        "tags": [
+          "player"
+        ],
+        "operationId": "player/Get",
+        "requestBody": {
+          "description": "Req<Get>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/player_PtlGet_ReqGet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGet>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/player_PtlGet_ResGet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/player/GetMatchLog": {
+      "post": {
+        "tags": [
+          "player"
+        ],
+        "operationId": "player/GetMatchLog",
+        "requestBody": {
+          "description": "Req<GetMatchLog>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/player_PtlGetMatchLog_ReqGetMatchLog"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetMatchLog>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/player_PtlGetMatchLog_ResGetMatchLog"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/player/GetOnline": {
+      "post": {
+        "tags": [
+          "player"
+        ],
+        "operationId": "player/GetOnline",
+        "requestBody": {
+          "description": "Req<GetOnline>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/player_PtlGetOnline_ReqGetOnline"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetOnline>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/player_PtlGetOnline_ResGetOnline"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/player/GoldOperate": {
+      "post": {
+        "tags": [
+          "player"
+        ],
+        "operationId": "player/GoldOperate",
+        "requestBody": {
+          "description": "Req<GoldOperate>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/player_PtlGoldOperate_ReqGoldOperate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGoldOperate>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/player_PtlGoldOperate_ResGoldOperate"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/player/Set": {
+      "post": {
+        "tags": [
+          "player"
+        ],
+        "operationId": "player/Set",
+        "requestBody": {
+          "description": "Req<Set>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/player_PtlSet_ReqSet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResSet>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/player_PtlSet_ResSet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/rank/Get": {
+      "post": {
+        "tags": [
+          "rank"
+        ],
+        "operationId": "rank/Get",
+        "requestBody": {
+          "description": "Req<Get>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/rank_PtlGet_ReqGet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGet>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/rank_PtlGet_ResGet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/store/Get": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "operationId": "store/Get",
+        "requestBody": {
+          "description": "Req<Get>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/store_PtlGet_ReqGet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGet>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/store_PtlGet_ResGet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/store/Set": {
+      "post": {
+        "tags": [
+          "store"
+        ],
+        "operationId": "store/Set",
+        "requestBody": {
+          "description": "Req<Set>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/store_PtlSet_ReqSet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResSet>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/store_PtlSet_ResSet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/system/announce/Send": {
+      "post": {
+        "tags": [
+          "system/announce"
+        ],
+        "operationId": "system/announce/Send",
+        "requestBody": {
+          "description": "Req<Send>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/system_announce_PtlSend_ReqSend"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResSend>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/system_announce_PtlSend_ResSend"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/system/config/Get": {
+      "post": {
+        "tags": [
+          "system/config"
+        ],
+        "operationId": "system/config/Get",
+        "requestBody": {
+          "description": "Req<Get>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/system_config_PtlGet_ReqGet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGet>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/system_config_PtlGet_ResGet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/system/config/Set": {
+      "post": {
+        "tags": [
+          "system/config"
+        ],
+        "operationId": "system/config/Set",
+        "requestBody": {
+          "description": "Req<Set>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/system_config_PtlSet_ReqSet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResSet>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/system_config_PtlSet_ResSet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/system/GetOperateLog": {
+      "post": {
+        "tags": [
+          "system"
+        ],
+        "operationId": "system/GetOperateLog",
+        "requestBody": {
+          "description": "Req<GetOperateLog>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/system_PtlGetOperateLog_ReqGetOperateLog"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetOperateLog>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/system_PtlGetOperateLog_ResGetOperateLog"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/system/SendMarquee": {
+      "post": {
+        "tags": [
+          "system"
+        ],
+        "operationId": "system/SendMarquee",
+        "requestBody": {
+          "description": "Req<SendMarquee>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/system_PtlSendMarquee_ReqSendMarquee"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResSendMarquee>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/system_PtlSendMarquee_ResSendMarquee"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/verify/Get": {
+      "post": {
+        "tags": [
+          "verify"
+        ],
+        "operationId": "verify/Get",
+        "requestBody": {
+          "description": "Req<Get>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/verify_PtlGet_ReqGet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGet>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/verify_PtlGet_ResGet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "analyze_PtlGetActive_ReqGetActive": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "dateStart": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "dateEnd": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "dateStart",
+                  "dateEnd"
+                ]
+              }
+            },
+            "required": [
+              "filter"
+            ]
+          }
+        ],
+        "description": "获取活跃人数"
+      },
+      "___apiBase_BaseRequest": {
+        "type": "object",
+        "properties": {
+          "__authToken": {
+            "type": "string",
+            "description": "鉴权token，登录后的接口都需要填写"
+          },
+          "__uid": {
+            "type": "number",
+            "description": "用户uid，仅服务器使用不需要填写"
+          },
+          "__roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/______auth_UserRole"
+            },
+            "description": "用户角色，仅服务器使用不需要填写"
+          }
+        }
+      },
+      "______auth_UserRole": {
+        "type": "string",
+        "enum": [
+          "SERVER",
+          "ADMIN",
+          "MANAGER",
+          "GM",
+          "PLAYER"
+        ]
+      },
+      "analyze_PtlGetActive_ResGetActive": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/analyze_PtlGetActive_Chart"
+                },
+                "description": "返回数据[...[dateNumber,value]...]"
+              }
+            },
+            "required": [
+              "data"
+            ]
+          }
+        ]
+      },
+      "___apiBase_BaseResponse": {
+        "type": "object",
+        "properties": {
+          "__authToken": {
+            "type": "string"
+          }
+        }
+      },
+      "analyze_PtlGetActive_Chart": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      },
+      "analyze_PtlGetAdd_ReqGetAdd": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "dateStart": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "dateEnd": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "dateStart",
+                  "dateEnd"
+                ]
+              }
+            },
+            "required": [
+              "filter"
+            ]
+          }
+        ],
+        "description": "获取新增人数"
+      },
+      "analyze_PtlGetAdd_ResGetAdd": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/analyze_PtlGetAdd_Chart"
+                },
+                "description": "返回数据[...[dateNumber,value]...]"
+              }
+            },
+            "required": [
+              "data"
+            ]
+          }
+        ]
+      },
+      "analyze_PtlGetAdd_Chart": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      },
+      "analyze_PtlGetRetain_ReqGetRetain": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "date"
+                ]
+              }
+            },
+            "required": [
+              "filter"
+            ]
+          }
+        ],
+        "description": "获取留存"
+      },
+      "analyze_PtlGetRetain_ResGetRetain": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "day1": {
+                "type": "number",
+                "description": "1日留存"
+              },
+              "day3": {
+                "type": "number",
+                "description": "3日留存"
+              },
+              "day7": {
+                "type": "number",
+                "description": "7日留存"
+              },
+              "day15": {
+                "type": "number",
+                "description": "15日留存"
+              },
+              "day30": {
+                "type": "number",
+                "description": "30日留存"
+              }
+            },
+            "required": [
+              "day1",
+              "day3",
+              "day7",
+              "day15",
+              "day30"
+            ]
+          }
+        ]
+      },
+      "analyze_PtlGetSummary_ReqGetSummary": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "dateStart": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "dateEnd": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "dateStart",
+                  "dateEnd"
+                ]
+              }
+            },
+            "required": [
+              "filter"
+            ]
+          }
+        ],
+        "description": "获取概要"
+      },
+      "analyze_PtlGetSummary_ResGetSummary": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "totalPlayer": {
+                "type": "number",
+                "description": "总玩家数"
+              },
+              "totalPayedPlayer": {
+                "type": "number",
+                "description": "总付费玩家数"
+              },
+              "totalSend": {
+                "type": "number",
+                "description": "总赠送金币"
+              },
+              "games": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_GameSummary_GameSummary"
+                },
+                "description": "游戏盈亏"
+              },
+              "rooms": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_GameSummary_GameSummary"
+                },
+                "description": "房间盈亏"
+              }
+            },
+            "required": [
+              "totalPlayer",
+              "totalPayedPlayer",
+              "totalSend",
+              "games",
+              "rooms"
+            ]
+          }
+        ]
+      },
+      "______Interface_GameSummary_GameSummary": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "名称"
+          },
+          "activePlayer": {
+            "type": "number",
+            "description": "活跃玩家"
+          },
+          "addPlayer": {
+            "type": "number",
+            "description": "新增玩家"
+          },
+          "matchCount": {
+            "type": "number",
+            "description": "游戏局数"
+          },
+          "playerWinRate": {
+            "type": "number",
+            "description": "玩家胜率"
+          },
+          "playerMatchResult": {
+            "type": "number",
+            "description": "玩家输赢"
+          },
+          "tax": {
+            "type": "number",
+            "description": "系统抽水"
+          }
+        },
+        "required": [
+          "name",
+          "activePlayer",
+          "addPlayer",
+          "matchCount",
+          "playerWinRate",
+          "playerMatchResult",
+          "tax"
+        ],
+        "description": "游戏概况"
+      },
+      "control_PtlAddControl_ReqAddControl": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "UID": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "step": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "weight": {
+                      "type": "number",
+                      "description": "概率权重（-1000~1000）"
+                    },
+                    "value": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "weight",
+                    "value"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "UID",
+              "step"
+            ]
+          }
+        ],
+        "description": "添加点控"
+      },
+      "control_PtlAddControl_ResAddControl": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "control_PtlRemoveControl_ReqRemoveControl": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "UID": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            },
+            "required": [
+              "UID"
+            ]
+          }
+        ],
+        "description": "移除点控"
+      },
+      "control_PtlRemoveControl_ResRemoveControl": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "game_PtlGetCheXuan_ReqGetCheXuan": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "game_PtlGetCheXuan_ResGetCheXuan": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "room": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_GameCheXuan_GameCheXuan"
+                }
+              }
+            },
+            "required": [
+              "room"
+            ]
+          }
+        ]
+      },
+      "______Interface_GameCheXuan_GameCheXuan": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/______Interface_GameRoom_GameRoom"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "______Interface_GameRoom_GameRoom": {
+        "type": "object",
+        "properties": {
+          "game": {
+            "type": "string",
+            "description": "游戏名，不可更改"
+          },
+          "field": {
+            "type": "string",
+            "description": "房间名，不可更改"
+          },
+          "minGold": {
+            "type": "number",
+            "description": "入场分数下限，0不限"
+          },
+          "maxGold": {
+            "type": "number",
+            "description": "入场分数上限，0不限"
+          },
+          "minBet": {
+            "type": "number",
+            "description": "最小下注"
+          }
+        },
+        "required": [
+          "game",
+          "field",
+          "minGold",
+          "maxGold",
+          "minBet"
+        ],
+        "description": "游戏房间"
+      },
+      "game_PtlGetFIR_ReqGetFIR": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ],
+        "description": "获取五子棋配置"
+      },
+      "game_PtlGetFIR_ResGetFIR": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "room": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_GameFIR_GameFIR"
+                }
+              }
+            },
+            "required": [
+              "room"
+            ]
+          }
+        ]
+      },
+      "______Interface_GameFIR_GameFIR": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/______Interface_GameRoom_GameRoom"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "game_PtlGetFish_ReqGetFish": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ],
+        "description": "获取捕鱼配置"
+      },
+      "game_PtlGetFish_ResGetFish": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "room": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_GameFish_GameFish"
+                }
+              }
+            },
+            "required": [
+              "room"
+            ]
+          }
+        ]
+      },
+      "______Interface_GameFish_GameFish": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/______Interface_GameRoom_GameRoom"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "currentPool": {
+                "type": "number",
+                "description": "当前奖池金额"
+              },
+              "taxRate": {
+                "type": "number",
+                "description": "注入抽水比例"
+              },
+              "poolRate": {
+                "type": "number",
+                "description": "注入奖池比例"
+              },
+              "topLimit": {
+                "type": "number",
+                "description": "奖池上限"
+              },
+              "bottomLimit": {
+                "type": "number",
+                "description": "奖池下限"
+              },
+              "Fish": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_GameFish_Fish"
+                },
+                "description": "鱼设置"
+              },
+              "Fix": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_GameFish_Fixer"
+                },
+                "description": "奖池概率修正"
+              }
+            },
+            "required": [
+              "currentPool",
+              "taxRate",
+              "poolRate",
+              "topLimit",
+              "bottomLimit",
+              "Fish",
+              "Fix"
+            ]
+          }
+        ]
+      },
+      "______Interface_GameFish_Fish": {
+        "type": "object",
+        "properties": {
+          "rateMin": {
+            "type": "number",
+            "description": "最小倍率"
+          },
+          "rateMax": {
+            "type": "number",
+            "description": "最大倍率"
+          },
+          "killRate": {
+            "type": "number",
+            "description": "击杀倍率"
+          },
+          "appearRate": {
+            "type": "number",
+            "description": "出现概率(100)"
+          },
+          "appearInterval": {
+            "type": "number",
+            "description": "出现频率（秒）"
+          }
+        },
+        "required": [
+          "rateMin",
+          "rateMax",
+          "killRate",
+          "appearRate",
+          "appearInterval"
+        ],
+        "description": "鱼配置"
+      },
+      "______Interface_GameFish_Fixer": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "number",
+            "description": "档位"
+          },
+          "bottom": {
+            "type": "number",
+            "description": "下限"
+          },
+          "top": {
+            "type": "number",
+            "description": "上限"
+          },
+          "fix": {
+            "type": "number",
+            "description": "修正值"
+          }
+        },
+        "required": [
+          "level",
+          "bottom",
+          "top",
+          "fix"
+        ],
+        "description": "概率修正"
+      },
+      "game_PtlSetCheXuan_ReqSetCheXuan": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "room": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_GameCheXuan_GameCheXuan"
+                }
+              }
+            },
+            "required": [
+              "room"
+            ]
+          }
+        ]
+      },
+      "game_PtlSetCheXuan_ResSetCheXuan": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "game_PtlSetFIR_ReqSetFIR": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "room": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_GameFIR_GameFIR"
+                }
+              }
+            },
+            "required": [
+              "room"
+            ]
+          }
+        ],
+        "description": "设置五子棋\n只传递当前修改的配置"
+      },
+      "game_PtlSetFIR_ResSetFIR": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "game_PtlSetFish_ReqSetFish": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "room": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_GameFish_GameFish"
+                }
+              }
+            },
+            "required": [
+              "room"
+            ]
+          }
+        ],
+        "description": "配置捕鱼\n只传递当前修改的房间数据"
+      },
+      "game_PtlSetFish_ResSetFish": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "manager_PtlGet_ReqGet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "account": {
+                    "type": "string"
+                  }
+                }
+              },
+              "page": {
+                "$ref": "#/components/schemas/___apiBase_ReqPageBase"
+              }
+            },
+            "required": [
+              "page"
+            ]
+          }
+        ],
+        "description": "获取管理员列表"
+      },
+      "___apiBase_ReqPageBase": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "number"
+          },
+          "index": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "count",
+          "index"
+        ],
+        "description": "请求分页"
+      },
+      "manager_PtlGet_ResGet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "list": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_Manager_Manager"
+                }
+              },
+              "page": {
+                "$ref": "#/components/schemas/___apiBase_ResPageBase"
+              }
+            },
+            "required": [
+              "list",
+              "page"
+            ]
+          }
+        ]
+      },
+      "______Interface_Manager_Manager": {
+        "type": "object",
+        "properties": {
+          "UID": {
+            "type": "number",
+            "description": "用户uid"
+          },
+          "account": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/______auth_UserRole"
+          },
+          "permission": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/______auth_Permission"
+            }
+          },
+          "registerTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "loginCount": {
+            "type": "number"
+          },
+          "ban": {
+            "type": "boolean"
+          },
+          "lastEditUID": {
+            "type": "number"
+          }
+        },
+        "description": "管理员账户"
+      },
+      "______auth_Permission": {
+        "type": "string",
+        "enum": [
+          "BAnnounce",
+          "BConfig",
+          "BManager",
+          "BSystem",
+          "BAnalyze",
+          "BRanking",
+          "BSearchPlayer",
+          "BOnlinePlayer",
+          "BStore",
+          "BControl",
+          "BScoreOperate",
+          "BGameLog",
+          "BGameSettings",
+          "BMarquee",
+          "BVerifyCode",
+          "OControl",
+          "OPlayerScore",
+          "OPlayerBlock",
+          "OGameSettings",
+          "OManager",
+          "OStore"
+        ]
+      },
+      "___apiBase_ResPageBase": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "number"
+          },
+          "pageCount": {
+            "type": "number"
+          },
+          "count": {
+            "type": "number"
+          },
+          "totalCount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "index",
+          "pageCount",
+          "count",
+          "totalCount"
+        ],
+        "description": "返回分页"
+      },
+      "manager_PtlLogin_ReqLogin": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "account": {
+                "type": "string",
+                "description": "账户名"
+              },
+              "password": {
+                "type": "string",
+                "description": "密码"
+              }
+            },
+            "required": [
+              "account",
+              "password"
+            ]
+          }
+        ],
+        "description": "登录"
+      },
+      "manager_PtlLogin_ResLogin": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "info": {
+                "$ref": "#/components/schemas/______Interface_Manager_Manager",
+                "description": "返回自己的密码以外的信息"
+              }
+            },
+            "required": [
+              "info"
+            ]
+          }
+        ]
+      },
+      "manager_PtlLoginLog_ReqLoginLog": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ],
+        "description": "获取自己的登录记录"
+      },
+      "manager_PtlLoginLog_ResLoginLog": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "list": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_LoginLog_LoginLog"
+                }
+              }
+            },
+            "required": [
+              "list"
+            ]
+          }
+        ]
+      },
+      "______Interface_LoginLog_LoginLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "登录记录id"
+          },
+          "UID": {
+            "type": "number",
+            "description": "uid"
+          },
+          "counter": {
+            "type": "number",
+            "description": "登录次数"
+          },
+          "ip": {
+            "type": "string",
+            "description": "登录ip"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "登录时间"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "description": "登录记录"
+      },
+      "manager_PtlLogout_ReqLogout": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ],
+        "description": "登出"
+      },
+      "manager_PtlLogout_ResLogout": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "manager_PtlRegister_ReqRegister": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "account": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "role": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "MANAGER"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "ADMIN"
+                    ]
+                  }
+                ]
+              },
+              "permission": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______auth_Permission"
+                }
+              }
+            },
+            "required": [
+              "account",
+              "password",
+              "role",
+              "permission"
+            ]
+          }
+        ],
+        "description": "注册"
+      },
+      "manager_PtlRegister_ResRegister": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "UID": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "UID"
+            ]
+          }
+        ]
+      },
+      "manager_PtlResetPassword_ReqResetPassword": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "oldPassword": {
+                "type": "string"
+              },
+              "newPassword": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "oldPassword",
+              "newPassword"
+            ]
+          }
+        ],
+        "description": "重置密码"
+      },
+      "manager_PtlResetPassword_ResResetPassword": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "manager_PtlSet_ReqSet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "UID": {
+                "type": "number"
+              },
+              "password": {
+                "type": "string"
+              },
+              "permission": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______auth_Permission"
+                }
+              },
+              "lock": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "UID"
+            ]
+          }
+        ],
+        "description": "管理员设置"
+      },
+      "manager_PtlSet_ResSet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "player_PtlGet_ReqGet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "UID": {
+                    "type": "number",
+                    "description": "玩家uid"
+                  },
+                  "account": {
+                    "type": "string",
+                    "description": "昵称或邮箱地址"
+                  },
+                  "loginTimeStart": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "登录时间开始"
+                  },
+                  "loginTimeEnd": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "登录时间结束"
+                  }
+                },
+                "description": "筛选方式"
+              },
+              "sort": {
+                "type": "object",
+                "properties": {
+                  "loginTime": {
+                    "type": "number"
+                  }
+                },
+                "description": "排序方式\n1升序\n-1倒序"
+              },
+              "page": {
+                "$ref": "#/components/schemas/___apiBase_ReqPageBase"
+              }
+            },
+            "required": [
+              "filter",
+              "sort"
+            ]
+          }
+        ],
+        "description": "获取玩家列表"
+      },
+      "player_PtlGet_ResGet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "page": {
+                "$ref": "#/components/schemas/___apiBase_ResPageBase"
+              },
+              "list": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_Player_Player"
+                }
+              }
+            },
+            "required": [
+              "list"
+            ]
+          }
+        ]
+      },
+      "______Interface_Player_Player": {
+        "type": "object",
+        "properties": {
+          "UID": {
+            "type": "number",
+            "description": "玩家id"
+          },
+          "nickname": {
+            "type": "string",
+            "description": "昵称"
+          },
+          "email": {
+            "type": "string",
+            "description": "邮箱地址"
+          },
+          "registerTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "注册时间"
+          },
+          "loginTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "上次登录时间"
+          },
+          "gold": {
+            "type": "number",
+            "description": "持有金币"
+          },
+          "safeboxGold": {
+            "type": "number",
+            "description": "保险箱金币"
+          },
+          "gem": {
+            "type": "number",
+            "description": "持有钻石"
+          },
+          "safeboxGem": {
+            "type": "number",
+            "description": "保险箱钻石"
+          },
+          "totalCharge": {
+            "type": "number",
+            "description": "总充值"
+          },
+          "totalMatch": {
+            "type": "number",
+            "description": "总输赢"
+          },
+          "gameTime": {
+            "type": "number",
+            "description": "游戏时长"
+          }
+        },
+        "required": [
+          "UID",
+          "nickname",
+          "email",
+          "registerTime",
+          "loginTime",
+          "gold",
+          "safeboxGold",
+          "gem",
+          "safeboxGem",
+          "totalCharge",
+          "totalMatch",
+          "gameTime"
+        ],
+        "description": "玩家账户"
+      },
+      "player_PtlGetMatchLog_ReqGetMatchLog": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "UID": {
+                    "type": "number"
+                  },
+                  "dateStart": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "dateEnd": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "UID",
+                  "dateStart",
+                  "dateEnd"
+                ]
+              },
+              "page": {
+                "$ref": "#/components/schemas/___apiBase_ReqPageBase"
+              }
+            },
+            "required": [
+              "filter",
+              "page"
+            ]
+          }
+        ],
+        "description": "获取对局记录"
+      },
+      "player_PtlGetMatchLog_ResGetMatchLog": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "list": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_MatchLog_MatchLog"
+                }
+              },
+              "page": {
+                "$ref": "#/components/schemas/___apiBase_ResPageBase"
+              }
+            },
+            "required": [
+              "list",
+              "page"
+            ]
+          }
+        ]
+      },
+      "______Interface_MatchLog_MatchLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "对局id"
+          },
+          "UID": {
+            "type": "number",
+            "description": "玩家id"
+          },
+          "nickname": {
+            "type": "string",
+            "description": "玩家昵称"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "开始时间"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "结束时间"
+          },
+          "game": {
+            "type": "string",
+            "description": "游戏"
+          },
+          "room": {
+            "type": "string",
+            "description": "房间"
+          },
+          "startGold": {
+            "type": "number",
+            "description": "开始金额"
+          },
+          "endGold": {
+            "type": "number",
+            "description": "结束金额"
+          },
+          "result": {
+            "type": "number",
+            "description": "输赢结果"
+          },
+          "remark": {
+            "type": "string",
+            "description": "备注"
+          }
+        },
+        "required": [
+          "id",
+          "UID",
+          "nickname",
+          "startTime",
+          "endTime",
+          "game",
+          "room",
+          "startGold",
+          "endGold",
+          "result",
+          "remark"
+        ],
+        "description": "玩家对局记录"
+      },
+      "player_PtlGetOnline_ReqGetOnline": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "dateStart": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "dateEnd": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "account": {
+                    "type": "string",
+                    "description": "UID或nickname"
+                  },
+                  "stamp": {
+                    "type": "number",
+                    "description": "时间粒度，最低5秒"
+                  }
+                },
+                "required": [
+                  "dateStart",
+                  "dateEnd",
+                  "account",
+                  "stamp"
+                ]
+              }
+            },
+            "required": [
+              "filter"
+            ]
+          }
+        ],
+        "description": "获取实时在线"
+      },
+      "player_PtlGetOnline_ResGetOnline": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "games": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "game": {
+                      "type": "string"
+                    },
+                    "chart": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/player_PtlGetOnline_Chart"
+                      }
+                    }
+                  },
+                  "required": [
+                    "game",
+                    "chart"
+                  ]
+                }
+              },
+              "total": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/player_PtlGetOnline_Chart"
+                }
+              }
+            },
+            "required": [
+              "games",
+              "total"
+            ]
+          }
+        ]
+      },
+      "player_PtlGetOnline_Chart": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      },
+      "player_PtlGoldOperate_ReqGoldOperate": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "UID": {
+                "type": "number",
+                "description": "玩家uid"
+              },
+              "gold": {
+                "type": "number",
+                "description": "增减持有金币"
+              },
+              "safeboxGold": {
+                "type": "number",
+                "description": "增减保险箱金币"
+              },
+              "operate": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "Send"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "ChargeRefound"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "Compensate"
+                    ]
+                  }
+                ],
+                "description": "操作类型，只能是赠送|充值|补偿"
+              },
+              "remark": {
+                "type": "string",
+                "description": "备注"
+              }
+            },
+            "required": [
+              "UID",
+              "gold",
+              "safeboxGold",
+              "operate",
+              "remark"
+            ]
+          }
+        ],
+        "description": "上分"
+      },
+      "______auth_OperateType": {
+        "type": "string",
+        "enum": [
+          "ChargeRefound",
+          "Send",
+          "Compensate",
+          "AddControl",
+          "RemoveControl",
+          "LockAccount",
+          "UnlockAccount",
+          "SendMarquee",
+          "SenAnnounce",
+          "SetGame",
+          "SetConfig"
+        ],
+        "description": "转账类型"
+      },
+      "player_PtlGoldOperate_ResGoldOperate": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "player_PtlSet_ReqSet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "UID": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              },
+              "lock": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "UID",
+              "lock"
+            ]
+          }
+        ],
+        "description": "锁定/解锁玩家"
+      },
+      "player_PtlSet_ResSet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "rank_PtlGet_ReqGet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "page": {
+                "$ref": "#/components/schemas/___apiBase_ReqPageBase"
+              }
+            },
+            "required": [
+              "data",
+              "page"
+            ]
+          }
+        ],
+        "description": "获取排名"
+      },
+      "rank_PtlGet_ResGet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "list": {
+                "type": "object"
+              },
+              "page": {
+                "$ref": "#/components/schemas/___apiBase_ResPageBase"
+              }
+            },
+            "required": [
+              "list",
+              "page"
+            ]
+          }
+        ]
+      },
+      "store_PtlGet_ReqGet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ],
+        "description": "获取商品列表"
+      },
+      "store_PtlGet_ResGet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "list": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_Commodity_Commodity"
+                }
+              }
+            },
+            "required": [
+              "list"
+            ]
+          }
+        ]
+      },
+      "______Interface_Commodity_Commodity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "icon",
+          "price"
+        ],
+        "description": "商城商品"
+      },
+      "store_PtlSet_ReqSet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "list": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_Commodity_Commodity"
+                }
+              }
+            },
+            "required": [
+              "list"
+            ]
+          }
+        ],
+        "description": "设置商品列表，只传修改的字段"
+      },
+      "store_PtlSet_ResSet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "system_announce_PtlSend_ReqSend": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "content": {
+                "type": "string"
+              },
+              "targetUID": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+            },
+            "required": [
+              "title",
+              "content"
+            ]
+          }
+        ],
+        "description": "发送通知"
+      },
+      "system_announce_PtlSend_ResSend": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "system_config_PtlGet_ReqGet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ],
+        "description": "获取后台开关"
+      },
+      "system_config_PtlGet_ResGet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "config": {
+                "$ref": "#/components/schemas/______Interface_GameConfig_GameConfig"
+              }
+            },
+            "required": [
+              "config"
+            ]
+          }
+        ]
+      },
+      "______Interface_GameConfig_GameConfig": {
+        "type": "object",
+        "properties": {
+          "showRanking": {
+            "type": "boolean",
+            "description": "显示排行榜"
+          },
+          "openList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "开放的游戏"
+          },
+          "closeList": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "关闭的游戏"
+          }
+        },
+        "description": "总设置"
+      },
+      "system_config_PtlSet_ReqSet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "config": {
+                "$ref": "#/components/schemas/______Interface_GameConfig_GameConfig"
+              }
+            },
+            "required": [
+              "config"
+            ]
+          }
+        ],
+        "description": "设置后台开关"
+      },
+      "system_config_PtlSet_ResSet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "system_PtlGetOperateLog_ReqGetOperateLog": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "UID": {
+                    "type": "number",
+                    "description": "目标uid"
+                  },
+                  "operator": {
+                    "type": "number",
+                    "description": "操作者uid"
+                  },
+                  "dateStart": {
+                    "type": "number",
+                    "description": "开始时间"
+                  },
+                  "dateEnd": {
+                    "type": "number",
+                    "description": "结束时间"
+                  },
+                  "operate": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/______auth_OperateType"
+                    },
+                    "description": "操作类型"
+                  }
+                },
+                "required": [
+                  "operate"
+                ]
+              },
+              "page": {
+                "$ref": "#/components/schemas/___apiBase_ReqPageBase"
+              }
+            },
+            "required": [
+              "filter",
+              "page"
+            ]
+          }
+        ],
+        "description": "获取任意记录\n根据记录类型返回相应的字段"
+      },
+      "system_PtlGetOperateLog_ResGetOperateLog": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "list": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/system_PtlGetOperateLog_Log"
+                },
+                "description": "日志"
+              },
+              "page": {
+                "$ref": "#/components/schemas/___apiBase_ResPageBase"
+              }
+            },
+            "required": [
+              "list",
+              "page"
+            ]
+          }
+        ]
+      },
+      "system_PtlGetOperateLog_Log": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/______Interface_OperateLog_OperateLog_OperateLog"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "currency": {
+                "$ref": "#/components/schemas/______Interface_OperateLog_CurrencyLog_CurrencyLog",
+                "description": "金钱操作[ChargeRefound|Send|Compensate]"
+              },
+              "control": {
+                "$ref": "#/components/schemas/______Interface_OperateLog_ControlLog_ControlLog",
+                "description": "点控[AddControl|RemoveControl]"
+              },
+              "account": {
+                "$ref": "#/components/schemas/______Interface_OperateLog_AccountLog_AccountLog",
+                "description": "账号[LockAccount|UnlockAccount]"
+              },
+              "marquee": {
+                "$ref": "#/components/schemas/______Interface_OperateLog_MarqueeLog_MarqueeLog",
+                "description": "跑马灯[SendMarquee]"
+              },
+              "announce": {
+                "$ref": "#/components/schemas/______Interface_OperateLog_AnnounceLog_AnnounceLog",
+                "description": "通知[SendAnnounce]"
+              },
+              "game": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/______Interface_OperateLog_GameSetLog_SetGameFIRLog"
+                  },
+                  {
+                    "$ref": "#/components/schemas/______Interface_OperateLog_GameSetLog_SetGameFishLog"
+                  },
+                  {
+                    "$ref": "#/components/schemas/______Interface_OperateLog_GameSetLog_SetGameCheXuanLog"
+                  }
+                ],
+                "description": "设置游戏记录[SetGame]"
+              }
+            }
+          }
+        ],
+        "description": "返回日志类型"
+      },
+      "______Interface_OperateLog_OperateLog_OperateLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "记录id"
+          },
+          "UID": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "目标uid 空则为全体玩家"
+          },
+          "nickname": {
+            "type": "string",
+            "description": "目标昵称"
+          },
+          "operatorUID": {
+            "type": "number",
+            "description": "操作者uid"
+          },
+          "operatorNickname": {
+            "type": "string",
+            "description": "操作者昵称"
+          },
+          "ip": {
+            "type": "string",
+            "description": "操作者ip"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "操作时间"
+          },
+          "operate": {
+            "$ref": "#/components/schemas/______auth_OperateType",
+            "description": "操作类型"
+          },
+          "remark": {
+            "type": "string",
+            "description": "备注"
+          }
+        },
+        "required": [
+          "id",
+          "UID",
+          "nickname",
+          "operatorUID",
+          "operatorNickname",
+          "ip",
+          "date",
+          "operate",
+          "remark"
+        ],
+        "description": "操作记录，作为索引"
+      },
+      "______Interface_OperateLog_CurrencyLog_CurrencyLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "记录id,与operatelog的id相同"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/______auth_CurrencyType",
+            "description": "货币类型"
+          },
+          "startValue": {
+            "type": "number",
+            "description": "起始值"
+          },
+          "endValue": {
+            "type": "number",
+            "description": "结束值"
+          },
+          "value": {
+            "type": "number",
+            "description": "变化值"
+          }
+        },
+        "required": [
+          "id",
+          "currency",
+          "startValue",
+          "endValue",
+          "value"
+        ]
+      },
+      "______auth_CurrencyType": {
+        "type": "string",
+        "enum": [
+          "Gold",
+          "Gem"
+        ],
+        "description": "货币类型"
+      },
+      "______Interface_OperateLog_ControlLog_ControlLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "操作id"
+          },
+          "control": {
+            "type": "boolean"
+          },
+          "step": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "weight": {
+                  "type": "number",
+                  "description": "权重"
+                },
+                "value": {
+                  "type": "number",
+                  "description": "目标金额"
+                }
+              },
+              "required": [
+                "weight",
+                "value"
+              ]
+            },
+            "description": "分步"
+          }
+        },
+        "required": [
+          "id",
+          "control"
+        ],
+        "description": "点控记录,添加点控时记录下来"
+      },
+      "______Interface_OperateLog_AccountLog_AccountLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "lock": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "lock"
+        ]
+      },
+      "______Interface_OperateLog_MarqueeLog_MarqueeLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "content": {
+            "type": "string"
+          },
+          "repeat": {
+            "type": "number"
+          },
+          "interval": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "content",
+          "repeat",
+          "interval"
+        ]
+      },
+      "______Interface_OperateLog_AnnounceLog_AnnounceLog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "通知ID,与operateLog的id相同"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          }
+        },
+        "description": "通知记录"
+      },
+      "______Interface_OperateLog_GameSetLog_SetGameFIRLog": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/______Interface_GameFIR_GameFIR"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "description": "操作记录id"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        ],
+        "description": "五子棋设置记录"
+      },
+      "______Interface_OperateLog_GameSetLog_SetGameFishLog": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/______Interface_GameFish_GameFish"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "description": "操作记录id"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        ],
+        "description": "捕鱼设置记录"
+      },
+      "______Interface_OperateLog_GameSetLog_SetGameCheXuanLog": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/______Interface_GameCheXuan_GameCheXuan"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        ],
+        "description": "扯旋设置记录"
+      },
+      "system_PtlSendMarquee_ReqSendMarquee": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "content": {
+                "type": "string",
+                "description": "跑马灯内容"
+              },
+              "repeat": {
+                "type": "number",
+                "description": "重复次数"
+              },
+              "interval": {
+                "type": "number",
+                "description": "发送间隔"
+              }
+            },
+            "required": [
+              "content",
+              "repeat",
+              "interval"
+            ]
+          }
+        ],
+        "description": "发送跑马灯"
+      },
+      "system_PtlSendMarquee_ResSendMarquee": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "verify_PtlGet_ReqGet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "UID": {
+                    "type": "number"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "required": [
+              "filter"
+            ]
+          }
+        ]
+      },
+      "verify_PtlGet_ResGet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        ]
+      },
+      "?bson_ObjectID": {
+        "type": "string"
+      },
+      "?bson_ObjectId": {
+        "type": "string"
+      },
+      "?mongodb_ObjectID": {
+        "type": "string"
+      },
+      "?mongodb_ObjectId": {
+        "type": "string"
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "title": "API 错误",
+              "description": "业务错误（ApiError）返回 HTTP 状态码 200，其它错误返回 HTTP 状态码 500",
+              "properties": {
+                "isSucc": {
+                  "type": "boolean",
+                  "enum": [
+                    false
+                  ],
+                  "default": false
+                },
+                "err": {
+                  "type": "object",
+                  "description": "TsrpcError",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "ApiError",
+                        "NetworkError",
+                        "ServerError",
+                        "ClientError"
+                      ]
+                    },
+                    "code": {
+                      "oneOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "integer"
+                        }
+                      ],
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "type"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
