@@ -616,6 +616,53 @@
         }
       }
     },
+    "/manager/GetRoles": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "operationId": "manager/GetRoles",
+        "requestBody": {
+          "description": "Req<GetRoles>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/manager_PtlGetRoles_ReqGetRoles"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetRoles>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/manager_PtlGetRoles_ResGetRoles"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
     "/manager/Login": {
       "post": {
         "tags": [
@@ -885,6 +932,53 @@
                     },
                     "res": {
                       "$ref": "#/components/schemas/manager_PtlSet_ResSet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/manager/SetRole": {
+      "post": {
+        "tags": [
+          "manager"
+        ],
+        "operationId": "manager/SetRole",
+        "requestBody": {
+          "description": "Req<SetRole>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/manager_PtlSetRole_ReqSetRole"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResSetRole>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/manager_PtlSetRole_ResSetRole"
                     }
                   }
                 }
@@ -1603,23 +1697,41 @@
             "type": "number",
             "description": "用户uid，仅服务器使用不需要填写"
           },
-          "__roles": {
+          "__permissions": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/______auth_UserRole"
+              "$ref": "#/components/schemas/______auth_Permission"
             },
             "description": "用户角色，仅服务器使用不需要填写"
           }
         }
       },
-      "______auth_UserRole": {
+      "______auth_Permission": {
         "type": "string",
         "enum": [
-          "SERVER",
-          "ADMIN",
-          "MANAGER",
-          "GM",
-          "PLAYER"
+          "Server",
+          "Player",
+          "BAnnounce",
+          "BConfig",
+          "BManager",
+          "BSystem",
+          "BAnalyze",
+          "BRanking",
+          "BSearchPlayer",
+          "BOnlinePlayer",
+          "BStore",
+          "BControl",
+          "BScoreOperate",
+          "BGameLog",
+          "BGameSettings",
+          "BMarquee",
+          "BVerifyCode",
+          "OControl",
+          "OPlayerScore",
+          "OPlayerBlock",
+          "OGameSettings",
+          "OManager",
+          "OStore"
         ]
       },
       "analyze_PtlGetActive_ResGetActive": {
@@ -2012,7 +2124,8 @@
             "type": "object",
             "properties": {}
           }
-        ]
+        ],
+        "description": "获取扯旋配置"
       },
       "game_PtlGetCheXuan_ResGetCheXuan": {
         "allOf": [
@@ -2291,7 +2404,8 @@
               "room"
             ]
           }
-        ]
+        ],
+        "description": "设置扯旋"
       },
       "game_PtlSetCheXuan_ResSetCheXuan": {
         "allOf": [
@@ -2452,7 +2566,7 @@
             "type": "string"
           },
           "role": {
-            "$ref": "#/components/schemas/______auth_UserRole"
+            "type": "string"
           },
           "permission": {
             "type": "array",
@@ -2475,32 +2589,6 @@
           }
         },
         "description": "管理员账户"
-      },
-      "______auth_Permission": {
-        "type": "string",
-        "enum": [
-          "BAnnounce",
-          "BConfig",
-          "BManager",
-          "BSystem",
-          "BAnalyze",
-          "BRanking",
-          "BSearchPlayer",
-          "BOnlinePlayer",
-          "BStore",
-          "BControl",
-          "BScoreOperate",
-          "BGameLog",
-          "BGameSettings",
-          "BMarquee",
-          "BVerifyCode",
-          "OControl",
-          "OPlayerScore",
-          "OPlayerBlock",
-          "OGameSettings",
-          "OManager",
-          "OStore"
-        ]
       },
       "___apiBase_ResPageBase": {
         "type": "object",
@@ -2525,6 +2613,47 @@
           "totalCount"
         ],
         "description": "返回分页"
+      },
+      "manager_PtlGetRoles_ReqGetRoles": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ],
+        "description": "获取所有角色"
+      },
+      "manager_PtlGetRoles_ResGetRoles": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "list": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "list"
+            ]
+          }
+        ]
       },
       "manager_PtlLogin_ReqLogin": {
         "allOf": [
@@ -2671,20 +2800,7 @@
                 "type": "string"
               },
               "role": {
-                "anyOf": [
-                  {
-                    "type": "string",
-                    "enum": [
-                      "MANAGER"
-                    ]
-                  },
-                  {
-                    "type": "string",
-                    "enum": [
-                      "ADMIN"
-                    ]
-                  }
-                ]
+                "type": "string"
               },
               "permission": {
                 "type": "array",
@@ -2787,6 +2903,43 @@
         "description": "管理员设置"
       },
       "manager_PtlSet_ResSet": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "manager_PtlSetRole_ReqSetRole": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___apiBase_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "permission": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______auth_Permission"
+                }
+              }
+            },
+            "required": [
+              "name",
+              "permission"
+            ]
+          }
+        ],
+        "description": "设置角色"
+      },
+      "manager_PtlSetRole_ResSetRole": {
         "allOf": [
           {
             "$ref": "#/components/schemas/___apiBase_BaseResponse"
