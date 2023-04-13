@@ -54,7 +54,7 @@
     - [获取任意记录](#/system/GetOperateLog)
     - [发送跑马灯](#/system/SendMarquee)
 - verify
-    - [Get](#/verify/Get)
+    - [查询验证码](#/verify/Get)
 
 ---
 
@@ -1762,13 +1762,18 @@ interface ResGetOperateLog {
         /** 账号[LockAccount|UnlockAccount] */
         account?: {
             id: number,
+            /** 是否锁定 */
             lock: boolean
         },
         /** 跑马灯[SendMarquee] */
         marquee?: {
+            /** id */
             id: number,
+            /** 内容 */
             content: string,
+            /** 重复次数 */
             repeat: number,
+            /** 重复间隔 */
             interval: number
         },
         /** 通知[SendAnnounce] */
@@ -1917,7 +1922,7 @@ interface ResSendMarquee {
 
 ## verify
 
-### Get <a id="/verify/Get"></a>
+### 查询验证码 <a id="/verify/Get"></a>
 
 **路径**
 - POST `/verify/Get`
@@ -1926,7 +1931,9 @@ interface ResSendMarquee {
 ```ts
 interface ReqGet {
     filter: {
+        /** 根据uid查询 */
         UID?: number,
+        /** 根据email查询 */
         email?: string
     },
     /** 鉴权token，登录后的接口都需要填写 */

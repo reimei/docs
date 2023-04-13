@@ -3981,28 +3981,34 @@
             "type": "number"
           },
           "lock": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "是否锁定"
           }
         },
         "required": [
           "id",
           "lock"
-        ]
+        ],
+        "description": "账号操作记录"
       },
       "______Interface_OperateLog_MarqueeLog_MarqueeLog": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "number"
+            "type": "number",
+            "description": "id"
           },
           "content": {
-            "type": "string"
+            "type": "string",
+            "description": "内容"
           },
           "repeat": {
-            "type": "number"
+            "type": "number",
+            "description": "重复次数"
           },
           "interval": {
-            "type": "number"
+            "type": "number",
+            "description": "重复间隔"
           }
         },
         "required": [
@@ -4010,7 +4016,8 @@
           "content",
           "repeat",
           "interval"
-        ]
+        ],
+        "description": "走马灯记录"
       },
       "______Interface_OperateLog_AnnounceLog_AnnounceLog": {
         "type": "object",
@@ -4140,10 +4147,12 @@
                 "type": "object",
                 "properties": {
                   "UID": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "根据uid查询"
                   },
                   "email": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "根据email查询"
                   }
                 }
               }
@@ -4152,7 +4161,8 @@
               "filter"
             ]
           }
-        ]
+        ],
+        "description": "查询验证码"
       },
       "verify_PtlGet_ResGet": {
         "allOf": [
