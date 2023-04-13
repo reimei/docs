@@ -1274,16 +1274,16 @@
             "type": "number",
             "description": "用户uid，仅服务器使用不需要填写"
           },
+          "__role_id": {
+            "type": "number",
+            "description": "角色id"
+          },
           "__permissions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/______auth_Permission"
             },
             "description": "用户角色，仅服务器使用不需要填写"
-          },
-          "__sign": {
-            "type": "string",
-            "description": "签名"
           },
           "__timestamp": {
             "type": "number",
