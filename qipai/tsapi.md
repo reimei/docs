@@ -24,16 +24,6 @@
     - [设置扯旋](#/game/SetCheXuan)
     - [设置五子棋](#/game/SetFIR)
     - [配置捕鱼](#/game/SetFish)
-- manager
-    - [获取管理员列表](#/manager/Get)
-    - [获取所有角色](#/manager/GetRoles)
-    - [登录](#/manager/Login)
-    - [获取自己的登录记录](#/manager/LoginLog)
-    - [登出](#/manager/Logout)
-    - [注册](#/manager/Register)
-    - [重置密码](#/manager/ResetPassword)
-    - [管理员设置](#/manager/Set)
-    - [设置角色](#/manager/SetRole)
 - player
     - [获取玩家列表](#/player/Get)
     - [获取对局记录](#/player/GetMatchLog)
@@ -77,7 +67,11 @@ interface ReqGetActive {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -96,7 +90,9 @@ interface ResGetActive {
   "needLogin": true,
   "needPermission": [
     "BAnalyze"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -119,7 +115,11 @@ interface ReqGetAdd {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -138,7 +138,9 @@ interface ResGetAdd {
   "needLogin": true,
   "needPermission": [
     "BAnalyze"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -158,7 +160,11 @@ interface ReqGetRetain {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -185,7 +191,9 @@ interface ResGetRetain {
   "needLogin": true,
   "needPermission": [
     "BAnalyze"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -208,7 +216,11 @@ interface ReqGetSummary {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -265,7 +277,9 @@ interface ResGetSummary {
   "needLogin": true,
   "needPermission": [
     "BAnalyze"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -292,7 +306,11 @@ interface ReqAddControl {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -309,7 +327,9 @@ interface ResAddControl {
   "needLogin": true,
   "needPermission": [
     "OControl"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -329,7 +349,11 @@ interface ReqRemoveControl {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -346,7 +370,9 @@ interface ResRemoveControl {
   "needLogin": true,
   "needPermission": [
     "OControl"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -367,7 +393,11 @@ interface ReqGetCheXuan {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -396,7 +426,9 @@ interface ResGetCheXuan {
   "needLogin": true,
   "needPermission": [
     "BGameSettings"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -415,7 +447,11 @@ interface ReqGetFIR {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -444,7 +480,9 @@ interface ResGetFIR {
   "needLogin": true,
   "needPermission": [
     "BGameSettings"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -463,7 +501,11 @@ interface ReqGetFish {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -526,7 +568,9 @@ interface ResGetFish {
   "needLogin": true,
   "needPermission": [
     "BGameSettings"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -557,7 +601,11 @@ interface ReqSetCheXuan {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -574,7 +622,9 @@ interface ResSetCheXuan {
   "needLogin": true,
   "needPermission": [
     "OGameSettings"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -607,7 +657,11 @@ interface ReqSetFIR {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -624,7 +678,9 @@ interface ResSetFIR {
   "needLogin": true,
   "needPermission": [
     "OGameSettings"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -691,7 +747,11 @@ interface ReqSetFish {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -708,389 +768,9 @@ interface ResSetFish {
   "needLogin": true,
   "needPermission": [
     "OGameSettings"
-  ]
-}
-```
-
----
-
-## manager
-
-### 获取管理员列表 <a id="/manager/Get"></a>
-
-**路径**
-- POST `/manager/Get`
-
-**请求**
-```ts
-interface ReqGet {
-    filter?: { account?: string },
-    /** 请求分页 */
-    page: {
-        count: number,
-        index: number
-    },
-    /** 鉴权token，登录后的接口都需要填写 */
-    __authToken?: string,
-    /** 用户uid，仅服务器使用不需要填写 */
-    __uid?: number,
-    /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-}
-```
-
-**响应**
-```ts
-interface ResGet {
-    list: {
-        /** 用户uid */
-        UID?: number,
-        account?: string,
-        code?: string,
-        role?: string,
-        permission?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
-        registerTime?: /*datetime*/ string,
-        loginCount?: number,
-        ban?: boolean,
-        lastEditUID?: number
-    }[],
-    /** 返回分页 */
-    page: {
-        index: number,
-        pageCount: number,
-        count: number,
-        totalCount: number
-    },
-    __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needLogin": true,
-  "needPermission": [
-    "BManager"
-  ]
-}
-```
-
----
-
-### 获取所有角色 <a id="/manager/GetRoles"></a>
-
-**路径**
-- POST `/manager/GetRoles`
-
-**请求**
-```ts
-interface ReqGetRoles {
-    /** 鉴权token，登录后的接口都需要填写 */
-    __authToken?: string,
-    /** 用户uid，仅服务器使用不需要填写 */
-    __uid?: number,
-    /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-}
-```
-
-**响应**
-```ts
-interface ResGetRoles {
-    list: {
-        /** 角色名 */
-        name: string,
-        /** 角色包含权限 */
-        permission: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-    }[],
-    __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needLogin": true
-}
-```
-
----
-
-### 登录 <a id="/manager/Login"></a>
-
-**路径**
-- POST `/manager/Login`
-
-**请求**
-```ts
-interface ReqLogin {
-    /** 账户名 */
-    account: string,
-    /** 密码 */
-    password: string,
-    /** 鉴权token，登录后的接口都需要填写 */
-    __authToken?: string,
-    /** 用户uid，仅服务器使用不需要填写 */
-    __uid?: number,
-    /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-}
-```
-
-**响应**
-```ts
-interface ResLogin {
-    /** 返回自己的密码以外的信息 */
-    info: {
-        /** 用户uid */
-        UID?: number,
-        account?: string,
-        code?: string,
-        role?: string,
-        permission?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
-        registerTime?: /*datetime*/ string,
-        loginCount?: number,
-        ban?: boolean,
-        lastEditUID?: number
-    },
-    __authToken?: string
-}
-```
-
----
-
-### 获取自己的登录记录 <a id="/manager/LoginLog"></a>
-
-**路径**
-- POST `/manager/LoginLog`
-
-**请求**
-```ts
-interface ReqLoginLog {
-    /** 鉴权token，登录后的接口都需要填写 */
-    __authToken?: string,
-    /** 用户uid，仅服务器使用不需要填写 */
-    __uid?: number,
-    /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-}
-```
-
-**响应**
-```ts
-interface ResLoginLog {
-    list: {
-        /** 登录记录id */
-        id: number,
-        /** uid */
-        UID?: number,
-        /** 登录次数 */
-        counter?: number,
-        /** 登录ip */
-        ip?: string,
-        /** 登录时间 */
-        date?: /*datetime*/ string
-    }[],
-    __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needLogin": true
-}
-```
-
----
-
-### 登出 <a id="/manager/Logout"></a>
-
-**路径**
-- POST `/manager/Logout`
-
-**请求**
-```ts
-interface ReqLogout {
-    /** 鉴权token，登录后的接口都需要填写 */
-    __authToken?: string,
-    /** 用户uid，仅服务器使用不需要填写 */
-    __uid?: number,
-    /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-}
-```
-
-**响应**
-```ts
-interface ResLogout {
-    __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needLogin": true
-}
-```
-
----
-
-### 注册 <a id="/manager/Register"></a>
-
-**路径**
-- POST `/manager/Register`
-
-**请求**
-```ts
-interface ReqRegister {
-    account: string,
-    password: string,
-    role: string,
-    permission: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
-    /** 鉴权token，登录后的接口都需要填写 */
-    __authToken?: string,
-    /** 用户uid，仅服务器使用不需要填写 */
-    __uid?: number,
-    /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-}
-```
-
-**响应**
-```ts
-interface ResRegister {
-    UID: number,
-    __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needLogin": true,
-  "needPermission": [
-    "OManager"
-  ]
-}
-```
-
----
-
-### 重置密码 <a id="/manager/ResetPassword"></a>
-
-**路径**
-- POST `/manager/ResetPassword`
-
-**请求**
-```ts
-interface ReqResetPassword {
-    oldPassword: string,
-    newPassword: string,
-    /** 鉴权token，登录后的接口都需要填写 */
-    __authToken?: string,
-    /** 用户uid，仅服务器使用不需要填写 */
-    __uid?: number,
-    /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-}
-```
-
-**响应**
-```ts
-interface ResResetPassword {
-    __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needLogin": true
-}
-```
-
----
-
-### 管理员设置 <a id="/manager/Set"></a>
-
-**路径**
-- POST `/manager/Set`
-
-**请求**
-```ts
-interface ReqSet {
-    UID: number,
-    password?: string,
-    permission?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
-    lock?: boolean,
-    /** 鉴权token，登录后的接口都需要填写 */
-    __authToken?: string,
-    /** 用户uid，仅服务器使用不需要填写 */
-    __uid?: number,
-    /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-}
-```
-
-**响应**
-```ts
-interface ResSet {
-    __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needLogin": true,
-  "needPermission": [
-    "OManager"
-  ]
-}
-```
-
----
-
-### 设置角色 <a id="/manager/SetRole"></a>
-
-**路径**
-- POST `/manager/SetRole`
-
-**请求**
-```ts
-interface ReqSetRole {
-    /** 后台角色 */
-    role: {
-        /** 角色名 */
-        name: string,
-        /** 角色包含权限 */
-        permission: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-    },
-    /** 鉴权token，登录后的接口都需要填写 */
-    __authToken?: string,
-    /** 用户uid，仅服务器使用不需要填写 */
-    __uid?: number,
-    /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-}
-```
-
-**响应**
-```ts
-interface ResSetRole {
-    __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needLogin": true,
-  "needPermission": [
-    "BManager"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -1133,7 +813,11 @@ interface ReqGet {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -1183,7 +867,9 @@ interface ResGet {
   "needLogin": true,
   "needPermission": [
     "BSearchPlayer"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -1212,7 +898,11 @@ interface ReqGetMatchLog {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -1260,7 +950,9 @@ interface ResGetMatchLog {
   "needLogin": true,
   "needPermission": [
     "BSearchPlayer"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -1287,7 +979,11 @@ interface ReqGetOnline {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -1309,7 +1005,9 @@ interface ResGetOnline {
   "needLogin": true,
   "needPermission": [
     "BOnlinePlayer"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -1338,7 +1036,11 @@ interface ReqGoldOperate {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -1355,7 +1057,9 @@ interface ResGoldOperate {
   "needLogin": true,
   "needPermission": [
     "OPlayerScore"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -1376,7 +1080,11 @@ interface ReqSet {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -1393,7 +1101,9 @@ interface ResSet {
   "needLogin": true,
   "needPermission": [
     "OPlayerBlock"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -1420,7 +1130,11 @@ interface ReqGet {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -1445,7 +1159,9 @@ interface ResGet {
   "needLogin": true,
   "needPermission": [
     "BRanking"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -1466,7 +1182,11 @@ interface ReqGet {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -1489,7 +1209,9 @@ interface ResGet {
   "needLogin": true,
   "needPermission": [
     "BStore"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -1514,7 +1236,11 @@ interface ReqSet {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -1531,7 +1257,9 @@ interface ResSet {
   "needLogin": true,
   "needPermission": [
     "OStore"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -1557,7 +1285,11 @@ interface ReqSend {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -1575,7 +1307,9 @@ interface ResSend {
   "needPermission": [
     "BSystem",
     "BAnnounce"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -1596,7 +1330,11 @@ interface ReqGet {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -1622,7 +1360,9 @@ interface ResGet {
   "needLogin": true,
   "needPermission": [
     "BConfig"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -1650,7 +1390,11 @@ interface ReqSet {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -1667,7 +1411,9 @@ interface ResSet {
   "needLogin": true,
   "needPermission": [
     "BConfig"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -1705,7 +1451,11 @@ interface ReqGetOperateLog {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -1872,7 +1622,9 @@ interface ResGetOperateLog {
 **配置**
 ```ts
 {
-  "needLogin": true
+  "needLogin": true,
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -1897,7 +1649,11 @@ interface ReqSendMarquee {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -1914,7 +1670,9 @@ interface ResSendMarquee {
   "needLogin": true,
   "needPermission": [
     "BMarquee"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
@@ -1941,7 +1699,11 @@ interface ReqGet {
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
     /** 用户角色，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 签名 */
+    __sign?: string,
+    /** 时间戳 */
+    __timestamp?: number
 }
 ```
 
@@ -1959,7 +1721,9 @@ interface ResGet {
   "needLogin": true,
   "needPermission": [
     "BVerifyCode"
-  ]
+  ],
+  "needEncrypt": true,
+  "needServer": true
 }
 ```
 
