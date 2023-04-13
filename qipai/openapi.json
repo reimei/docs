@@ -3325,12 +3325,29 @@
           {
             "type": "object",
             "properties": {
+              "UID": {
+                "type": "number",
+                "description": "用户uid"
+              },
+              "address": {
+                "type": "string",
+                "description": "发送邮箱"
+              },
               "code": {
-                "type": "number"
+                "type": "number",
+                "description": "验证码"
+              },
+              "date": {
+                "type": "string",
+                "format": "date-time",
+                "description": "发送时间"
               }
             },
             "required": [
-              "code"
+              "UID",
+              "address",
+              "code",
+              "date"
             ]
           }
         ]

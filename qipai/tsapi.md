@@ -1710,7 +1710,14 @@ interface ReqGet {
 **响应**
 ```ts
 interface ResGet {
+    /** 用户uid */
+    UID: number,
+    /** 发送邮箱 */
+    address: string,
+    /** 验证码 */
     code: number,
+    /** 发送时间 */
+    date: /*datetime*/ string,
     __authToken?: string
 }
 ```
