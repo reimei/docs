@@ -2637,15 +2637,7 @@
               "list": {
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "name"
-                  ]
+                  "$ref": "#/components/schemas/______Interface_Role_Role"
                 }
               }
             },
@@ -2654,6 +2646,27 @@
             ]
           }
         ]
+      },
+      "______Interface_Role_Role": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "角色名"
+          },
+          "permission": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/______auth_Permission"
+            },
+            "description": "角色包含权限"
+          }
+        },
+        "required": [
+          "name",
+          "permission"
+        ],
+        "description": "后台角色"
       },
       "manager_PtlLogin_ReqLogin": {
         "allOf": [
@@ -2921,19 +2934,12 @@
           {
             "type": "object",
             "properties": {
-              "name": {
-                "type": "string"
-              },
-              "permission": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/______auth_Permission"
-                }
+              "role": {
+                "$ref": "#/components/schemas/______Interface_Role_Role"
               }
             },
             "required": [
-              "name",
-              "permission"
+              "role"
             ]
           }
         ],

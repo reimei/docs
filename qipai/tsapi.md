@@ -797,7 +797,12 @@ interface ReqGetRoles {
 **响应**
 ```ts
 interface ResGetRoles {
-    list: { name: string }[],
+    list: {
+        /** 角色名 */
+        name: string,
+        /** 角色包含权限 */
+        permission: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    }[],
     __authToken?: string
 }
 ```
@@ -1056,8 +1061,13 @@ interface ResSet {
 **请求**
 ```ts
 interface ReqSetRole {
-    name: string,
-    permission: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[],
+    /** 后台角色 */
+    role: {
+        /** 角色名 */
+        name: string,
+        /** 角色包含权限 */
+        permission: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    },
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
