@@ -2105,7 +2105,7 @@
                 "type": "object",
                 "properties": {
                   "loginTime": {
-                    "type": "number"
+                    "$ref": "#/components/schemas/______auth_SortOrder"
                   }
                 },
                 "description": "排序方式\n1升序\n-1倒序"
@@ -2116,17 +2116,25 @@
             },
             "required": [
               "filter",
-              "sort"
+              "page"
             ]
           }
         ],
         "description": "获取玩家列表"
       },
+      "______auth_SortOrder": {
+        "type": "number",
+        "enum": [
+          -1,
+          1
+        ]
+      },
       "___apiBase_ReqPageBase": {
         "type": "object",
         "properties": {
           "count": {
-            "type": "number"
+            "type": "number",
+            "description": "一页的数量，最多100"
           },
           "index": {
             "type": "number"
@@ -2166,7 +2174,8 @@
         "type": "object",
         "properties": {
           "index": {
-            "type": "number"
+            "type": "number",
+            "description": "当前页标"
           },
           "pageCount": {
             "type": "number"
@@ -2616,16 +2625,51 @@
           {
             "type": "object",
             "properties": {
-              "data": {
-                "type": "string",
-                "format": "date-time"
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "日期"
+                  },
+                  "sort": {
+                    "type": "object",
+                    "properties": {
+                      "result": {
+                        "$ref": "#/components/schemas/______auth_SortOrder",
+                        "description": "以输赢结果排序1，-1"
+                      },
+                      "gold": {
+                        "$ref": "#/components/schemas/______auth_SortOrder",
+                        "description": "持有金币"
+                      },
+                      "gem": {
+                        "$ref": "#/components/schemas/______auth_SortOrder",
+                        "description": "持有钻石"
+                      },
+                      "safeboxGold": {
+                        "$ref": "#/components/schemas/______auth_SortOrder",
+                        "description": "保险箱金币"
+                      },
+                      "safeboxGem": {
+                        "$ref": "#/components/schemas/______auth_SortOrder",
+                        "description": "保险箱钻石"
+                      }
+                    },
+                    "description": "排序方式"
+                  }
+                },
+                "required": [
+                  "date"
+                ]
               },
               "page": {
                 "$ref": "#/components/schemas/___apiBase_ReqPageBase"
               }
             },
             "required": [
-              "data",
+              "filter",
               "page"
             ]
           }
@@ -2641,7 +2685,11 @@
             "type": "object",
             "properties": {
               "list": {
-                "type": "object"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_PlayerDailyLog_PlayerDailyLog"
+                },
+                "description": "输赢条目"
               },
               "page": {
                 "$ref": "#/components/schemas/___apiBase_ResPageBase"
@@ -2653,6 +2701,40 @@
             ]
           }
         ]
+      },
+      "______Interface_PlayerDailyLog_PlayerDailyLog": {
+        "type": "object",
+        "properties": {
+          "UID": {
+            "type": "number",
+            "description": "用户id"
+          },
+          "nickname": {
+            "type": "string",
+            "description": "昵称"
+          },
+          "gold": {
+            "type": "number",
+            "description": "背包内金币"
+          },
+          "gem": {
+            "type": "number",
+            "description": "背包内钻石"
+          },
+          "safeboxGold": {
+            "type": "number",
+            "description": "保险箱内金币"
+          },
+          "safeboxGem": {
+            "type": "number",
+            "description": "保险箱内钻石"
+          },
+          "result": {
+            "type": "number",
+            "description": "输赢情况"
+          }
+        },
+        "description": "玩家每日记录"
       },
       "store_PtlGet_ReqGet": {
         "allOf": [

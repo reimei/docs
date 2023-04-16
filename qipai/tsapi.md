@@ -754,9 +754,10 @@ interface ReqGet {
     * 1升序
     * -1倒序
     */
-    sort: { loginTime?: number },
+    sort?: { loginTime?: -1 | 1 },
     /** 请求分页 */
-    page?: {
+    page: {
+        /** 一页的数量，最多100 */
         count: number,
         index: number
     },
@@ -778,6 +779,7 @@ interface ReqGet {
 interface ResGet {
     /** 返回分页 */
     page?: {
+        /** 当前页标 */
         index: number,
         pageCount: number,
         count: number,
@@ -838,6 +840,7 @@ interface ReqGetMatchLog {
     },
     /** 请求分页 */
     page: {
+        /** 一页的数量，最多100 */
         count: number,
         index: number
     },
@@ -883,6 +886,7 @@ interface ResGetMatchLog {
     }[],
     /** 返回分页 */
     page: {
+        /** 当前页标 */
         index: number,
         pageCount: number,
         count: number,
@@ -1051,9 +1055,26 @@ interface ResSet {
 **请求**
 ```ts
 interface ReqGet {
-    data: /*datetime*/ string,
+    filter: {
+        /** 日期 */
+        date: /*datetime*/ string,
+        /** 排序方式 */
+        sort?: {
+            /** 以输赢结果排序1，-1 */
+            result?: -1 | 1,
+            /** 持有金币 */
+            gold?: -1 | 1,
+            /** 持有钻石 */
+            gem?: -1 | 1,
+            /** 保险箱金币 */
+            safeboxGold?: -1 | 1,
+            /** 保险箱钻石 */
+            safeboxGem?: -1 | 1
+        }
+    },
     /** 请求分页 */
     page: {
+        /** 一页的数量，最多100 */
         count: number,
         index: number
     },
@@ -1073,9 +1094,26 @@ interface ReqGet {
 **响应**
 ```ts
 interface ResGet {
-    list: any,
+    /** 输赢条目 */
+    list: {
+        /** 用户id */
+        UID?: number,
+        /** 昵称 */
+        nickname?: string,
+        /** 背包内金币 */
+        gold?: number,
+        /** 背包内钻石 */
+        gem?: number,
+        /** 保险箱内金币 */
+        safeboxGold?: number,
+        /** 保险箱内钻石 */
+        safeboxGem?: number,
+        /** 输赢情况 */
+        result?: number
+    }[],
     /** 返回分页 */
     page: {
+        /** 当前页标 */
         index: number,
         pageCount: number,
         count: number,
@@ -1350,6 +1388,7 @@ interface ReqGetOperateLog {
     },
     /** 请求分页 */
     page: {
+        /** 一页的数量，最多100 */
         count: number,
         index: number
     },
@@ -1517,6 +1556,7 @@ interface ResGetOperateLog {
     })[],
     /** 返回分页 */
     page: {
+        /** 当前页标 */
         index: number,
         pageCount: number,
         count: number,
