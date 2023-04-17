@@ -740,8 +740,8 @@ interface ResSetFish {
 interface ReqGet {
     /** 筛选方式 */
     filter: {
-        /** 玩家uid */
-        UID?: number,
+        /** 以玩家uid查询 */
+        UID?: number[],
         /** 昵称或邮箱地址 */
         account?: string,
         /** 登录时间开始 */
@@ -777,14 +777,6 @@ interface ReqGet {
 **响应**
 ```ts
 interface ResGet {
-    /** 返回分页 */
-    page?: {
-        /** 当前页标 */
-        index: number,
-        pageCount: number,
-        count: number,
-        totalCount: number
-    },
     list: {
         /** 玩家id */
         UID: number,
@@ -806,11 +798,36 @@ interface ResGet {
         safeboxGem: number,
         /** 总充值 */
         totalCharge: number,
-        /** 总输赢 */
+        /** 总输赢金额 */
         totalMatch: number,
+        /** 赢次数 */
+        winMatchCount: number,
+        /** 输次数 */
+        loseMatchCount: number,
         /** 游戏时长 */
-        gameTime: number
+        gameTime: number,
+        /** 锁定状态 */
+        isLock: boolean,
+        /** 点控输赢金额 */
+        controlMatch: number,
+        /** 当前点控进度下标 */
+        controlIndex: number,
+        /** 点控信息,长度>0则点控状态 */
+        controlStep: {
+            /** 权重，-1000~1000 */
+            weight: number,
+            /** 目标金额，正整数 */
+            value: number
+        }[]
     }[],
+    /** 返回分页 */
+    page: {
+        /** 当前页标 */
+        index: number,
+        pageCount: number,
+        count: number,
+        totalCount: number
+    },
     __authToken?: string
 }
 ```
@@ -1449,9 +1466,9 @@ interface ResGetOperateLog {
             control: boolean,
             /** 分步 */
             step?: {
-                /** 权重 */
+                /** 权重，-1000~1000 */
                 weight: number,
-                /** 目标金额 */
+                /** 目标金额，正整数 */
                 value: number
             }[]
         },

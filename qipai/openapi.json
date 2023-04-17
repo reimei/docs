@@ -2081,8 +2081,11 @@
                 "type": "object",
                 "properties": {
                   "UID": {
-                    "type": "number",
-                    "description": "玩家uid"
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "以玩家uid查询"
                   },
                   "account": {
                     "type": "string",
@@ -2154,46 +2157,22 @@
           {
             "type": "object",
             "properties": {
-              "page": {
-                "$ref": "#/components/schemas/___apiBase_ResPageBase"
-              },
               "list": {
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/______Interface_Player_Player"
                 }
+              },
+              "page": {
+                "$ref": "#/components/schemas/___apiBase_ResPageBase"
               }
             },
             "required": [
-              "list"
+              "list",
+              "page"
             ]
           }
         ]
-      },
-      "___apiBase_ResPageBase": {
-        "type": "object",
-        "properties": {
-          "index": {
-            "type": "number",
-            "description": "当前页标"
-          },
-          "pageCount": {
-            "type": "number"
-          },
-          "count": {
-            "type": "number"
-          },
-          "totalCount": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "index",
-          "pageCount",
-          "count",
-          "totalCount"
-        ],
-        "description": "返回分页"
       },
       "______Interface_Player_Player": {
         "type": "object",
@@ -2242,11 +2221,38 @@
           },
           "totalMatch": {
             "type": "number",
-            "description": "总输赢"
+            "description": "总输赢金额"
+          },
+          "winMatchCount": {
+            "type": "number",
+            "description": "赢次数"
+          },
+          "loseMatchCount": {
+            "type": "number",
+            "description": "输次数"
           },
           "gameTime": {
             "type": "number",
             "description": "游戏时长"
+          },
+          "isLock": {
+            "type": "boolean",
+            "description": "锁定状态"
+          },
+          "controlMatch": {
+            "type": "number",
+            "description": "点控输赢金额"
+          },
+          "controlIndex": {
+            "type": "number",
+            "description": "当前点控进度下标"
+          },
+          "controlStep": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/______Interface_ControlInfo_ControlInfo"
+            },
+            "description": "点控信息,长度>0则点控状态"
           }
         },
         "required": [
@@ -2261,9 +2267,57 @@
           "safeboxGem",
           "totalCharge",
           "totalMatch",
-          "gameTime"
+          "winMatchCount",
+          "loseMatchCount",
+          "gameTime",
+          "isLock",
+          "controlMatch",
+          "controlIndex",
+          "controlStep"
         ],
         "description": "玩家账户"
+      },
+      "______Interface_ControlInfo_ControlInfo": {
+        "type": "object",
+        "properties": {
+          "weight": {
+            "type": "number",
+            "description": "权重，-1000~1000"
+          },
+          "value": {
+            "type": "number",
+            "description": "目标金额，正整数"
+          }
+        },
+        "required": [
+          "weight",
+          "value"
+        ]
+      },
+      "___apiBase_ResPageBase": {
+        "type": "object",
+        "properties": {
+          "index": {
+            "type": "number",
+            "description": "当前页标"
+          },
+          "pageCount": {
+            "type": "number"
+          },
+          "count": {
+            "type": "number"
+          },
+          "totalCount": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "index",
+          "pageCount",
+          "count",
+          "totalCount"
+        ],
+        "description": "返回分页"
       },
       "player_PtlGetMatchLog_ReqGetMatchLog": {
         "allOf": [
@@ -3184,21 +3238,7 @@
           "step": {
             "type": "array",
             "items": {
-              "type": "object",
-              "properties": {
-                "weight": {
-                  "type": "number",
-                  "description": "权重"
-                },
-                "value": {
-                  "type": "number",
-                  "description": "目标金额"
-                }
-              },
-              "required": [
-                "weight",
-                "value"
-              ]
+              "$ref": "#/components/schemas/______Interface_ControlInfo_ControlInfo"
             },
             "description": "分步"
           }
