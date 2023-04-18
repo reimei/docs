@@ -1924,14 +1924,6 @@
             "type": "number",
             "description": "最大同屏数量"
           },
-          "rateMin": {
-            "type": "number",
-            "description": "最小倍率"
-          },
-          "rateMax": {
-            "type": "number",
-            "description": "最大倍率"
-          },
           "killProbability": {
             "type": "number",
             "description": "击杀概率（0~100）"
@@ -1953,8 +1945,6 @@
           "id",
           "name",
           "maxCount",
-          "rateMin",
-          "rateMax",
           "killProbability",
           "spawnProbability",
           "appearInterval",

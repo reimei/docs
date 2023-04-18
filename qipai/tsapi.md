@@ -499,10 +499,6 @@ interface ResGetFish {
             name: string,
             /** 最大同屏数量 */
             maxCount: number,
-            /** 最小倍率 */
-            rateMin: number,
-            /** 最大倍率 */
-            rateMax: number,
             /** 击杀概率（0~100） */
             killProbability: number,
             /** 出现概率(0~100) */
@@ -679,10 +675,6 @@ interface ReqSetFish {
             name: string,
             /** 最大同屏数量 */
             maxCount: number,
-            /** 最小倍率 */
-            rateMin: number,
-            /** 最大倍率 */
-            rateMax: number,
             /** 击杀概率（0~100） */
             killProbability: number,
             /** 出现概率(0~100) */
@@ -1547,10 +1539,6 @@ interface ResGetOperateLog {
                 name: string,
                 /** 最大同屏数量 */
                 maxCount: number,
-                /** 最小倍率 */
-                rateMin: number,
-                /** 最大倍率 */
-                rateMax: number,
                 /** 击杀概率（0~100） */
                 killProbability: number,
                 /** 出现概率(0~100) */
