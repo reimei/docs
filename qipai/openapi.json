@@ -1912,6 +1912,18 @@
       "______Interface_GameFish_Fish": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "number",
+            "description": "鱼id"
+          },
+          "name": {
+            "type": "string",
+            "description": "名称"
+          },
+          "maxCount": {
+            "type": "number",
+            "description": "最大同屏数量"
+          },
           "rateMin": {
             "type": "number",
             "description": "最小倍率"
@@ -1920,25 +1932,33 @@
             "type": "number",
             "description": "最大倍率"
           },
-          "killRate": {
+          "killProbability": {
             "type": "number",
-            "description": "击杀倍率"
+            "description": "击杀概率（0~100）"
           },
-          "appearRate": {
+          "spawnProbability": {
             "type": "number",
-            "description": "出现概率(100)"
+            "description": "出现概率(0~100)"
           },
           "appearInterval": {
             "type": "number",
             "description": "出现频率（秒）"
+          },
+          "skill": {
+            "type": "string",
+            "description": "鱼技能"
           }
         },
         "required": [
+          "id",
+          "name",
+          "maxCount",
           "rateMin",
           "rateMax",
-          "killRate",
-          "appearRate",
-          "appearInterval"
+          "killProbability",
+          "spawnProbability",
+          "appearInterval",
+          "skill"
         ],
         "description": "鱼配置"
       },

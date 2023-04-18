@@ -493,16 +493,24 @@ interface ResGetFish {
         bottomLimit: number,
         /** 鱼设置 */
         Fish: {
+            /** 鱼id */
+            id: number,
+            /** 名称 */
+            name: string,
+            /** 最大同屏数量 */
+            maxCount: number,
             /** 最小倍率 */
             rateMin: number,
             /** 最大倍率 */
             rateMax: number,
-            /** 击杀倍率 */
-            killRate: number,
-            /** 出现概率(100) */
-            appearRate: number,
+            /** 击杀概率（0~100） */
+            killProbability: number,
+            /** 出现概率(0~100) */
+            spawnProbability: number,
             /** 出现频率（秒） */
-            appearInterval: number
+            appearInterval: number,
+            /** 鱼技能 */
+            skill: string
         }[],
         /** 奖池概率修正 */
         Fix: {
@@ -665,16 +673,24 @@ interface ReqSetFish {
         bottomLimit: number,
         /** 鱼设置 */
         Fish: {
+            /** 鱼id */
+            id: number,
+            /** 名称 */
+            name: string,
+            /** 最大同屏数量 */
+            maxCount: number,
             /** 最小倍率 */
             rateMin: number,
             /** 最大倍率 */
             rateMax: number,
-            /** 击杀倍率 */
-            killRate: number,
-            /** 出现概率(100) */
-            appearRate: number,
+            /** 击杀概率（0~100） */
+            killProbability: number,
+            /** 出现概率(0~100) */
+            spawnProbability: number,
             /** 出现频率（秒） */
-            appearInterval: number
+            appearInterval: number,
+            /** 鱼技能 */
+            skill: string
         }[],
         /** 奖池概率修正 */
         Fix: {
@@ -1525,16 +1541,24 @@ interface ResGetOperateLog {
             bottomLimit: number,
             /** 鱼设置 */
             Fish: {
+                /** 鱼id */
+                id: number,
+                /** 名称 */
+                name: string,
+                /** 最大同屏数量 */
+                maxCount: number,
                 /** 最小倍率 */
                 rateMin: number,
                 /** 最大倍率 */
                 rateMax: number,
-                /** 击杀倍率 */
-                killRate: number,
-                /** 出现概率(100) */
-                appearRate: number,
+                /** 击杀概率（0~100） */
+                killProbability: number,
+                /** 出现概率(0~100) */
+                spawnProbability: number,
                 /** 出现频率（秒） */
-                appearInterval: number
+                appearInterval: number,
+                /** 鱼技能 */
+                skill: string
             }[],
             /** 奖池概率修正 */
             Fix: {
