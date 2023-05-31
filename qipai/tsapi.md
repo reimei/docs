@@ -422,6 +422,11 @@ interface ResGetCheXuan {
             min: number,
             max: number
         },
+        /** 簸簸最小和最大值 */
+        bo?: {
+            min: number,
+            max: number
+        },
         /** 奖池金额 */
         rewardPool?: number,
         /** 奖池上限，无法直接设置这个值 */
@@ -669,6 +674,11 @@ interface ReqSetCheXuan {
         botEnable?: boolean,
         /** 皮 1-3 */
         pi?: {
+            min: number,
+            max: number
+        },
+        /** 簸簸最小和最大值 */
+        bo?: {
             min: number,
             max: number
         },
@@ -1792,6 +1802,11 @@ interface ResGetOperateLog {
                 botEnable?: boolean,
                 /** 皮 1-3 */
                 pi?: {
+                    min: number,
+                    max: number
+                },
+                /** 簸簸最小和最大值 */
+                bo?: {
                     min: number,
                     max: number
                 },
