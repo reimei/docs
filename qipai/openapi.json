@@ -1767,7 +1767,146 @@
           },
           {
             "type": "object",
-            "properties": {}
+            "properties": {
+              "playerCountMin": {
+                "type": "number",
+                "description": "满多少人开桌 >2"
+              },
+              "manguoRateMax": {
+                "type": "number",
+                "description": "芒果封顶倍数，-1不封顶"
+              },
+              "diJiuWangEnable": {
+                "type": "boolean",
+                "description": "是否开启地九王"
+              },
+              "hostFirstEnable": {
+                "type": "boolean",
+                "description": "庄家先手"
+              },
+              "botEnable": {
+                "type": "boolean",
+                "description": "是否开启机器人"
+              },
+              "pi": {
+                "type": "object",
+                "properties": {
+                  "min": {
+                    "type": "number"
+                  },
+                  "max": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "min",
+                  "max"
+                ],
+                "description": "皮 1-3"
+              },
+              "rewardPool": {
+                "type": "number",
+                "description": "奖池金额"
+              },
+              "rewardTop": {
+                "type": "number",
+                "description": "奖池上限，无法直接设置这个值"
+              },
+              "rewardBottom": {
+                "type": "number",
+                "description": "奖池下限，无法直接设置这个值"
+              },
+              "bonusPool": {
+                "type": "number",
+                "description": "彩金池金额"
+              },
+              "bonusTop": {
+                "type": "number",
+                "description": "彩金池上限，无法直接设置这个值"
+              },
+              "bonusBottom": {
+                "type": "number",
+                "description": "彩金池下限，无法直接设置这个值"
+              },
+              "control": {
+                "type": "object",
+                "properties": {
+                  "forceProbability": {
+                    "type": "number",
+                    "description": "强控概率"
+                  },
+                  "normalProbability": {
+                    "type": "number",
+                    "description": "非强控概率"
+                  }
+                },
+                "required": [
+                  "forceProbability",
+                  "normalProbability"
+                ],
+                "description": "点控设置,加起来100"
+              },
+              "bonusPoolRate": {
+                "type": "object",
+                "properties": {
+                  "tianHuang": {
+                    "type": "number",
+                    "description": "天皇"
+                  },
+                  "duoHuang": {
+                    "type": "number",
+                    "description": "朵皇"
+                  },
+                  "duoDuo": {
+                    "type": "number",
+                    "description": "朵朵"
+                  }
+                },
+                "required": [
+                  "tianHuang",
+                  "duoHuang",
+                  "duoDuo"
+                ],
+                "description": "彩金奖池牌型比例"
+              },
+              "poolRate": {
+                "type": "object",
+                "properties": {
+                  "rewardRate": {
+                    "type": "number",
+                    "description": "奖池比例"
+                  },
+                  "bonusRate": {
+                    "type": "number",
+                    "description": "彩金池比例"
+                  },
+                  "taxRate": {
+                    "type": "number",
+                    "description": "抽水比例"
+                  }
+                },
+                "required": [
+                  "rewardRate",
+                  "bonusRate",
+                  "taxRate"
+                ],
+                "description": "奖池抽水比例分配"
+              },
+              "rewardFix": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_Fixer_Fixer"
+                },
+                "description": "奖池概率"
+              },
+              "bonusFix": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______Interface_Fixer_Fixer"
+                },
+                "description": "彩金池概率"
+              }
+            }
           }
         ]
       },
@@ -1803,6 +1942,34 @@
           "minBet"
         ],
         "description": "游戏房间"
+      },
+      "______Interface_Fixer_Fixer": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "number",
+            "description": "档位"
+          },
+          "bottom": {
+            "type": "number",
+            "description": "下限"
+          },
+          "top": {
+            "type": "number",
+            "description": "上限"
+          },
+          "fix": {
+            "type": "number",
+            "description": "修正值"
+          }
+        },
+        "required": [
+          "level",
+          "bottom",
+          "top",
+          "fix"
+        ],
+        "description": "概率修正"
       },
       "game_PtlGetFIR_ReqGetFIR": {
         "allOf": [
@@ -1919,7 +2086,7 @@
               "Fix": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/______Interface_GameFish_Fixer"
+                  "$ref": "#/components/schemas/______Interface_Fixer_Fixer"
                 },
                 "description": "奖池概率修正"
               }
@@ -1977,34 +2144,6 @@
           "skill"
         ],
         "description": "鱼配置"
-      },
-      "______Interface_GameFish_Fixer": {
-        "type": "object",
-        "properties": {
-          "level": {
-            "type": "number",
-            "description": "档位"
-          },
-          "bottom": {
-            "type": "number",
-            "description": "下限"
-          },
-          "top": {
-            "type": "number",
-            "description": "上限"
-          },
-          "fix": {
-            "type": "number",
-            "description": "修正值"
-          }
-        },
-        "required": [
-          "level",
-          "bottom",
-          "top",
-          "fix"
-        ],
-        "description": "概率修正"
       },
       "game_PtlSetCheXuan_ReqSetCheXuan": {
         "allOf": [
@@ -2136,6 +2275,10 @@
                     "type": "string",
                     "format": "date-time",
                     "description": "登录时间结束"
+                  },
+                  "isOnline": {
+                    "type": "boolean",
+                    "description": "是否在线"
                   }
                 },
                 "description": "筛选方式"
@@ -2381,22 +2524,24 @@
                 "type": "object",
                 "properties": {
                   "UID": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "玩家uid"
                   },
                   "dateStart": {
                     "type": "string",
-                    "format": "date-time"
+                    "format": "date-time",
+                    "description": "开始日期"
                   },
                   "dateEnd": {
                     "type": "string",
-                    "format": "date-time"
+                    "format": "date-time",
+                    "description": "结束日期"
+                  },
+                  "game": {
+                    "type": "string",
+                    "description": "通过游戏筛选"
                   }
-                },
-                "required": [
-                  "UID",
-                  "dateStart",
-                  "dateEnd"
-                ]
+                }
               },
               "page": {
                 "$ref": "#/components/schemas/___apiBase_ReqPageBase"
@@ -2532,16 +2677,11 @@
                   "dateEnd": {
                     "type": "string",
                     "format": "date-time"
-                  },
-                  "stamp": {
-                    "type": "number",
-                    "description": "时间粒度，最低5秒"
                   }
                 },
                 "required": [
                   "dateStart",
-                  "dateEnd",
-                  "stamp"
+                  "dateEnd"
                 ]
               }
             },
@@ -2580,17 +2720,10 @@
                     "chart"
                   ]
                 }
-              },
-              "total": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/player_PtlGetOnline_Chart"
-                }
               }
             },
             "required": [
-              "games",
-              "total"
+              "games"
             ]
           }
         ]
@@ -2903,6 +3036,9 @@
           "id": {
             "type": "number"
           },
+          "itemId": {
+            "type": "number"
+          },
           "name": {
             "type": "string"
           },
@@ -2915,8 +3051,6 @@
         },
         "required": [
           "id",
-          "name",
-          "icon",
           "price"
         ],
         "description": "商城商品"
@@ -3198,6 +3332,10 @@
                   }
                 ],
                 "description": "设置游戏记录[SetGame]"
+              },
+              "config": {
+                "$ref": "#/components/schemas/______Interface_OperateLog_ConfigLog_ConfigLog",
+                "description": "设置运营记录[SetConfig]"
               }
             }
           }
@@ -3337,6 +3475,14 @@
       "______Interface_OperateLog_MarqueeLog_MarqueeLog": {
         "type": "object",
         "properties": {
+          "Priority": {
+            "type": "number",
+            "description": "优先级"
+          },
+          "Date": {
+            "type": "number",
+            "description": "日期"
+          },
           "content": {
             "type": "string",
             "description": "内容"
@@ -3371,40 +3517,60 @@
         "description": "通知记录"
       },
       "______Interface_OperateLog_GameSetLog_SetGameFIRLog": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/______Interface_GameFIR_GameFIR"
-          },
-          {
-            "type": "object",
-            "properties": {}
+        "type": "object",
+        "properties": {
+          "room": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/______Interface_GameFIR_GameFIR"
+            }
           }
+        },
+        "required": [
+          "room"
         ],
         "description": "五子棋设置记录"
       },
       "______Interface_OperateLog_GameSetLog_SetGameFishLog": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/______Interface_GameFish_GameFish"
-          },
-          {
-            "type": "object",
-            "properties": {}
+        "type": "object",
+        "properties": {
+          "room": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/______Interface_GameFish_GameFish"
+            }
           }
+        },
+        "required": [
+          "room"
         ],
         "description": "捕鱼设置记录"
       },
       "______Interface_OperateLog_GameSetLog_SetGameCheXuanLog": {
+        "type": "object",
+        "properties": {
+          "room": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/______Interface_GameCheXuan_GameCheXuan"
+            }
+          }
+        },
+        "required": [
+          "room"
+        ],
+        "description": "扯旋设置记录"
+      },
+      "______Interface_OperateLog_ConfigLog_ConfigLog": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/______Interface_GameCheXuan_GameCheXuan"
+            "$ref": "#/components/schemas/______Interface_GameConfig_GameConfig"
           },
           {
             "type": "object",
             "properties": {}
           }
-        ],
-        "description": "扯旋设置记录"
+        ]
       },
       "system_PtlSendMarquee_ReqSendMarquee": {
         "allOf": [
@@ -3497,14 +3663,19 @@
                 "description": "验证码"
               },
               "date": {
-                "type": "string",
-                "format": "date-time",
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "string"
+                  }
+                ],
                 "description": "发送时间"
               }
             },
             "required": [
-              "UID",
-              "address",
               "code",
               "date"
             ]

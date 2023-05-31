@@ -407,6 +407,80 @@ interface ReqGetCheXuan {
 ```ts
 interface ResGetCheXuan {
     room: {
+        /** 满多少人开桌 >2 */
+        playerCountMin?: number,
+        /** 芒果封顶倍数，-1不封顶 */
+        manguoRateMax?: number,
+        /** 是否开启地九王 */
+        diJiuWangEnable?: boolean,
+        /** 庄家先手 */
+        hostFirstEnable?: boolean,
+        /** 是否开启机器人 */
+        botEnable?: boolean,
+        /** 皮 1-3 */
+        pi?: {
+            min: number,
+            max: number
+        },
+        /** 奖池金额 */
+        rewardPool?: number,
+        /** 奖池上限，无法直接设置这个值 */
+        rewardTop?: number,
+        /** 奖池下限，无法直接设置这个值 */
+        rewardBottom?: number,
+        /** 彩金池金额 */
+        bonusPool?: number,
+        /** 彩金池上限，无法直接设置这个值 */
+        bonusTop?: number,
+        /** 彩金池下限，无法直接设置这个值 */
+        bonusBottom?: number,
+        /** 点控设置,加起来100 */
+        control?: {
+            /** 强控概率 */
+            forceProbability: number,
+            /** 非强控概率 */
+            normalProbability: number
+        },
+        /** 彩金奖池牌型比例 */
+        bonusPoolRate?: {
+            /** 天皇 */
+            tianHuang: number,
+            /** 朵皇 */
+            duoHuang: number,
+            /** 朵朵 */
+            duoDuo: number
+        },
+        /** 奖池抽水比例分配 */
+        poolRate?: {
+            /** 奖池比例 */
+            rewardRate: number,
+            /** 彩金池比例 */
+            bonusRate: number,
+            /** 抽水比例 */
+            taxRate: number
+        },
+        /** 奖池概率 */
+        rewardFix?: {
+            /** 档位 */
+            level: number,
+            /** 下限 */
+            bottom: number,
+            /** 上限 */
+            top: number,
+            /** 修正值 */
+            fix: number
+        }[],
+        /** 彩金池概率 */
+        bonusFix?: {
+            /** 档位 */
+            level: number,
+            /** 下限 */
+            bottom: number,
+            /** 上限 */
+            top: number,
+            /** 修正值 */
+            fix: number
+        }[],
         /** 游戏名，不可更改 */
         game: string,
         /** 房间名，不可更改 */
@@ -583,6 +657,80 @@ interface ResGetFish {
 ```ts
 interface ReqSetCheXuan {
     room: {
+        /** 满多少人开桌 >2 */
+        playerCountMin?: number,
+        /** 芒果封顶倍数，-1不封顶 */
+        manguoRateMax?: number,
+        /** 是否开启地九王 */
+        diJiuWangEnable?: boolean,
+        /** 庄家先手 */
+        hostFirstEnable?: boolean,
+        /** 是否开启机器人 */
+        botEnable?: boolean,
+        /** 皮 1-3 */
+        pi?: {
+            min: number,
+            max: number
+        },
+        /** 奖池金额 */
+        rewardPool?: number,
+        /** 奖池上限，无法直接设置这个值 */
+        rewardTop?: number,
+        /** 奖池下限，无法直接设置这个值 */
+        rewardBottom?: number,
+        /** 彩金池金额 */
+        bonusPool?: number,
+        /** 彩金池上限，无法直接设置这个值 */
+        bonusTop?: number,
+        /** 彩金池下限，无法直接设置这个值 */
+        bonusBottom?: number,
+        /** 点控设置,加起来100 */
+        control?: {
+            /** 强控概率 */
+            forceProbability: number,
+            /** 非强控概率 */
+            normalProbability: number
+        },
+        /** 彩金奖池牌型比例 */
+        bonusPoolRate?: {
+            /** 天皇 */
+            tianHuang: number,
+            /** 朵皇 */
+            duoHuang: number,
+            /** 朵朵 */
+            duoDuo: number
+        },
+        /** 奖池抽水比例分配 */
+        poolRate?: {
+            /** 奖池比例 */
+            rewardRate: number,
+            /** 彩金池比例 */
+            bonusRate: number,
+            /** 抽水比例 */
+            taxRate: number
+        },
+        /** 奖池概率 */
+        rewardFix?: {
+            /** 档位 */
+            level: number,
+            /** 下限 */
+            bottom: number,
+            /** 上限 */
+            top: number,
+            /** 修正值 */
+            fix: number
+        }[],
+        /** 彩金池概率 */
+        bonusFix?: {
+            /** 档位 */
+            level: number,
+            /** 下限 */
+            bottom: number,
+            /** 上限 */
+            top: number,
+            /** 修正值 */
+            fix: number
+        }[],
         /** 游戏名，不可更改 */
         game: string,
         /** 房间名，不可更改 */
@@ -791,7 +939,9 @@ interface ReqGet {
         /** 登录时间开始 */
         loginTimeStart?: /*datetime*/ string,
         /** 登录时间结束 */
-        loginTimeEnd?: /*datetime*/ string
+        loginTimeEnd?: /*datetime*/ string,
+        /** 是否在线 */
+        isOnline?: boolean
     },
     /**
     * 排序方式
@@ -897,9 +1047,14 @@ interface ResGet {
 ```ts
 interface ReqGetMatchLog {
     filter: {
-        UID: number,
-        dateStart: /*datetime*/ string,
-        dateEnd: /*datetime*/ string
+        /** 玩家uid */
+        UID?: number,
+        /** 开始日期 */
+        dateStart?: /*datetime*/ string,
+        /** 结束日期 */
+        dateEnd?: /*datetime*/ string,
+        /** 通过游戏筛选 */
+        game?: string
     },
     /** 请求分页 */
     page: {
@@ -981,9 +1136,7 @@ interface ResGetMatchLog {
 interface ReqGetOnline {
     filter: {
         dateStart: /*datetime*/ string,
-        dateEnd: /*datetime*/ string,
-        /** 时间粒度，最低5秒 */
-        stamp: number
+        dateEnd: /*datetime*/ string
     },
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
@@ -1007,7 +1160,6 @@ interface ResGetOnline {
         game: string,
         chart: [string, number][]
     }[],
-    total: [string, number][],
     __authToken?: string
 }
 ```
@@ -1236,8 +1388,9 @@ interface ReqGet {
 interface ResGet {
     list: {
         id: number,
-        name: string,
-        icon: string,
+        itemId?: number,
+        name?: string,
+        icon?: string,
         price: number
     }[],
     __authToken?: string
@@ -1264,8 +1417,9 @@ interface ResGet {
 interface ReqSet {
     list: {
         id: number,
-        name: string,
-        icon: string,
+        itemId?: number,
+        name?: string,
+        icon?: string,
         price: number
     }[],
     /** 鉴权token，登录后的接口都需要填写 */
@@ -1542,6 +1696,10 @@ interface ResGetOperateLog {
         },
         /** 跑马灯[SendMarquee] */
         marquee?: {
+            /** 优先级 */
+            Priority?: number,
+            /** 日期 */
+            Date?: number,
             /** 内容 */
             content: string,
             /** 重复次数 */
@@ -1557,65 +1715,165 @@ interface ResGetOperateLog {
         },
         /** 设置游戏记录[SetGame] */
         game?: {
-            /** 游戏名，不可更改 */
-            game: string,
-            /** 房间名，不可更改 */
-            field: string,
-            /** 入场分数下限，0不限 */
-            minGold: number,
-            /** 入场分数上限，0不限 */
-            maxGold: number,
-            /** 最小下注 */
-            minBet: number
+            room: {
+                /** 游戏名，不可更改 */
+                game: string,
+                /** 房间名，不可更改 */
+                field: string,
+                /** 入场分数下限，0不限 */
+                minGold: number,
+                /** 入场分数上限，0不限 */
+                maxGold: number,
+                /** 最小下注 */
+                minBet: number
+            }[]
         } | {
-            /** 当前奖池金额 */
-            currentPool?: number,
-            /** 注入抽水比例 */
-            taxRate: number,
-            /** 注入奖池比例 */
-            poolRate: number,
-            /** 奖池上限 */
-            topLimit: number,
-            /** 奖池下限 */
-            bottomLimit: number,
-            /** 鱼设置 */
-            Fish: {
-                /** 鱼id */
-                id: number,
-                /** 名称 */
-                name: string,
-                /** 最大同屏数量 */
-                maxCount: number,
-                /** 击杀概率（0~100） */
-                killProbability: number,
-                /** 出现概率(0~100) */
-                spawnProbability: number,
-                /** 出现频率（秒） */
-                cd: number,
-                /** 鱼技能 */
-                skill: string
-            }[],
-            /** 奖池概率修正 */
-            Fix: {
-                /** 档位 */
-                level: number,
-                /** 下限 */
-                bottom: number,
-                /** 上限 */
-                top: number,
-                /** 修正值 */
-                fix: number
-            }[],
-            /** 游戏名，不可更改 */
-            game: string,
-            /** 房间名，不可更改 */
-            field: string,
-            /** 入场分数下限，0不限 */
-            minGold: number,
-            /** 入场分数上限，0不限 */
-            maxGold: number,
-            /** 最小下注 */
-            minBet: number
+            room: {
+                /** 当前奖池金额 */
+                currentPool?: number,
+                /** 注入抽水比例 */
+                taxRate: number,
+                /** 注入奖池比例 */
+                poolRate: number,
+                /** 奖池上限 */
+                topLimit: number,
+                /** 奖池下限 */
+                bottomLimit: number,
+                /** 鱼设置 */
+                Fish: {
+                    /** 鱼id */
+                    id: number,
+                    /** 名称 */
+                    name: string,
+                    /** 最大同屏数量 */
+                    maxCount: number,
+                    /** 击杀概率（0~100） */
+                    killProbability: number,
+                    /** 出现概率(0~100) */
+                    spawnProbability: number,
+                    /** 出现频率（秒） */
+                    cd: number,
+                    /** 鱼技能 */
+                    skill: string
+                }[],
+                /** 奖池概率修正 */
+                Fix: {
+                    /** 档位 */
+                    level: number,
+                    /** 下限 */
+                    bottom: number,
+                    /** 上限 */
+                    top: number,
+                    /** 修正值 */
+                    fix: number
+                }[],
+                /** 游戏名，不可更改 */
+                game: string,
+                /** 房间名，不可更改 */
+                field: string,
+                /** 入场分数下限，0不限 */
+                minGold: number,
+                /** 入场分数上限，0不限 */
+                maxGold: number,
+                /** 最小下注 */
+                minBet: number
+            }[]
+        } | {
+            room: {
+                /** 满多少人开桌 >2 */
+                playerCountMin?: number,
+                /** 芒果封顶倍数，-1不封顶 */
+                manguoRateMax?: number,
+                /** 是否开启地九王 */
+                diJiuWangEnable?: boolean,
+                /** 庄家先手 */
+                hostFirstEnable?: boolean,
+                /** 是否开启机器人 */
+                botEnable?: boolean,
+                /** 皮 1-3 */
+                pi?: {
+                    min: number,
+                    max: number
+                },
+                /** 奖池金额 */
+                rewardPool?: number,
+                /** 奖池上限，无法直接设置这个值 */
+                rewardTop?: number,
+                /** 奖池下限，无法直接设置这个值 */
+                rewardBottom?: number,
+                /** 彩金池金额 */
+                bonusPool?: number,
+                /** 彩金池上限，无法直接设置这个值 */
+                bonusTop?: number,
+                /** 彩金池下限，无法直接设置这个值 */
+                bonusBottom?: number,
+                /** 点控设置,加起来100 */
+                control?: {
+                    /** 强控概率 */
+                    forceProbability: number,
+                    /** 非强控概率 */
+                    normalProbability: number
+                },
+                /** 彩金奖池牌型比例 */
+                bonusPoolRate?: {
+                    /** 天皇 */
+                    tianHuang: number,
+                    /** 朵皇 */
+                    duoHuang: number,
+                    /** 朵朵 */
+                    duoDuo: number
+                },
+                /** 奖池抽水比例分配 */
+                poolRate?: {
+                    /** 奖池比例 */
+                    rewardRate: number,
+                    /** 彩金池比例 */
+                    bonusRate: number,
+                    /** 抽水比例 */
+                    taxRate: number
+                },
+                /** 奖池概率 */
+                rewardFix?: {
+                    /** 档位 */
+                    level: number,
+                    /** 下限 */
+                    bottom: number,
+                    /** 上限 */
+                    top: number,
+                    /** 修正值 */
+                    fix: number
+                }[],
+                /** 彩金池概率 */
+                bonusFix?: {
+                    /** 档位 */
+                    level: number,
+                    /** 下限 */
+                    bottom: number,
+                    /** 上限 */
+                    top: number,
+                    /** 修正值 */
+                    fix: number
+                }[],
+                /** 游戏名，不可更改 */
+                game: string,
+                /** 房间名，不可更改 */
+                field: string,
+                /** 入场分数下限，0不限 */
+                minGold: number,
+                /** 入场分数上限，0不限 */
+                maxGold: number,
+                /** 最小下注 */
+                minBet: number
+            }[]
+        },
+        /** 设置运营记录[SetConfig] */
+        config?: {
+            /** 显示排行榜 */
+            showRanking?: boolean,
+            /** 开放的游戏 */
+            openList?: string[],
+            /** 关闭的游戏 */
+            closeList?: string[]
         }
     })[],
     /** 返回分页 */
@@ -1721,13 +1979,13 @@ interface ReqGet {
 ```ts
 interface ResGet {
     /** 用户uid */
-    UID: number,
+    UID?: number,
     /** 发送邮箱 */
-    address: string,
+    address?: string,
     /** 验证码 */
     code: number,
     /** 发送时间 */
-    date: /*datetime*/ string,
+    date: /*datetime*/ string | string,
     __authToken?: string
 }
 ```
