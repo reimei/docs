@@ -409,11 +409,13 @@ interface ResGetCheXuan {
     room: {
         /** 满多少人开桌 >2 */
         playerCountMin?: number,
-        /** 芒果封顶倍数，-1不封顶 */
+        /** 芒果封顶倍数，0不封顶 */
         manguoRateMax?: number,
+        /** 芒果开关 */
+        manguoEnable?: boolean,
         /** 是否开启地九王 */
         diJiuWangEnable?: boolean,
-        /** 庄家先手 */
+        /** 庄家先手,默认true */
         hostFirstEnable?: boolean,
         /** 是否开启机器人 */
         botEnable?: boolean,
@@ -439,14 +441,9 @@ interface ResGetCheXuan {
         bonusTop?: number,
         /** 彩金池下限，无法直接设置这个值 */
         bonusBottom?: number,
+        /** 当前抽水，无法直接设置这个值 */
+        tax?: number,
         /** 点控设置,加起来100 */
-        control?: {
-            /** 强控概率 */
-            forceProbability: number,
-            /** 非强控概率 */
-            normalProbability: number
-        },
-        /** 彩金奖池牌型比例 */
         bonusPoolRate?: {
             /** 天皇 */
             tianHuang: number,
@@ -491,11 +488,13 @@ interface ResGetCheXuan {
         /** 房间名，不可更改 */
         field: string,
         /** 入场分数下限，0不限 */
-        minGold: number,
+        minGold?: number,
         /** 入场分数上限，0不限 */
-        maxGold: number,
+        maxGold?: number,
         /** 最小下注 */
-        minBet: number
+        minBet?: number,
+        /** 最大人俗 */
+        maxPlayer?: number
     }[],
     __authToken?: string
 }
@@ -543,11 +542,13 @@ interface ResGetFIR {
         /** 房间名，不可更改 */
         field: string,
         /** 入场分数下限，0不限 */
-        minGold: number,
+        minGold?: number,
         /** 入场分数上限，0不限 */
-        maxGold: number,
+        maxGold?: number,
         /** 最小下注 */
-        minBet: number
+        minBet?: number,
+        /** 最大人俗 */
+        maxPlayer?: number
     }[],
     __authToken?: string
 }
@@ -633,11 +634,13 @@ interface ResGetFish {
         /** 房间名，不可更改 */
         field: string,
         /** 入场分数下限，0不限 */
-        minGold: number,
+        minGold?: number,
         /** 入场分数上限，0不限 */
-        maxGold: number,
+        maxGold?: number,
         /** 最小下注 */
-        minBet: number
+        minBet?: number,
+        /** 最大人俗 */
+        maxPlayer?: number
     }[],
     __authToken?: string
 }
@@ -664,11 +667,13 @@ interface ReqSetCheXuan {
     room: {
         /** 满多少人开桌 >2 */
         playerCountMin?: number,
-        /** 芒果封顶倍数，-1不封顶 */
+        /** 芒果封顶倍数，0不封顶 */
         manguoRateMax?: number,
+        /** 芒果开关 */
+        manguoEnable?: boolean,
         /** 是否开启地九王 */
         diJiuWangEnable?: boolean,
-        /** 庄家先手 */
+        /** 庄家先手,默认true */
         hostFirstEnable?: boolean,
         /** 是否开启机器人 */
         botEnable?: boolean,
@@ -694,14 +699,9 @@ interface ReqSetCheXuan {
         bonusTop?: number,
         /** 彩金池下限，无法直接设置这个值 */
         bonusBottom?: number,
+        /** 当前抽水，无法直接设置这个值 */
+        tax?: number,
         /** 点控设置,加起来100 */
-        control?: {
-            /** 强控概率 */
-            forceProbability: number,
-            /** 非强控概率 */
-            normalProbability: number
-        },
-        /** 彩金奖池牌型比例 */
         bonusPoolRate?: {
             /** 天皇 */
             tianHuang: number,
@@ -746,11 +746,13 @@ interface ReqSetCheXuan {
         /** 房间名，不可更改 */
         field: string,
         /** 入场分数下限，0不限 */
-        minGold: number,
+        minGold?: number,
         /** 入场分数上限，0不限 */
-        maxGold: number,
+        maxGold?: number,
         /** 最小下注 */
-        minBet: number
+        minBet?: number,
+        /** 最大人俗 */
+        maxPlayer?: number
     }[],
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
@@ -800,11 +802,13 @@ interface ReqSetFIR {
         /** 房间名，不可更改 */
         field: string,
         /** 入场分数下限，0不限 */
-        minGold: number,
+        minGold?: number,
         /** 入场分数上限，0不限 */
-        maxGold: number,
+        maxGold?: number,
         /** 最小下注 */
-        minBet: number
+        minBet?: number,
+        /** 最大人俗 */
+        maxPlayer?: number
     }[],
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
@@ -892,11 +896,13 @@ interface ReqSetFish {
         /** 房间名，不可更改 */
         field: string,
         /** 入场分数下限，0不限 */
-        minGold: number,
+        minGold?: number,
         /** 入场分数上限，0不限 */
-        maxGold: number,
+        maxGold?: number,
         /** 最小下注 */
-        minBet: number
+        minBet?: number,
+        /** 最大人俗 */
+        maxPlayer?: number
     }[],
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
@@ -1731,11 +1737,13 @@ interface ResGetOperateLog {
                 /** 房间名，不可更改 */
                 field: string,
                 /** 入场分数下限，0不限 */
-                minGold: number,
+                minGold?: number,
                 /** 入场分数上限，0不限 */
-                maxGold: number,
+                maxGold?: number,
                 /** 最小下注 */
-                minBet: number
+                minBet?: number,
+                /** 最大人俗 */
+                maxPlayer?: number
             }[]
         } | {
             room: {
@@ -1782,21 +1790,25 @@ interface ResGetOperateLog {
                 /** 房间名，不可更改 */
                 field: string,
                 /** 入场分数下限，0不限 */
-                minGold: number,
+                minGold?: number,
                 /** 入场分数上限，0不限 */
-                maxGold: number,
+                maxGold?: number,
                 /** 最小下注 */
-                minBet: number
+                minBet?: number,
+                /** 最大人俗 */
+                maxPlayer?: number
             }[]
         } | {
             room: {
                 /** 满多少人开桌 >2 */
                 playerCountMin?: number,
-                /** 芒果封顶倍数，-1不封顶 */
+                /** 芒果封顶倍数，0不封顶 */
                 manguoRateMax?: number,
+                /** 芒果开关 */
+                manguoEnable?: boolean,
                 /** 是否开启地九王 */
                 diJiuWangEnable?: boolean,
-                /** 庄家先手 */
+                /** 庄家先手,默认true */
                 hostFirstEnable?: boolean,
                 /** 是否开启机器人 */
                 botEnable?: boolean,
@@ -1822,14 +1834,9 @@ interface ResGetOperateLog {
                 bonusTop?: number,
                 /** 彩金池下限，无法直接设置这个值 */
                 bonusBottom?: number,
+                /** 当前抽水，无法直接设置这个值 */
+                tax?: number,
                 /** 点控设置,加起来100 */
-                control?: {
-                    /** 强控概率 */
-                    forceProbability: number,
-                    /** 非强控概率 */
-                    normalProbability: number
-                },
-                /** 彩金奖池牌型比例 */
                 bonusPoolRate?: {
                     /** 天皇 */
                     tianHuang: number,
@@ -1874,11 +1881,13 @@ interface ResGetOperateLog {
                 /** 房间名，不可更改 */
                 field: string,
                 /** 入场分数下限，0不限 */
-                minGold: number,
+                minGold?: number,
                 /** 入场分数上限，0不限 */
-                maxGold: number,
+                maxGold?: number,
                 /** 最小下注 */
-                minBet: number
+                minBet?: number,
+                /** 最大人俗 */
+                maxPlayer?: number
             }[]
         },
         /** 设置运营记录[SetConfig] */

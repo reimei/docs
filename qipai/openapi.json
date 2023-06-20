@@ -1774,7 +1774,11 @@
               },
               "manguoRateMax": {
                 "type": "number",
-                "description": "芒果封顶倍数，-1不封顶"
+                "description": "芒果封顶倍数，0不封顶"
+              },
+              "manguoEnable": {
+                "type": "boolean",
+                "description": "芒果开关"
               },
               "diJiuWangEnable": {
                 "type": "boolean",
@@ -1782,7 +1786,7 @@
               },
               "hostFirstEnable": {
                 "type": "boolean",
-                "description": "庄家先手"
+                "description": "庄家先手,默认true"
               },
               "botEnable": {
                 "type": "boolean",
@@ -1844,23 +1848,9 @@
                 "type": "number",
                 "description": "彩金池下限，无法直接设置这个值"
               },
-              "control": {
-                "type": "object",
-                "properties": {
-                  "forceProbability": {
-                    "type": "number",
-                    "description": "强控概率"
-                  },
-                  "normalProbability": {
-                    "type": "number",
-                    "description": "非强控概率"
-                  }
-                },
-                "required": [
-                  "forceProbability",
-                  "normalProbability"
-                ],
-                "description": "点控设置,加起来100"
+              "tax": {
+                "type": "number",
+                "description": "当前抽水，无法直接设置这个值"
               },
               "bonusPoolRate": {
                 "type": "object",
@@ -1883,7 +1873,7 @@
                   "duoHuang",
                   "duoDuo"
                 ],
-                "description": "彩金奖池牌型比例"
+                "description": "点控设置,加起来100"
               },
               "poolRate": {
                 "type": "object",
@@ -1948,14 +1938,15 @@
           "minBet": {
             "type": "number",
             "description": "最小下注"
+          },
+          "maxPlayer": {
+            "type": "number",
+            "description": "最大人俗"
           }
         },
         "required": [
           "game",
-          "field",
-          "minGold",
-          "maxGold",
-          "minBet"
+          "field"
         ],
         "description": "游戏房间"
       },
