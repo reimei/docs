@@ -2678,7 +2678,8 @@
               "scene"
             ]
           }
-        ]
+        ],
+        "description": "获取游戏设置"
       },
       "backend_game_PtlGetGame_ResGetGame": {
         "allOf": [
@@ -4188,7 +4189,8 @@
               "orderId"
             ]
           }
-        ]
+        ],
+        "description": "通过兑换订单"
       },
       "backend_system_currency_PtlApplyExchange_ResApplyExchange": {
         "allOf": [
@@ -4246,7 +4248,8 @@
               "page"
             ]
           }
-        ]
+        ],
+        "description": "获取充值记录"
       },
       "backend_system_currency_PtlChargeLog_ResChargeLog": {
         "allOf": [
@@ -4359,7 +4362,8 @@
               "page"
             ]
           }
-        ]
+        ],
+        "description": "获取兑换记录"
       },
       "backend_system_currency_PtlGetExchangeLog_ResGetExchangeLog": {
         "allOf": [
@@ -4465,7 +4469,8 @@
             "type": "object",
             "properties": {}
           }
-        ]
+        ],
+        "description": "获取汇率"
       },
       "backend_system_currency_PtlGetExchangeRate_ResGetExchangeRate": {
         "allOf": [
@@ -4535,7 +4540,8 @@
               "open"
             ]
           }
-        ]
+        ],
+        "description": "设置汇率"
       },
       "backend_system_currency_PtlSetExchangeRate_ResSetExchangeRate": {
         "allOf": [
@@ -5013,7 +5019,8 @@
               "content"
             ]
           }
-        ]
+        ],
+        "description": "设置联系我们"
       },
       "backend_system_PtlSetContactUs_ResSetContactUs": {
         "allOf": [

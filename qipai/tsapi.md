@@ -20,7 +20,7 @@
         - [获取概要](#/backend/analyze/GetSummary)
     - game
         - [解散房间](#/backend/game/DisbandRoom)
-        - [GetGame](#/backend/game/GetGame)
+        - [获取游戏设置](#/backend/game/GetGame)
         - [获取房间列表](#/backend/game/GetRoom)
         - [邀请玩家](#/backend/game/Invite)
         - [游戏规则设置](#/backend/game/SetGame)
@@ -43,14 +43,14 @@
             - [获取后台开关](#/backend/system/config/Get)
             - [设置后台开关](#/backend/system/config/Set)
         - currency
-            - [ApplyExchange](#/backend/system/currency/ApplyExchange)
-            - [ChargeLog](#/backend/system/currency/ChargeLog)
-            - [GetExchangeLog](#/backend/system/currency/GetExchangeLog)
-            - [GetExchangeRate](#/backend/system/currency/GetExchangeRate)
-            - [SetExchangeRate](#/backend/system/currency/SetExchangeRate)
+            - [通过兑换订单](#/backend/system/currency/ApplyExchange)
+            - [获取充值记录](#/backend/system/currency/ChargeLog)
+            - [获取兑换记录](#/backend/system/currency/GetExchangeLog)
+            - [获取汇率](#/backend/system/currency/GetExchangeRate)
+            - [设置汇率](#/backend/system/currency/SetExchangeRate)
         - [获取任意记录](#/backend/system/GetOperateLog)
         - [发送跑马灯](#/backend/system/SendMarquee)
-        - [SetContactUs](#/backend/system/SetContactUs)
+        - [设置联系我们](#/backend/system/SetContactUs)
     - verify
         - [查询验证码](#/backend/verify/Get)
 - [GetServers](#/GetServers)
@@ -534,7 +534,7 @@ interface ResDisbandRoom {
 
 ---
 
-#### GetGame <a id="/backend/game/GetGame"></a>
+#### 获取游戏设置 <a id="/backend/game/GetGame"></a>
 
 **路径**
 - POST `/backend/game/GetGame`
@@ -1759,7 +1759,7 @@ interface ResSendMarquee {
 
 ---
 
-#### SetContactUs <a id="/backend/system/SetContactUs"></a>
+#### 设置联系我们 <a id="/backend/system/SetContactUs"></a>
 
 **路径**
 - POST `/backend/system/SetContactUs`
@@ -1943,7 +1943,7 @@ interface ResSet {
 
 ### system/currency
 
-#### ApplyExchange <a id="/backend/system/currency/ApplyExchange"></a>
+#### 通过兑换订单 <a id="/backend/system/currency/ApplyExchange"></a>
 
 **路径**
 - POST `/backend/system/currency/ApplyExchange`
@@ -1976,7 +1976,7 @@ interface ResApplyExchange {
 
 ---
 
-#### ChargeLog <a id="/backend/system/currency/ChargeLog"></a>
+#### 获取充值记录 <a id="/backend/system/currency/ChargeLog"></a>
 
 **路径**
 - POST `/backend/system/currency/ChargeLog`
@@ -2057,7 +2057,7 @@ interface ResChargeLog {
 
 ---
 
-#### GetExchangeLog <a id="/backend/system/currency/GetExchangeLog"></a>
+#### 获取兑换记录 <a id="/backend/system/currency/GetExchangeLog"></a>
 
 **路径**
 - POST `/backend/system/currency/GetExchangeLog`
@@ -2133,7 +2133,7 @@ interface ResGetExchangeLog {
 
 ---
 
-#### GetExchangeRate <a id="/backend/system/currency/GetExchangeRate"></a>
+#### 获取汇率 <a id="/backend/system/currency/GetExchangeRate"></a>
 
 **路径**
 - POST `/backend/system/currency/GetExchangeRate`
@@ -2181,7 +2181,7 @@ interface ResGetExchangeRate {
 
 ---
 
-#### SetExchangeRate <a id="/backend/system/currency/SetExchangeRate"></a>
+#### 设置汇率 <a id="/backend/system/currency/SetExchangeRate"></a>
 
 **路径**
 - POST `/backend/system/currency/SetExchangeRate`
