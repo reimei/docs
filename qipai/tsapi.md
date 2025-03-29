@@ -9,51 +9,254 @@
 
 ## 目录
 
-- analyze
-    - [获取活跃人数](#/analyze/GetActive)
-    - [获取新增人数](#/analyze/GetAdd)
-    - [获取留存](#/analyze/GetRetain)
-    - [获取概要](#/analyze/GetSummary)
-- control
-    - [添加点控](#/control/AddControl)
-    - [移除点控](#/control/RemoveControl)
-- game
-    - [获取扯旋配置](#/game/GetCheXuan)
-    - [获取五子棋配置](#/game/GetFIR)
-    - [获取捕鱼配置](#/game/GetFish)
-    - [设置扯旋](#/game/SetCheXuan)
-    - [设置五子棋](#/game/SetFIR)
-    - [配置捕鱼](#/game/SetFish)
-- player
-    - [获取玩家列表](#/player/Get)
-    - [获取对局记录](#/player/GetMatchLog)
-    - [获取实时在线](#/player/GetOnline)
-    - [上分](#/player/GoldOperate)
-    - [锁定/解锁玩家](#/player/Set)
-- rank
-    - [获取排名](#/rank/Get)
-- store
-    - [获取商品列表](#/store/Get)
-    - [设置商品列表，只传修改的字段](#/store/Set)
-- system
-    - announce
-        - [发送通知](#/system/announce/Send)
-    - config
-        - [获取后台开关](#/system/config/Get)
-        - [设置后台开关](#/system/config/Set)
-    - [获取任意记录](#/system/GetOperateLog)
-    - [发送跑马灯](#/system/SendMarquee)
-- verify
-    - [查询验证码](#/verify/Get)
+- backend
+    - agent
+        - [获取代理列表](#/backend/agent/Get)
+        - [设置代理](#/backend/agent/Modify)
+    - analyze
+        - [获取活跃人数](#/backend/analyze/GetActive)
+        - [获取新增人数](#/backend/analyze/GetAdd)
+        - [获取留存](#/backend/analyze/GetRetain)
+        - [获取概要](#/backend/analyze/GetSummary)
+    - game
+        - [解散房间](#/backend/game/DisbandRoom)
+        - [GetGame](#/backend/game/GetGame)
+        - [获取房间列表](#/backend/game/GetRoom)
+        - [邀请玩家](#/backend/game/Invite)
+        - [游戏规则设置](#/backend/game/SetGame)
+        - [设置房间规则](#/backend/game/SetRoom)
+    - player
+        - [获取玩家列表](#/backend/player/Get)
+        - [获取对局记录](#/backend/player/GetMatchLog)
+        - [获取实时在线](#/backend/player/GetOnline)
+        - [上分](#/backend/player/GoldOperate)
+        - [锁定/解锁玩家](#/backend/player/Set)
+    - rank
+        - [获取排名](#/backend/rank/Get)
+    - store
+        - [获取商品列表](#/backend/store/Get)
+        - [设置商品列表，只传修改的字段](#/backend/store/Set)
+    - system
+        - announce
+            - [发送通知](#/backend/system/announce/Send)
+        - config
+            - [获取后台开关](#/backend/system/config/Get)
+            - [设置后台开关](#/backend/system/config/Set)
+        - currency
+            - [ApplyExchange](#/backend/system/currency/ApplyExchange)
+            - [ChargeLog](#/backend/system/currency/ChargeLog)
+            - [GetExchangeLog](#/backend/system/currency/GetExchangeLog)
+            - [GetExchangeRate](#/backend/system/currency/GetExchangeRate)
+            - [SetExchangeRate](#/backend/system/currency/SetExchangeRate)
+        - [获取任意记录](#/backend/system/GetOperateLog)
+        - [发送跑马灯](#/backend/system/SendMarquee)
+        - [SetContactUs](#/backend/system/SetContactUs)
+    - verify
+        - [查询验证码](#/backend/verify/Get)
+- [GetServers](#/GetServers)
+- [RegisterServer](#/RegisterServer)
+- [UnRegisterServer](#/UnRegisterServer)
+- [UpdateNodeInfo](#/UpdateNodeInfo)
 
 ---
 
-## analyze
+## backend
 
-### 获取活跃人数 <a id="/analyze/GetActive"></a>
+### agent
+
+#### 获取代理列表 <a id="/backend/agent/Get"></a>
 
 **路径**
-- POST `/analyze/GetActive`
+- POST `/backend/agent/Get`
+
+**请求**
+```ts
+interface ReqGet {
+    /** 筛选方式 */
+    filter: {
+        /** 以玩家uid查询 */
+        uid?: number[],
+        /** 昵称或邮箱地址 */
+        account?: string,
+        /** 登录时间开始 */
+        loginTimeStart?: /*datetime*/ string,
+        /** 登录时间结束 */
+        loginTimeEnd?: /*datetime*/ string
+    },
+    /**
+    * 排序方式
+    * 1升序
+    * -1倒序
+    */
+    sort?: { loginTime?: -1 | 1 },
+    /** 请求分页 */
+    page: {
+        /** 一页的数量，最多100 */
+        count: number,
+        index: number
+    },
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResGet {
+    list: {
+        _id?: /*ObjectId*/ string,
+        /** 团队金额 */
+        groupGold?: number,
+        /** 下属代理 */
+        childAgent?: number[],
+        /** 下属普通会员 */
+        childPlayer?: number[],
+        /** 团队盈亏 */
+        groupResult?: number,
+        /** 游戏总对局数 */
+        groupMatchCount?: number,
+        /** 抽水总金额 */
+        groupTax?: number,
+        /** 账号编号 */
+        account_sn?: number,
+        /** 用户uid */
+        uid?: number,
+        /** 是否锁定 */
+        lock?: boolean,
+        /** 昵称 */
+        nickName?: string,
+        /** 头像 */
+        icon?: string,
+        /** 是否是代理 */
+        isAgent?: boolean,
+        /** 邀请码 */
+        invitationCode?: number,
+        /** 代理邀请码 */
+        agentInvitationCode?: number,
+        /** 登录验证密钥 */
+        authToken?: string,
+        /** 游戏房间密钥 */
+        roomToken?: string,
+        /**
+        * 当前游戏
+        * 大厅
+        * 牛牛
+        * 十三水...
+        */
+        playingGame?: string,
+        /** 锁定金币 */
+        lockGold?: number,
+        /** 金币 */
+        gold?: number,
+        /** 保险箱金币 */
+        safeBoxGold?: number,
+        /** 保险箱密码 */
+        safeBoxPassword?: string,
+        /** 登录时间 */
+        loginTime?: /*datetime*/ string,
+        /** 注册时间 */
+        registerTime?: /*datetime*/ string,
+        /** 总充值数 */
+        totalCharge?: number,
+        /** 总输赢情况 */
+        totalMatchResult?: number,
+        /** 当日输赢情况 */
+        dailyMatchResult?: number,
+        /** 赢钱次数 */
+        winCount?: number,
+        /** 输次数 */
+        loseCount?: number,
+        /** 游戏时长（秒） */
+        gameTime?: number,
+        /** 上级代理uid */
+        parentAgentUID?: number,
+        /** 返利 (0~1) */
+        rebates?: number,
+        /** 返利类型 */
+        rebateType?: "Instant" | "Delay24Hours" | "Manual",
+        /** 个人抽水金额 */
+        tax?: number,
+        /** 是否充值 */
+        isPayed?: boolean
+    }[],
+    /** 返回分页 */
+    page: {
+        /** 当前页标 */
+        index: number,
+        pageCount: number,
+        count: number,
+        totalCount: number
+    },
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+**配置**
+```ts
+{
+  "needEncrypt": true,
+  "needServer": true
+}
+```
+
+---
+
+#### 设置代理 <a id="/backend/agent/Modify"></a>
+
+**路径**
+- POST `/backend/agent/Modify`
+
+**请求**
+```ts
+interface ReqModify {
+    /** 玩家uid */
+    uid: number,
+    /** 返利0~100 */
+    rebates: number,
+    /** 是否是代理 */
+    isAgent: boolean,
+    /** 能否解散房间 */
+    canDisbandRoom: boolean,
+    /** 返利类型 */
+    rebateType: "Instant" | "Delay24Hours" | "Manual",
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResModify {
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+---
+
+### analyze
+
+#### 获取活跃人数 <a id="/backend/analyze/GetActive"></a>
+
+**路径**
+- POST `/backend/analyze/GetActive`
 
 **请求**
 ```ts
@@ -66,14 +269,12 @@ interface ReqGetActive {
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
@@ -82,6 +283,7 @@ interface ReqGetActive {
 interface ResGetActive {
     /** 返回数据[...[dateNumber,value]...] */
     data: [string, number][],
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -96,10 +298,10 @@ interface ResGetActive {
 
 ---
 
-### 获取新增人数 <a id="/analyze/GetAdd"></a>
+#### 获取新增人数 <a id="/backend/analyze/GetAdd"></a>
 
 **路径**
-- POST `/analyze/GetAdd`
+- POST `/backend/analyze/GetAdd`
 
 **请求**
 ```ts
@@ -112,14 +314,12 @@ interface ReqGetAdd {
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
@@ -128,6 +328,7 @@ interface ReqGetAdd {
 interface ResGetAdd {
     /** 返回数据[...[dateNumber,value]...] */
     data: [string, number][],
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -142,10 +343,10 @@ interface ResGetAdd {
 
 ---
 
-### 获取留存 <a id="/analyze/GetRetain"></a>
+#### 获取留存 <a id="/backend/analyze/GetRetain"></a>
 
 **路径**
-- POST `/analyze/GetRetain`
+- POST `/backend/analyze/GetRetain`
 
 **请求**
 ```ts
@@ -155,14 +356,12 @@ interface ReqGetRetain {
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
@@ -179,6 +378,7 @@ interface ResGetRetain {
     day15: number,
     /** 30日留存 */
     day30: number,
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -193,10 +393,10 @@ interface ResGetRetain {
 
 ---
 
-### 获取概要 <a id="/analyze/GetSummary"></a>
+#### 获取概要 <a id="/backend/analyze/GetSummary"></a>
 
 **路径**
-- POST `/analyze/GetSummary`
+- POST `/backend/analyze/GetSummary`
 
 **请求**
 ```ts
@@ -209,14 +409,12 @@ interface ReqGetSummary {
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
@@ -229,6 +427,10 @@ interface ResGetSummary {
     totalPayedPlayer: number,
     /** 总赠送金币 */
     totalSend: number,
+    /** 玩家总持有金币 */
+    totalGold: number,
+    /** 时间段内赠送的金币 */
+    filteredSend: number,
     /** 游戏盈亏 */
     games: {
         /** 记录日期 */
@@ -250,7 +452,11 @@ interface ResGetSummary {
         /** 系统抽水 */
         tax: number,
         /** 游戏输赢 */
-        gameMatchResult: number
+        gameMatchResult: number,
+        /** 机器人抽水 */
+        botTax: number,
+        /** 真人抽水 */
+        realTax: number
     }[],
     /** 房间盈亏 */
     rooms: {
@@ -273,56 +479,13 @@ interface ResGetSummary {
         /** 系统抽水 */
         tax: number,
         /** 游戏输赢 */
-        gameMatchResult: number
-    }[],
-    __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needEncrypt": true,
-  "needServer": true
-}
-```
-
----
-
-## control
-
-### 添加点控 <a id="/control/AddControl"></a>
-
-**路径**
-- POST `/control/AddControl`
-
-**请求**
-```ts
-interface ReqAddControl {
-    UID: number[],
-    step: {
-        /** 概率权重（-1000~1000） */
-        weight: number,
-        value: number
+        gameMatchResult: number,
+        /** 机器人抽水 */
+        botTax: number,
+        /** 真人抽水 */
+        realTax: number
     }[],
     /** 鉴权token，登录后的接口都需要填写 */
-    __authToken?: string,
-    /** 用户uid，仅服务器使用不需要填写 */
-    __uid?: number,
-    /** 用户昵称 */
-    __nickname?: string,
-    /** 时间戳 */
-    __timestamp?: number,
-    /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-}
-```
-
-**响应**
-```ts
-interface ResAddControl {
     __authToken?: string
 }
 ```
@@ -337,165 +500,108 @@ interface ResAddControl {
 
 ---
 
-### 移除点控 <a id="/control/RemoveControl"></a>
+### game
+
+#### 解散房间 <a id="/backend/game/DisbandRoom"></a>
 
 **路径**
-- POST `/control/RemoveControl`
+- POST `/backend/game/DisbandRoom`
 
 **请求**
 ```ts
-interface ReqRemoveControl {
-    UID: number[],
+interface ReqDisbandRoom {
+    roomId: number,
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
 **响应**
 ```ts
-interface ResRemoveControl {
+interface ResDisbandRoom {
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needEncrypt": true,
-  "needServer": true
 }
 ```
 
 ---
 
-## game
-
-### 获取扯旋配置 <a id="/game/GetCheXuan"></a>
+#### GetGame <a id="/backend/game/GetGame"></a>
 
 **路径**
-- POST `/game/GetCheXuan`
+- POST `/backend/game/GetGame`
 
 **请求**
 ```ts
-interface ReqGetCheXuan {
+interface ReqGetGame {
+    game: string,
+    scene: string,
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
 **响应**
 ```ts
-interface ResGetCheXuan {
+interface ResGetGame {
     room: {
-        /** 满多少人开桌 >2 */
-        playerCountMin?: number,
-        /** 芒果封顶倍数，0不封顶 */
-        manguoRateMax?: number,
-        /** 芒果开关 */
-        manguoEnable?: boolean,
-        /** 是否开启地九王 */
-        diJiuWangEnable?: boolean,
-        /** 庄家先手,默认true */
-        hostFirstEnable?: boolean,
-        /** 是否开启机器人 */
-        botEnable?: boolean,
-        /** 皮 1-3 */
-        pi?: {
-            min: number,
-            max: number
-        },
-        /** 簸簸最小和最大值 */
-        bo?: {
-            min: number,
-            max: number
-        },
-        /** 奖池金额 */
-        rewardPool?: number,
-        /** 奖池上限，无法直接设置这个值 */
-        rewardTop?: number,
-        /** 奖池下限，无法直接设置这个值 */
-        rewardBottom?: number,
-        /** 彩金池金额 */
-        bonusPool?: number,
-        /** 彩金池上限，无法直接设置这个值 */
-        bonusTop?: number,
-        /** 彩金池下限，无法直接设置这个值 */
-        bonusBottom?: number,
-        /** 当前抽水，无法直接设置这个值 */
+        /** 游戏名 */
+        game: string,
+        /** 游戏场次 */
+        scene: string,
+        /** 是否私有，只有服务器调用 */
+        isPrivate?: boolean,
+        /** 房间id，只有服务器调用 */
+        roomId?: number,
+        /** 节点链接，只有服务器调用 */
+        url?: string,
+        /** 抽水，只有服务器调用 */
         tax?: number,
-        /** 点控设置,加起来100 */
-        bonusPoolRate?: {
-            /** 天皇 */
-            tianHuang: number,
-            /** 朵皇 */
-            duoHuang: number,
-            /** 朵朵 */
-            duoDuo: number
-        },
-        /** 奖池抽水比例分配 */
-        poolRate?: {
-            /** 奖池比例 */
-            rewardRate: number,
-            /** 彩金池比例 */
-            bonusRate: number,
-            /** 抽水比例 */
-            taxRate: number
-        },
-        /** 奖池概率 */
-        rewardFix?: {
-            /** 档位 */
-            level: number,
-            /** 下限 */
-            bottom: number,
-            /** 上限 */
-            top: number,
-            /** 修正值 */
-            fix: number
-        }[],
-        /** 彩金池概率 */
-        bonusFix?: {
-            /** 档位 */
-            level: number,
-            /** 下限 */
-            bottom: number,
-            /** 上限 */
-            top: number,
-            /** 修正值 */
-            fix: number
-        }[],
-        /** 游戏名，不可更改 */
-        game: string,
-        /** 房间名，不可更改 */
-        field: string,
-        /** 入场分数下限，0不限 */
-        minGold?: number,
-        /** 入场分数上限，0不限 */
-        maxGold?: number,
-        /** 最小下注 */
-        minBet?: number,
-        /** 最大人俗 */
-        maxPlayer?: number
-    }[],
+        /** 房费，只有服务器调用 */
+        fee?: number,
+        /** 每局携带金额 */
+        takeGold: number,
+        /** 房主uid */
+        masterUID: number,
+        /** 密码 */
+        password: string,
+        /** 底注 */
+        baseBet: number,
+        /** 最低进入金额 */
+        minGold: number,
+        maxGold: number,
+        /** 局数 */
+        round: number,
+        /** 最大回合数 */
+        maxStep: number,
+        /** 抢庄倍率 */
+        hostBetRate: number[],
+        /** 抽水方式 */
+        taxRule: 0 | 1 | 2,
+        /** 下注倍率 */
+        betRate: number[],
+        /** 允许观战 */
+        enableWatch: boolean,
+        minPlayerCount?: number,
+        maxPlayerCount?: number
+    },
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -510,268 +616,196 @@ interface ResGetCheXuan {
 
 ---
 
-### 获取五子棋配置 <a id="/game/GetFIR"></a>
+#### 获取房间列表 <a id="/backend/game/GetRoom"></a>
 
 **路径**
-- POST `/game/GetFIR`
+- POST `/backend/game/GetRoom`
 
 **请求**
 ```ts
-interface ReqGetFIR {
+interface ReqGetRoom {
+    filter: {
+        /** 撞见日期 */
+        date?: /*datetime*/ string,
+        /** 房主uid */
+        masterUID?: number,
+        /** 游戏名 */
+        game?: string
+    },
+    /** 请求分页 */
+    page: {
+        /** 一页的数量，最多100 */
+        count: number,
+        index: number
+    },
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
 **响应**
 ```ts
-interface ResGetFIR {
-    room: {
-        /** 游戏名，不可更改 */
+interface ResGetRoom {
+    list: {
+        /** 房间id */
+        roomId: number,
+        /** 游戏名 */
         game: string,
-        /** 房间名，不可更改 */
-        field: string,
-        /** 入场分数下限，0不限 */
-        minGold?: number,
-        /** 入场分数上限，0不限 */
-        maxGold?: number,
-        /** 最小下注 */
-        minBet?: number,
-        /** 最大人俗 */
-        maxPlayer?: number
+        /** 房主id */
+        masterUID: number,
+        /** 创建日期 */
+        date: /*datetime*/ string,
+        /** 房费 */
+        fee: number,
+        /** 抽水 */
+        tax: number,
+        /** 玩家id */
+        playerId: number[],
+        /** 当前局数 */
+        round: number,
+        /** 底分 */
+        baseBet: number,
+        /** 最大局数 */
+        maxRound: number,
+        /** 推注 */
+        betRate: number[],
+        /** 抢庄 */
+        hostBet: number[],
+        /** 抽水规则 */
+        taxRule: 0 | 1 | 2,
+        /** 允许观战 */
+        enableWatch: boolean,
+        /** 最低入场金额 */
+        goldLimitMin: number,
+        /** 最高入场金额 */
+        goldLimitMax: number
     }[],
+    /** 返回分页 */
+    page: {
+        /** 当前页标 */
+        index: number,
+        pageCount: number,
+        count: number,
+        totalCount: number
+    },
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needEncrypt": true,
-  "needServer": true
 }
 ```
 
 ---
 
-### 获取捕鱼配置 <a id="/game/GetFish"></a>
+#### 邀请玩家 <a id="/backend/game/Invite"></a>
 
 **路径**
-- POST `/game/GetFish`
+- POST `/backend/game/Invite`
 
 **请求**
 ```ts
-interface ReqGetFish {
+interface ReqInvite {
+    /** 房间id */
+    roomId: number,
+    /** 邀请玩家id */
+    uid: number[],
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
 **响应**
 ```ts
-interface ResGetFish {
-    room: {
-        /** 当前奖池金额 */
-        currentPool?: number,
-        /** 注入抽水比例 */
-        taxRate: number,
-        /** 注入奖池比例 */
-        poolRate: number,
-        /** 奖池上限 */
-        topLimit: number,
-        /** 奖池下限 */
-        bottomLimit: number,
-        /** 鱼设置 */
-        Fish: {
-            /** 鱼id */
-            id: number,
-            /** 名称 */
-            name: string,
-            /** 最大同屏数量 */
-            maxCount: number,
-            /** 击杀概率（0~100） */
-            killProbability: number,
-            /** 出现概率(0~100) */
-            spawnProbability: number,
-            /** 出现频率（秒） */
-            cd: number,
-            /** 鱼技能 */
-            skill: string
-        }[],
-        /** 奖池概率修正 */
-        Fix: {
-            /** 档位 */
-            level: number,
-            /** 下限 */
-            bottom: number,
-            /** 上限 */
-            top: number,
-            /** 修正值 */
-            fix: number
-        }[],
-        /** 游戏名，不可更改 */
-        game: string,
-        /** 房间名，不可更改 */
-        field: string,
-        /** 入场分数下限，0不限 */
-        minGold?: number,
-        /** 入场分数上限，0不限 */
-        maxGold?: number,
-        /** 最小下注 */
-        minBet?: number,
-        /** 最大人俗 */
-        maxPlayer?: number
-    }[],
+interface ResInvite {
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needEncrypt": true,
-  "needServer": true
 }
 ```
 
 ---
 
-### 设置扯旋 <a id="/game/SetCheXuan"></a>
+#### 游戏规则设置 <a id="/backend/game/SetGame"></a>
 
 **路径**
-- POST `/game/SetCheXuan`
+- POST `/backend/game/SetGame`
 
 **请求**
 ```ts
-interface ReqSetCheXuan {
+interface ReqSetGame {
+    game: string,
+    scene: string,
     room: {
-        /** 满多少人开桌 >2 */
-        playerCountMin?: number,
-        /** 芒果封顶倍数，0不封顶 */
-        manguoRateMax?: number,
-        /** 芒果开关 */
-        manguoEnable?: boolean,
-        /** 是否开启地九王 */
-        diJiuWangEnable?: boolean,
-        /** 庄家先手,默认true */
-        hostFirstEnable?: boolean,
-        /** 是否开启机器人 */
-        botEnable?: boolean,
-        /** 皮 1-3 */
-        pi?: {
-            min: number,
-            max: number
-        },
-        /** 簸簸最小和最大值 */
-        bo?: {
-            min: number,
-            max: number
-        },
-        /** 奖池金额 */
-        rewardPool?: number,
-        /** 奖池上限，无法直接设置这个值 */
-        rewardTop?: number,
-        /** 奖池下限，无法直接设置这个值 */
-        rewardBottom?: number,
-        /** 彩金池金额 */
-        bonusPool?: number,
-        /** 彩金池上限，无法直接设置这个值 */
-        bonusTop?: number,
-        /** 彩金池下限，无法直接设置这个值 */
-        bonusBottom?: number,
-        /** 当前抽水，无法直接设置这个值 */
+        /** 游戏名 */
+        game: string,
+        /** 游戏场次 */
+        scene: string,
+        /** 是否私有，只有服务器调用 */
+        isPrivate?: boolean,
+        /** 房间id，只有服务器调用 */
+        roomId?: number,
+        /** 节点链接，只有服务器调用 */
+        url?: string,
+        /** 抽水，只有服务器调用 */
         tax?: number,
-        /** 点控设置,加起来100 */
-        bonusPoolRate?: {
-            /** 天皇 */
-            tianHuang: number,
-            /** 朵皇 */
-            duoHuang: number,
-            /** 朵朵 */
-            duoDuo: number
-        },
-        /** 奖池抽水比例分配 */
-        poolRate?: {
-            /** 奖池比例 */
-            rewardRate: number,
-            /** 彩金池比例 */
-            bonusRate: number,
-            /** 抽水比例 */
-            taxRate: number
-        },
-        /** 奖池概率 */
-        rewardFix?: {
-            /** 档位 */
-            level: number,
-            /** 下限 */
-            bottom: number,
-            /** 上限 */
-            top: number,
-            /** 修正值 */
-            fix: number
-        }[],
-        /** 彩金池概率 */
-        bonusFix?: {
-            /** 档位 */
-            level: number,
-            /** 下限 */
-            bottom: number,
-            /** 上限 */
-            top: number,
-            /** 修正值 */
-            fix: number
-        }[],
-        /** 游戏名，不可更改 */
-        game: string,
-        /** 房间名，不可更改 */
-        field: string,
-        /** 入场分数下限，0不限 */
-        minGold?: number,
-        /** 入场分数上限，0不限 */
-        maxGold?: number,
-        /** 最小下注 */
-        minBet?: number,
-        /** 最大人俗 */
-        maxPlayer?: number
-    }[],
+        /** 房费，只有服务器调用 */
+        fee?: number,
+        /** 每局携带金额 */
+        takeGold: number,
+        /** 房主uid */
+        masterUID: number,
+        /** 密码 */
+        password: string,
+        /** 底注 */
+        baseBet: number,
+        /** 最低进入金额 */
+        minGold: number,
+        maxGold: number,
+        /** 局数 */
+        round: number,
+        /** 最大回合数 */
+        maxStep: number,
+        /** 抢庄倍率 */
+        hostBetRate: number[],
+        /** 抽水方式 */
+        taxRule: 0 | 1 | 2,
+        /** 下注倍率 */
+        betRate: number[],
+        /** 允许观战 */
+        enableWatch: boolean,
+        minPlayerCount?: number,
+        maxPlayerCount?: number
+    },
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
 **响应**
 ```ts
-interface ResSetCheXuan {
+interface ResSetGame {
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -786,162 +820,61 @@ interface ResSetCheXuan {
 
 ---
 
-### 设置五子棋 <a id="/game/SetFIR"></a>
-
-只传递当前修改的配置
+#### 设置房间规则 <a id="/backend/game/SetRoom"></a>
 
 **路径**
-- POST `/game/SetFIR`
+- POST `/backend/game/SetRoom`
 
 **请求**
 ```ts
-interface ReqSetFIR {
-    room: {
-        /** 游戏名，不可更改 */
-        game: string,
-        /** 房间名，不可更改 */
-        field: string,
-        /** 入场分数下限，0不限 */
-        minGold?: number,
-        /** 入场分数上限，0不限 */
-        maxGold?: number,
-        /** 最小下注 */
-        minBet?: number,
-        /** 最大人俗 */
-        maxPlayer?: number
-    }[],
+interface ReqSetRoom {
+    /** 房间id */
+    roomId: number,
+    /** 底分 */
+    baseBet: number,
+    /** 最大局数 */
+    maxRound: number,
+    /** 最大推注 */
+    maxBetRate: number,
+    /** 最大抢庄 */
+    maxHostBet: number,
+    /** 抽水规则 */
+    taxRule: 0 | 1 | 2,
+    /** 允许观战 */
+    enableWatch: boolean,
+    /** 最低入场金额 */
+    goldLimitMin: number,
+    /** 最高入场金额 */
+    goldLimitMax: number,
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
 **响应**
 ```ts
-interface ResSetFIR {
-    __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needEncrypt": true,
-  "needServer": true
-}
-```
-
----
-
-### 配置捕鱼 <a id="/game/SetFish"></a>
-
-只传递当前修改的房间数据
-
-**路径**
-- POST `/game/SetFish`
-
-**请求**
-```ts
-interface ReqSetFish {
-    room: {
-        /** 当前奖池金额 */
-        currentPool?: number,
-        /** 注入抽水比例 */
-        taxRate: number,
-        /** 注入奖池比例 */
-        poolRate: number,
-        /** 奖池上限 */
-        topLimit: number,
-        /** 奖池下限 */
-        bottomLimit: number,
-        /** 鱼设置 */
-        Fish: {
-            /** 鱼id */
-            id: number,
-            /** 名称 */
-            name: string,
-            /** 最大同屏数量 */
-            maxCount: number,
-            /** 击杀概率（0~100） */
-            killProbability: number,
-            /** 出现概率(0~100) */
-            spawnProbability: number,
-            /** 出现频率（秒） */
-            cd: number,
-            /** 鱼技能 */
-            skill: string
-        }[],
-        /** 奖池概率修正 */
-        Fix: {
-            /** 档位 */
-            level: number,
-            /** 下限 */
-            bottom: number,
-            /** 上限 */
-            top: number,
-            /** 修正值 */
-            fix: number
-        }[],
-        /** 游戏名，不可更改 */
-        game: string,
-        /** 房间名，不可更改 */
-        field: string,
-        /** 入场分数下限，0不限 */
-        minGold?: number,
-        /** 入场分数上限，0不限 */
-        maxGold?: number,
-        /** 最小下注 */
-        minBet?: number,
-        /** 最大人俗 */
-        maxPlayer?: number
-    }[],
+interface ResSetRoom {
     /** 鉴权token，登录后的接口都需要填写 */
-    __authToken?: string,
-    /** 用户uid，仅服务器使用不需要填写 */
-    __uid?: number,
-    /** 用户昵称 */
-    __nickname?: string,
-    /** 时间戳 */
-    __timestamp?: number,
-    /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-}
-```
-
-**响应**
-```ts
-interface ResSetFish {
     __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needEncrypt": true,
-  "needServer": true
 }
 ```
 
 ---
 
-## player
+### player
 
-### 获取玩家列表 <a id="/player/Get"></a>
+#### 获取玩家列表 <a id="/backend/player/Get"></a>
 
 **路径**
-- POST `/player/Get`
+- POST `/backend/player/Get`
 
 **请求**
 ```ts
@@ -975,14 +908,12 @@ interface ReqGet {
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
@@ -990,47 +921,68 @@ interface ReqGet {
 ```ts
 interface ResGet {
     list: {
-        /** 玩家id */
-        UID: number,
+        _id?: /*ObjectId*/ string,
+        /** 账号编号 */
+        account_sn?: number,
+        /** 用户uid */
+        uid?: number,
+        /** 是否锁定 */
+        lock?: boolean,
         /** 昵称 */
-        nickname: string,
-        /** 邮箱地址 */
-        email: string,
-        /** 注册时间 */
-        registerTime: /*datetime*/ string | string,
-        /** 上次登录时间 */
-        loginTime: /*datetime*/ string | string,
-        /** 持有金币 */
-        gold: number,
+        nickName?: string,
+        /** 头像 */
+        icon?: string,
+        /** 是否是代理 */
+        isAgent?: boolean,
+        /** 邀请码 */
+        invitationCode?: number,
+        /** 代理邀请码 */
+        agentInvitationCode?: number,
+        /** 登录验证密钥 */
+        authToken?: string,
+        /** 游戏房间密钥 */
+        roomToken?: string,
+        /**
+        * 当前游戏
+        * 大厅
+        * 牛牛
+        * 十三水...
+        */
+        playingGame?: string,
+        /** 锁定金币 */
+        lockGold?: number,
+        /** 金币 */
+        gold?: number,
         /** 保险箱金币 */
-        safeboxGold: number,
-        /** 持有钻石 */
-        gem: number,
-        /** 保险箱钻石 */
-        safeboxGem: number,
-        /** 总充值 */
-        totalCharge: number,
-        /** 总输赢金额 */
-        totalMatch: number,
-        /** 赢次数 */
-        winMatchCount: number,
+        safeBoxGold?: number,
+        /** 保险箱密码 */
+        safeBoxPassword?: string,
+        /** 登录时间 */
+        loginTime?: /*datetime*/ string,
+        /** 注册时间 */
+        registerTime?: /*datetime*/ string,
+        /** 总充值数 */
+        totalCharge?: number,
+        /** 总输赢情况 */
+        totalMatchResult?: number,
+        /** 当日输赢情况 */
+        dailyMatchResult?: number,
+        /** 赢钱次数 */
+        winCount?: number,
         /** 输次数 */
-        loseMatchCount: number,
-        /** 游戏时长 */
-        gameTime: number,
-        /** 锁定状态 */
-        isLock: boolean,
-        /** 点控输赢金额 */
-        controlMatch: number,
-        /** 当前点控进度下标 */
-        controlIndex: number,
-        /** 点控信息,长度>0则点控状态 */
-        controlStep: {
-            /** 权重，-1000~1000 */
-            weight: number,
-            /** 目标金额，正整数 */
-            value: number
-        }[]
+        loseCount?: number,
+        /** 游戏时长（秒） */
+        gameTime?: number,
+        /** 上级代理uid */
+        parentAgentUID?: number,
+        /** 返利 (0~1) */
+        rebates?: number,
+        /** 返利类型 */
+        rebateType?: "Instant" | "Delay24Hours" | "Manual",
+        /** 个人抽水金额 */
+        tax?: number,
+        /** 是否充值 */
+        isPayed?: boolean
     }[],
     /** 返回分页 */
     page: {
@@ -1040,6 +992,7 @@ interface ResGet {
         count: number,
         totalCount: number
     },
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -1054,10 +1007,10 @@ interface ResGet {
 
 ---
 
-### 获取对局记录 <a id="/player/GetMatchLog"></a>
+#### 获取对局记录 <a id="/backend/player/GetMatchLog"></a>
 
 **路径**
-- POST `/player/GetMatchLog`
+- POST `/backend/player/GetMatchLog`
 
 **请求**
 ```ts
@@ -1070,7 +1023,7 @@ interface ReqGetMatchLog {
         /** 结束日期 */
         dateEnd?: /*datetime*/ string,
         /** 通过游戏筛选 */
-        game?: string
+        game?: string[]
     },
     /** 请求分页 */
     page: {
@@ -1082,14 +1035,12 @@ interface ReqGetMatchLog {
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
@@ -1097,28 +1048,84 @@ interface ReqGetMatchLog {
 ```ts
 interface ResGetMatchLog {
     list: {
-        /** 对局id */
-        id: number,
-        /** 玩家id */
-        UID: number,
-        /** 玩家昵称 */
-        nickname: string,
-        /** 开始时间 */
-        startTime: /*datetime*/ string | string,
-        /** 结束时间 */
-        endTime: /*datetime*/ string | string,
-        /** 游戏 */
+        /** 游戏名 */
         game: string,
-        /** 房间 */
-        room: string,
-        /** 开始金额 */
-        startGold: number,
-        /** 结束金额 */
-        endGold: number,
-        /** 输赢结果 */
-        result: number,
-        /** 备注 */
-        remark: string
+        /** 场景 */
+        scene: string,
+        /** 消息序列 */
+        messages: string,
+        /** 战报结果 */
+        result: {
+            roundId: number,
+            /** 对局结果计分 */
+            result: {
+                /** 用户uid */
+                uid: number,
+                /** 输赢 */
+                score: number,
+                /** 总分 */
+                totalScore: number,
+                /** 额外信息：牌型等 */
+                ext?: string
+            }[],
+            /** 开始时玩家快照 */
+            playerSnapshot: {
+                uid: number,
+                playerId: number,
+                gold: number
+            }[]
+        }[],
+        /** 日期 */
+        date?: /*datetime*/ string,
+        /** 房间选项 */
+        options: {
+            /** 游戏名 */
+            game: string,
+            /** 游戏场次 */
+            scene: string,
+            /** 是否私有，只有服务器调用 */
+            isPrivate?: boolean,
+            /** 房间id，只有服务器调用 */
+            roomId?: number,
+            /** 节点链接，只有服务器调用 */
+            url?: string,
+            /** 抽水，只有服务器调用 */
+            tax?: number,
+            /** 房费，只有服务器调用 */
+            fee?: number,
+            /** 每局携带金额 */
+            takeGold: number,
+            /** 房主uid */
+            masterUID: number,
+            /** 密码 */
+            password: string,
+            /** 底注 */
+            baseBet: number,
+            /** 最低进入金额 */
+            minGold: number,
+            maxGold: number,
+            /** 局数 */
+            round: number,
+            /** 最大回合数 */
+            maxStep: number,
+            /** 抢庄倍率 */
+            hostBetRate: number[],
+            /** 抽水方式 */
+            taxRule: 0 | 1 | 2,
+            /** 下注倍率 */
+            betRate: number[],
+            /** 允许观战 */
+            enableWatch: boolean,
+            minPlayerCount?: number,
+            maxPlayerCount?: number
+        },
+        /** 所有玩家信息 */
+        playerInfo?: {
+            uid: number,
+            nickName: string,
+            icon: string,
+            totalScore: number
+        }[]
     }[],
     /** 返回分页 */
     page: {
@@ -1128,6 +1135,13 @@ interface ResGetMatchLog {
         count: number,
         totalCount: number
     },
+    /** 玩家赢局数 */
+    playerWin: number,
+    /** 玩家输局数 */
+    playerLose: number,
+    /** 输赢总和 */
+    resultSum: number,
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -1142,10 +1156,10 @@ interface ResGetMatchLog {
 
 ---
 
-### 获取实时在线 <a id="/player/GetOnline"></a>
+#### 获取实时在线 <a id="/backend/player/GetOnline"></a>
 
 **路径**
-- POST `/player/GetOnline`
+- POST `/backend/player/GetOnline`
 
 **请求**
 ```ts
@@ -1158,14 +1172,12 @@ interface ReqGetOnline {
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
@@ -1176,6 +1188,7 @@ interface ResGetOnline {
         game: string,
         chart: [string, number][]
     }[],
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -1190,10 +1203,10 @@ interface ResGetOnline {
 
 ---
 
-### 上分 <a id="/player/GoldOperate"></a>
+#### 上分 <a id="/backend/player/GoldOperate"></a>
 
 **路径**
-- POST `/player/GoldOperate`
+- POST `/backend/player/GoldOperate`
 
 **请求**
 ```ts
@@ -1212,20 +1225,19 @@ interface ReqGoldOperate {
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
 **响应**
 ```ts
 interface ResGoldOperate {
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -1240,10 +1252,10 @@ interface ResGoldOperate {
 
 ---
 
-### 锁定/解锁玩家 <a id="/player/Set"></a>
+#### 锁定/解锁玩家 <a id="/backend/player/Set"></a>
 
 **路径**
-- POST `/player/Set`
+- POST `/backend/player/Set`
 
 **请求**
 ```ts
@@ -1254,20 +1266,19 @@ interface ReqSet {
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
 **响应**
 ```ts
 interface ResSet {
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -1282,12 +1293,12 @@ interface ResSet {
 
 ---
 
-## rank
+### rank
 
-### 获取排名 <a id="/rank/Get"></a>
+#### 获取排名 <a id="/backend/rank/Get"></a>
 
 **路径**
-- POST `/rank/Get`
+- POST `/backend/rank/Get`
 
 **请求**
 ```ts
@@ -1319,14 +1330,12 @@ interface ReqGet {
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
@@ -1360,6 +1369,7 @@ interface ResGet {
         count: number,
         totalCount: number
     },
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -1374,12 +1384,12 @@ interface ResGet {
 
 ---
 
-## store
+### store
 
-### 获取商品列表 <a id="/store/Get"></a>
+#### 获取商品列表 <a id="/backend/store/Get"></a>
 
 **路径**
-- POST `/store/Get`
+- POST `/backend/store/Get`
 
 **请求**
 ```ts
@@ -1388,14 +1398,12 @@ interface ReqGet {
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
@@ -1403,12 +1411,23 @@ interface ReqGet {
 ```ts
 interface ResGet {
     list: {
-        id: number,
+        _id?: /*ObjectId*/ string,
+        /** 商品id */
+        id?: number,
+        /** 道具id */
         itemId?: number,
+        /** 名称 */
         name?: string,
+        /** 描述 */
+        desc?: string,
+        /** 描述 */
         icon?: string,
-        price: number
+        /** 价格 */
+        price?: number,
+        /** 折扣 */
+        discount?: number
     }[],
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -1423,86 +1442,47 @@ interface ResGet {
 
 ---
 
-### 设置商品列表，只传修改的字段 <a id="/store/Set"></a>
+#### 设置商品列表，只传修改的字段 <a id="/backend/store/Set"></a>
 
 **路径**
-- POST `/store/Set`
+- POST `/backend/store/Set`
 
 **请求**
 ```ts
 interface ReqSet {
     list: {
+        /** 商品id */
         id: number,
-        itemId?: number,
+        /** 道具id */
+        itemId: number,
+        /** 名称 */
         name?: string,
+        /** 描述 */
+        desc?: string,
+        /** 描述 */
         icon?: string,
-        price: number
+        /** 价格 */
+        price: number,
+        /** 折扣 */
+        discount: number
     }[],
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
 **响应**
 ```ts
 interface ResSet {
-    __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needEncrypt": true,
-  "needServer": true
-}
-```
-
----
-
-## system
-
-### announce
-
-#### 发送通知 <a id="/system/announce/Send"></a>
-
-**路径**
-- POST `/system/announce/Send`
-
-**请求**
-```ts
-interface ReqSend {
-    title: string,
-    content: string,
-    targetUID?: number[],
     /** 鉴权token，登录后的接口都需要填写 */
-    __authToken?: string,
-    /** 用户uid，仅服务器使用不需要填写 */
-    __uid?: number,
-    /** 用户昵称 */
-    __nickname?: string,
-    /** 时间戳 */
-    __timestamp?: number,
-    /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-}
-```
-
-**响应**
-```ts
-interface ResSend {
     __authToken?: string
 }
 ```
@@ -1517,112 +1497,14 @@ interface ResSend {
 
 ---
 
-### config
+### system
 
-#### 获取后台开关 <a id="/system/config/Get"></a>
-
-**路径**
-- POST `/system/config/Get`
-
-**请求**
-```ts
-interface ReqGet {
-    /** 鉴权token，登录后的接口都需要填写 */
-    __authToken?: string,
-    /** 用户uid，仅服务器使用不需要填写 */
-    __uid?: number,
-    /** 用户昵称 */
-    __nickname?: string,
-    /** 时间戳 */
-    __timestamp?: number,
-    /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-}
-```
-
-**响应**
-```ts
-interface ResGet {
-    /** 总设置 */
-    config: {
-        /** 显示排行榜 */
-        showRanking?: boolean,
-        /** 开放的游戏 */
-        openList?: string[],
-        /** 关闭的游戏 */
-        closeList?: string[]
-    },
-    __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needEncrypt": true,
-  "needServer": true
-}
-```
-
----
-
-#### 设置后台开关 <a id="/system/config/Set"></a>
-
-**路径**
-- POST `/system/config/Set`
-
-**请求**
-```ts
-interface ReqSet {
-    /** 总设置 */
-    config: {
-        /** 显示排行榜 */
-        showRanking?: boolean,
-        /** 开放的游戏 */
-        openList?: string[],
-        /** 关闭的游戏 */
-        closeList?: string[]
-    },
-    /** 鉴权token，登录后的接口都需要填写 */
-    __authToken?: string,
-    /** 用户uid，仅服务器使用不需要填写 */
-    __uid?: number,
-    /** 用户昵称 */
-    __nickname?: string,
-    /** 时间戳 */
-    __timestamp?: number,
-    /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
-}
-```
-
-**响应**
-```ts
-interface ResSet {
-    __authToken?: string
-}
-```
-
-**配置**
-```ts
-{
-  "needEncrypt": true,
-  "needServer": true
-}
-```
-
----
-
-### 获取任意记录 <a id="/system/GetOperateLog"></a>
+#### 获取任意记录 <a id="/backend/system/GetOperateLog"></a>
 
 根据记录类型返回相应的字段
 
 **路径**
-- POST `/system/GetOperateLog`
+- POST `/backend/system/GetOperateLog`
 
 **请求**
 ```ts
@@ -1637,7 +1519,14 @@ interface ReqGetOperateLog {
         /** 结束时间 */
         dateEnd?: /*datetime*/ string,
         /** 操作类型 */
-        operate: "ChargeRefound" | "Send" | "Compensate" | "AddControl" | "RemoveControl" | "LockAccount" | "UnlockAccount" | "SendMarquee" | "SenAnnounce" | "SetGame" | "SetConfig"[]
+        operate: "ChargeRefound" | "Send" | "Compensate" | "Rebate" | "LockAccount" | "UnlockAccount" | "SendMarquee" | "SenAnnounce" | "SetGame" | "SetConfig"[],
+        /** 返利相关 */
+        rebate?: {
+            /** 返利类型 */
+            type: "Instant" | "Delay24Hours" | "Manual",
+            /** 返利状态 */
+            state: 0 | 1
+        }
     },
     /** 请求分页 */
     page: {
@@ -1649,14 +1538,12 @@ interface ReqGetOperateLog {
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
@@ -1665,10 +1552,12 @@ interface ReqGetOperateLog {
 interface ResGetOperateLog {
     /** 日志 */
     list: ({
+        /** 日期 */
+        date?: /*datetime*/ string | string,
         /** 记录id */
         id: number,
         /** 目标uid 空则为全体玩家 */
-        UID?: number[],
+        targetUID?: number,
         /** 目标昵称 */
         nickname: string,
         /** 操作者uid */
@@ -1677,15 +1566,17 @@ interface ResGetOperateLog {
         operatorNickname: string,
         /** 操作者ip */
         ip: string,
-        /** 操作时间 */
-        date: /*datetime*/ string | string,
         /** 操作类型 */
-        operate: "ChargeRefound" | "Send" | "Compensate" | "AddControl" | "RemoveControl" | "LockAccount" | "UnlockAccount" | "SendMarquee" | "SenAnnounce" | "SetGame" | "SetConfig",
+        operate: "ChargeRefound" | "Send" | "Compensate" | "Rebate" | "LockAccount" | "UnlockAccount" | "SendMarquee" | "SenAnnounce" | "SetGame" | "SetConfig",
         /** 备注 */
         remark: string
     } & {
         /** 金钱操作[ChargeRefound|Send|Compensate] */
         currency?: {
+            /** 日期 */
+            date?: /*datetime*/ string,
+            /** 目标uid */
+            uid: number,
             /** 货币类型 */
             currency: "Gold" | "Gem",
             /** 起始值 */
@@ -1693,21 +1584,19 @@ interface ResGetOperateLog {
             /** 结束值 */
             endValue: number,
             /** 变化值 */
-            value: number
-        },
-        /** 点控[AddControl|RemoveControl] */
-        control?: {
-            control: boolean,
-            /** 分步 */
-            step?: {
-                /** 权重，-1000~1000 */
-                weight: number,
-                /** 目标金额，正整数 */
-                value: number
-            }[]
+            value: number,
+            /** 使用场景 */
+            scene: 0 | 1 | 2 | 3 | 4 | 5,
+            /** 备注 */
+            notes?: string
         },
         /** 账号[LockAccount|UnlockAccount] */
-        account?: {/** 是否锁定 */
+        user?: {
+            /** 日期 */
+            date: /*datetime*/ string,
+            /** 目标uid */
+            uid?: number,
+            /** 是否锁定 */
             lock: boolean
         },
         /** 跑马灯[SendMarquee] */
@@ -1725,170 +1614,55 @@ interface ResGetOperateLog {
         },
         /** 通知[SendAnnounce] */
         announce?: {
+            targetUID: number[],
+            /** 日期 */
+            date: /*datetime*/ string,
             /** 标题 */
-            title?: string,
-            content?: string
+            title: string,
+            /** 内容 */
+            content: string
         },
         /** 设置游戏记录[SetGame] */
         game?: {
-            room: {
-                /** 游戏名，不可更改 */
-                game: string,
-                /** 房间名，不可更改 */
-                field: string,
-                /** 入场分数下限，0不限 */
-                minGold?: number,
-                /** 入场分数上限，0不限 */
-                maxGold?: number,
-                /** 最小下注 */
-                minBet?: number,
-                /** 最大人俗 */
-                maxPlayer?: number
-            }[]
-        } | {
-            room: {
-                /** 当前奖池金额 */
-                currentPool?: number,
-                /** 注入抽水比例 */
-                taxRate: number,
-                /** 注入奖池比例 */
-                poolRate: number,
-                /** 奖池上限 */
-                topLimit: number,
-                /** 奖池下限 */
-                bottomLimit: number,
-                /** 鱼设置 */
-                Fish: {
-                    /** 鱼id */
-                    id: number,
-                    /** 名称 */
-                    name: string,
-                    /** 最大同屏数量 */
-                    maxCount: number,
-                    /** 击杀概率（0~100） */
-                    killProbability: number,
-                    /** 出现概率(0~100) */
-                    spawnProbability: number,
-                    /** 出现频率（秒） */
-                    cd: number,
-                    /** 鱼技能 */
-                    skill: string
-                }[],
-                /** 奖池概率修正 */
-                Fix: {
-                    /** 档位 */
-                    level: number,
-                    /** 下限 */
-                    bottom: number,
-                    /** 上限 */
-                    top: number,
-                    /** 修正值 */
-                    fix: number
-                }[],
-                /** 游戏名，不可更改 */
-                game: string,
-                /** 房间名，不可更改 */
-                field: string,
-                /** 入场分数下限，0不限 */
-                minGold?: number,
-                /** 入场分数上限，0不限 */
-                maxGold?: number,
-                /** 最小下注 */
-                minBet?: number,
-                /** 最大人俗 */
-                maxPlayer?: number
-            }[]
-        } | {
-            room: {
-                /** 满多少人开桌 >2 */
-                playerCountMin?: number,
-                /** 芒果封顶倍数，0不封顶 */
-                manguoRateMax?: number,
-                /** 芒果开关 */
-                manguoEnable?: boolean,
-                /** 是否开启地九王 */
-                diJiuWangEnable?: boolean,
-                /** 庄家先手,默认true */
-                hostFirstEnable?: boolean,
-                /** 是否开启机器人 */
-                botEnable?: boolean,
-                /** 皮 1-3 */
-                pi?: {
-                    min: number,
-                    max: number
-                },
-                /** 簸簸最小和最大值 */
-                bo?: {
-                    min: number,
-                    max: number
-                },
-                /** 奖池金额 */
-                rewardPool?: number,
-                /** 奖池上限，无法直接设置这个值 */
-                rewardTop?: number,
-                /** 奖池下限，无法直接设置这个值 */
-                rewardBottom?: number,
-                /** 彩金池金额 */
-                bonusPool?: number,
-                /** 彩金池上限，无法直接设置这个值 */
-                bonusTop?: number,
-                /** 彩金池下限，无法直接设置这个值 */
-                bonusBottom?: number,
-                /** 当前抽水，无法直接设置这个值 */
-                tax?: number,
-                /** 点控设置,加起来100 */
-                bonusPoolRate?: {
-                    /** 天皇 */
-                    tianHuang: number,
-                    /** 朵皇 */
-                    duoHuang: number,
-                    /** 朵朵 */
-                    duoDuo: number
-                },
-                /** 奖池抽水比例分配 */
-                poolRate?: {
-                    /** 奖池比例 */
-                    rewardRate: number,
-                    /** 彩金池比例 */
-                    bonusRate: number,
-                    /** 抽水比例 */
-                    taxRate: number
-                },
-                /** 奖池概率 */
-                rewardFix?: {
-                    /** 档位 */
-                    level: number,
-                    /** 下限 */
-                    bottom: number,
-                    /** 上限 */
-                    top: number,
-                    /** 修正值 */
-                    fix: number
-                }[],
-                /** 彩金池概率 */
-                bonusFix?: {
-                    /** 档位 */
-                    level: number,
-                    /** 下限 */
-                    bottom: number,
-                    /** 上限 */
-                    top: number,
-                    /** 修正值 */
-                    fix: number
-                }[],
-                /** 游戏名，不可更改 */
-                game: string,
-                /** 房间名，不可更改 */
-                field: string,
-                /** 入场分数下限，0不限 */
-                minGold?: number,
-                /** 入场分数上限，0不限 */
-                maxGold?: number,
-                /** 最小下注 */
-                minBet?: number,
-                /** 最大人俗 */
-                maxPlayer?: number
-            }[]
+            /** 游戏名 */
+            game: string,
+            /** 游戏场次 */
+            scene: string,
+            /** 是否私有，只有服务器调用 */
+            isPrivate?: boolean,
+            /** 房间id，只有服务器调用 */
+            roomId?: number,
+            /** 节点链接，只有服务器调用 */
+            url?: string,
+            /** 抽水，只有服务器调用 */
+            tax?: number,
+            /** 房费，只有服务器调用 */
+            fee?: number,
+            /** 每局携带金额 */
+            takeGold: number,
+            /** 房主uid */
+            masterUID: number,
+            /** 密码 */
+            password: string,
+            /** 底注 */
+            baseBet: number,
+            /** 最低进入金额 */
+            minGold: number,
+            maxGold: number,
+            /** 局数 */
+            round: number,
+            /** 最大回合数 */
+            maxStep: number,
+            /** 抢庄倍率 */
+            hostBetRate: number[],
+            /** 抽水方式 */
+            taxRule: 0 | 1 | 2,
+            /** 下注倍率 */
+            betRate: number[],
+            /** 允许观战 */
+            enableWatch: boolean,
+            minPlayerCount?: number,
+            maxPlayerCount?: number
         },
         /** 设置运营记录[SetConfig] */
         config?: {
@@ -1898,6 +1672,23 @@ interface ResGetOperateLog {
             openList?: string[],
             /** 关闭的游戏 */
             closeList?: string[]
+        },
+        /** 返利记录 */
+        rebate?: {
+            /** 玩家uid */
+            UID: number,
+            /** 昵称 */
+            nickName: string,
+            /** 操作时间 */
+            date: /*datetime*/ string | string,
+            /** 金额 */
+            gold: number,
+            /** 游戏 */
+            game: string,
+            /** 返利类型 */
+            type: "Instant" | "Delay24Hours" | "Manual",
+            /** 返利状态 */
+            state: 0 | 1
         }
     })[],
     /** 返回分页 */
@@ -1908,6 +1699,7 @@ interface ResGetOperateLog {
         count: number,
         totalCount: number
     },
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -1922,10 +1714,10 @@ interface ResGetOperateLog {
 
 ---
 
-### 发送跑马灯 <a id="/system/SendMarquee"></a>
+#### 发送跑马灯 <a id="/backend/system/SendMarquee"></a>
 
 **路径**
-- POST `/system/SendMarquee`
+- POST `/backend/system/SendMarquee`
 
 **请求**
 ```ts
@@ -1940,20 +1732,19 @@ interface ReqSendMarquee {
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
 **响应**
 ```ts
 interface ResSendMarquee {
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -1968,12 +1759,479 @@ interface ResSendMarquee {
 
 ---
 
-## verify
-
-### 查询验证码 <a id="/verify/Get"></a>
+#### SetContactUs <a id="/backend/system/SetContactUs"></a>
 
 **路径**
-- POST `/verify/Get`
+- POST `/backend/system/SetContactUs`
+
+**请求**
+```ts
+interface ReqSetContactUs {
+    content: string,
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResSetContactUs {
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+**配置**
+```ts
+{
+  "needEncrypt": true,
+  "needServer": true
+}
+```
+
+---
+
+### system/announce
+
+#### 发送通知 <a id="/backend/system/announce/Send"></a>
+
+**路径**
+- POST `/backend/system/announce/Send`
+
+**请求**
+```ts
+interface ReqSend {
+    title: string,
+    content: string,
+    targetUID?: number[],
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResSend {
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+**配置**
+```ts
+{
+  "needEncrypt": true,
+  "needServer": true
+}
+```
+
+---
+
+### system/config
+
+#### 获取后台开关 <a id="/backend/system/config/Get"></a>
+
+**路径**
+- POST `/backend/system/config/Get`
+
+**请求**
+```ts
+interface ReqGet {
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResGet {
+    /** 总设置 */
+    config: {
+        /** 显示排行榜 */
+        showRanking?: boolean,
+        /** 开放的游戏 */
+        openList?: string[],
+        /** 关闭的游戏 */
+        closeList?: string[]
+    },
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+**配置**
+```ts
+{
+  "needEncrypt": true,
+  "needServer": true
+}
+```
+
+---
+
+#### 设置后台开关 <a id="/backend/system/config/Set"></a>
+
+**路径**
+- POST `/backend/system/config/Set`
+
+**请求**
+```ts
+interface ReqSet {
+    /** 总设置 */
+    config: {
+        /** 显示排行榜 */
+        showRanking?: boolean,
+        /** 开放的游戏 */
+        openList?: string[],
+        /** 关闭的游戏 */
+        closeList?: string[]
+    },
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResSet {
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+**配置**
+```ts
+{
+  "needEncrypt": true,
+  "needServer": true
+}
+```
+
+---
+
+### system/currency
+
+#### ApplyExchange <a id="/backend/system/currency/ApplyExchange"></a>
+
+**路径**
+- POST `/backend/system/currency/ApplyExchange`
+
+**请求**
+```ts
+interface ReqApplyExchange {
+    /** 订单id */
+    orderId: string,
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResApplyExchange {
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+---
+
+#### ChargeLog <a id="/backend/system/currency/ChargeLog"></a>
+
+**路径**
+- POST `/backend/system/currency/ChargeLog`
+
+**请求**
+```ts
+interface ReqChargeLog {
+    filter: {
+        /** 开始时间 */
+        startTime: /*datetime*/ string,
+        /** 结束时间 */
+        endTime: /*datetime*/ string,
+        /** 玩家uid */
+        uid?: number,
+        /** 订单号 */
+        orderId?: string
+    },
+    /** 页面参数 */
+    page: {
+        /** 一页的数量，最多100 */
+        count: number,
+        index: number
+    },
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResChargeLog {
+    list: {
+        /** 日期 */
+        date: /*datetime*/ string,
+        /** 订单id */
+        orderId: string,
+        /** 商品名 */
+        commodityName: string,
+        /** 商品id */
+        commodityId: string,
+        /** 数量 */
+        count: number,
+        /** 支付金额 */
+        pay: number,
+        /** 玩家uid */
+        uid: number,
+        /** 昵称 */
+        nickName: string
+    },
+    /** 返回分页 */
+    page: {
+        /** 当前页标 */
+        index: number,
+        pageCount: number,
+        count: number,
+        totalCount: number
+    },
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+**配置**
+```ts
+{
+  "needEncrypt": true,
+  "needServer": true
+}
+```
+
+---
+
+#### GetExchangeLog <a id="/backend/system/currency/GetExchangeLog"></a>
+
+**路径**
+- POST `/backend/system/currency/GetExchangeLog`
+
+**请求**
+```ts
+interface ReqGetExchangeLog {
+    filter: {
+        /** 开始时间 */
+        startTime: /*datetime*/ string,
+        /** 结束时间 */
+        endTime: /*datetime*/ string,
+        /** 玩家uid */
+        uid?: number,
+        /** 订单号 */
+        orderId?: string
+    },
+    /** 请求分页 */
+    page: {
+        /** 一页的数量，最多100 */
+        count: number,
+        index: number
+    },
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResGetExchangeLog {
+    list: {
+        orderId: string,
+        /** 玩家uid */
+        uid: number,
+        /** 昵称 */
+        nickName: string,
+        /** 日期 */
+        date: /*datetime*/ string,
+        /** 金额 */
+        gold: number,
+        /** 等价的usd */
+        usd: number,
+        /** 汇率 */
+        rate: number,
+        /** 钱包地址 */
+        walletAddress: string,
+        /** 交易地址 */
+        transactionAddress: string,
+        /** 状态：通过|未通过 */
+        state: "passed" | "pending"
+    }[],
+    /** 返回分页 */
+    page: {
+        /** 当前页标 */
+        index: number,
+        pageCount: number,
+        count: number,
+        totalCount: number
+    },
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+---
+
+#### GetExchangeRate <a id="/backend/system/currency/GetExchangeRate"></a>
+
+**路径**
+- POST `/backend/system/currency/GetExchangeRate`
+
+**请求**
+```ts
+interface ReqGetExchangeRate {
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResGetExchangeRate {
+    /** 渠道 */
+    channels: {
+        /** 渠道名 */
+        id: string,
+        /** 1u=金币数 */
+        rate: number,
+        /** 开关 */
+        open: boolean
+    }[],
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+**配置**
+```ts
+{
+  "needEncrypt": true,
+  "needServer": true
+}
+```
+
+---
+
+#### SetExchangeRate <a id="/backend/system/currency/SetExchangeRate"></a>
+
+**路径**
+- POST `/backend/system/currency/SetExchangeRate`
+
+**请求**
+```ts
+interface ReqSetExchangeRate {
+    /** 渠道名 */
+    id: string,
+    /** 1u=金币数 */
+    rate: number,
+    /** 开关 */
+    open: boolean,
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResSetExchangeRate {
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+**配置**
+```ts
+{
+  "needEncrypt": true,
+  "needServer": true
+}
+```
+
+---
+
+### verify
+
+#### 查询验证码 <a id="/backend/verify/Get"></a>
+
+**路径**
+- POST `/backend/verify/Get`
 
 **请求**
 ```ts
@@ -1988,14 +2246,12 @@ interface ReqGet {
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
     __uid?: number,
-    /** 用户昵称 */
+    /** 昵称 */
     __nickname?: string,
     /** 时间戳 */
     __timestamp?: number,
     /** 操作者ip */
-    __ip?: string,
-    /** 用户权限，仅服务器使用不需要填写 */
-    __permissions?: "Server" | "Player" | "BAnnounce" | "BConfig" | "BManager" | "BSystem" | "BAnalyze" | "BRanking" | "BSearchPlayer" | "BOnlinePlayer" | "BStore" | "BControl" | "BScoreOperate" | "BGameLog" | "BGameSettings" | "BMarquee" | "BVerifyCode" | "OControl" | "OPlayerScore" | "OPlayerBlock" | "OGameSettings" | "OManager" | "OStore"[]
+    __ip?: string
 }
 ```
 
@@ -2007,9 +2263,10 @@ interface ResGet {
     /** 发送邮箱 */
     address?: string,
     /** 验证码 */
-    code: number,
+    code: string,
     /** 发送时间 */
     date: /*datetime*/ string | string,
+    /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
 ```
@@ -2019,6 +2276,163 @@ interface ResGet {
 {
   "needEncrypt": true,
   "needServer": true
+}
+```
+
+---
+
+## GetServers <a id="/GetServers"></a>
+
+**路径**
+- POST `/GetServers`
+
+**请求**
+```ts
+interface ReqGetServers {
+    app?: string,
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResGetServers {
+    list: {
+        app: string,
+        url: string,
+        connectionCount: number
+    }[],
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+**配置**
+```ts
+{
+  "needServer": true
+}
+```
+
+---
+
+## RegisterServer <a id="/RegisterServer"></a>
+
+**路径**
+- POST `/RegisterServer`
+
+**请求**
+```ts
+interface ReqRegisterServer {
+    app: string,
+    url: string,
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResRegisterServer {
+    serverId: number,
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+**配置**
+```ts
+{
+  "needServer": true
+}
+```
+
+---
+
+## UnRegisterServer <a id="/UnRegisterServer"></a>
+
+**路径**
+- POST `/UnRegisterServer`
+
+**请求**
+```ts
+interface ReqUnRegisterServer {
+    serverId: number,
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResUnRegisterServer {
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+**配置**
+```ts
+{
+  "needServer": true
+}
+```
+
+---
+
+## UpdateNodeInfo <a id="/UpdateNodeInfo"></a>
+
+**路径**
+- POST `/UpdateNodeInfo`
+
+**请求**
+```ts
+interface ReqUpdateNodeInfo {
+    serverId: number,
+    connectionCount: number,
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResUpdateNodeInfo {
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
 }
 ```
 
