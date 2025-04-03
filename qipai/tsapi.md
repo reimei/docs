@@ -27,6 +27,7 @@
         - [设置房间规则](#/backend/game/SetRoom)
     - player
         - [获取玩家列表](#/backend/player/Get)
+        - [获取聊天记录](#/backend/player/GetChatLog)
         - [获取对局记录](#/backend/player/GetMatchLog)
         - [获取实时在线](#/backend/player/GetOnline)
         - [上分](#/backend/player/GoldOperate)
@@ -34,6 +35,8 @@
     - rank
         - [获取排名](#/backend/rank/Get)
     - store
+        - [添加商品](#/backend/store/Add)
+        - [移除商品](#/backend/store/Delete)
         - [获取商品列表](#/backend/store/Get)
         - [设置商品列表，只传修改的字段](#/backend/store/Set)
     - system
@@ -113,6 +116,8 @@ interface ReqGet {
 interface ResGet {
     list: {
         _id?: /*ObjectId*/ string,
+        /** 能否解散房间 */
+        canDisbandRoom?: boolean,
         /** 团队金额 */
         groupGold?: number,
         /** 下属代理 */
@@ -224,6 +229,8 @@ interface ReqModify {
     rebates: number,
     /** 是否是代理 */
     isAgent: boolean,
+    /** 上级代理uid */
+    parentUID: number,
     /** 能否解散房间 */
     canDisbandRoom: boolean,
     /** 返利类型 */
@@ -425,14 +432,14 @@ interface ResGetSummary {
     totalPlayer: number,
     /** 总付费玩家数 */
     totalPayedPlayer: number,
-    /** 总赠送金币 */
-    totalSend: number,
-    /** 玩家总持有金币 */
-    totalGold: number,
-    /** 时间段内赠送的金币 */
-    filteredSend: number,
-    /** 游戏盈亏 */
-    games: {
+    /** 总充值金额 */
+    totalCharge: number,
+    /** 累计抽水金额 */
+    totalTax: number,
+    /** 累计返利金额 */
+    totalRebate: number,
+    /** 自定义房间信息 */
+    custom: {
         /** 记录日期 */
         date: /*datetime*/ string | string,
         /** 名称 */
@@ -458,8 +465,8 @@ interface ResGetSummary {
         /** 真人抽水 */
         realTax: number
     }[],
-    /** 房间盈亏 */
-    rooms: {
+    /** 官方房间信息 */
+    official: {
         /** 记录日期 */
         date: /*datetime*/ string | string,
         /** 名称 */
@@ -543,7 +550,6 @@ interface ResDisbandRoom {
 ```ts
 interface ReqGetGame {
     game: string,
-    scene: string,
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
@@ -600,7 +606,7 @@ interface ResGetGame {
         enableWatch: boolean,
         minPlayerCount?: number,
         maxPlayerCount?: number
-    },
+    }[],
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string
 }
@@ -747,7 +753,6 @@ interface ResInvite {
 ```ts
 interface ReqSetGame {
     game: string,
-    scene: string,
     room: {
         /** 游戏名 */
         game: string,
@@ -788,7 +793,7 @@ interface ReqSetGame {
         enableWatch: boolean,
         minPlayerCount?: number,
         maxPlayerCount?: number
-    },
+    }[],
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
@@ -883,6 +888,8 @@ interface ReqGet {
     filter: {
         /** 以玩家uid查询 */
         UID?: number[],
+        /** 以手机号查询 */
+        phoneNumber?: string[],
         /** 昵称或邮箱地址 */
         account?: string,
         /** 登录时间开始 */
@@ -1002,6 +1009,66 @@ interface ResGet {
 {
   "needEncrypt": true,
   "needServer": true
+}
+```
+
+---
+
+#### 获取聊天记录 <a id="/backend/player/GetChatLog"></a>
+
+**路径**
+- POST `/backend/player/GetChatLog`
+
+**请求**
+```ts
+interface ReqGetChatLog {
+    filter: {
+        uid: number,
+        dateStart: /*datetime*/ string,
+        dateEnd: /*datetime*/ string
+    },
+    /** 请求分页 */
+    page: {
+        /** 一页的数量，最多100 */
+        count: number,
+        index: number
+    },
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResGetChatLog {
+    list: {
+        /** uid */
+        uid: number,
+        /** 昵称 */
+        nickName: string,
+        /** 发送时间 */
+        date: /*datetime*/ string,
+        /** 聊天记录内容 */
+        context: string
+    }[],
+    /** 返回分页 */
+    page: {
+        /** 当前页标 */
+        index: number,
+        pageCount: number,
+        count: number,
+        totalCount: number
+    },
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
 }
 ```
 
@@ -1261,7 +1328,10 @@ interface ResGoldOperate {
 ```ts
 interface ReqSet {
     UID: number[],
-    lock: boolean,
+    /** 玩家状态：正常，锁定，冻结 */
+    state?: "normal" | "lock" | "ban",
+    /** 密码 */
+    password?: string,
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */
@@ -1304,6 +1374,8 @@ interface ResSet {
 ```ts
 interface ReqGet {
     filter: {
+        /** 赢钱榜，输钱榜，流水榜 */
+        leaderboard: "winner" | "loser" | "total",
         /** 日期 */
         date: /*datetime*/ string,
         /** 排序方式 */
@@ -1359,7 +1431,16 @@ interface ResGet {
         /** 保险箱内钻石 */
         safeboxGem?: number,
         /** 输赢情况 */
-        result?: number
+        result?: number,
+        /** 手机号 */
+        phoneNumber?: string,
+        /** 金钱来源 */
+        matchSource?: {
+            /** 游戏名 */
+            game: string,
+            /** 输赢金额 */
+            gold: number
+        }[]
     }[],
     /** 返回分页 */
     page: {
@@ -1385,6 +1466,87 @@ interface ResGet {
 ---
 
 ### store
+
+#### 添加商品 <a id="/backend/store/Add"></a>
+
+**路径**
+- POST `/backend/store/Add`
+
+**请求**
+```ts
+interface ReqAdd {
+    /** 商品信息 */
+    commodity: {
+        /** 商品id */
+        id: number,
+        /** 道具id */
+        itemId: number,
+        /** 名称 */
+        name?: string,
+        /** 描述 */
+        desc?: string,
+        /** 描述 */
+        icon?: string,
+        /** 价格 */
+        price: number,
+        /** 折扣 */
+        discount: number
+    }[],
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResAdd {
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+---
+
+#### 移除商品 <a id="/backend/store/Delete"></a>
+
+**路径**
+- POST `/backend/store/Delete`
+
+**请求**
+```ts
+interface ReqDelete {
+    /** 商品id */
+    id: number,
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户uid，仅服务器使用不需要填写 */
+    __uid?: number,
+    /** 昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResDelete {
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string
+}
+```
+
+---
 
 #### 获取商品列表 <a id="/backend/store/Get"></a>
 
@@ -1809,9 +1971,17 @@ interface ResSetContactUs {
 **请求**
 ```ts
 interface ReqSend {
+    /** 标题 */
     title: string,
+    /** 内容 */
     content: string,
+    /** 目标，不填则全部玩家 */
     targetUID?: number[],
+    /** 奖励：道具id,数量 */
+    reward: {
+        itemId: number,
+        count: number
+    }[],
     /** 鉴权token，登录后的接口都需要填写 */
     __authToken?: string,
     /** 用户uid，仅服务器使用不需要填写 */

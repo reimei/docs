@@ -616,6 +616,53 @@
         }
       }
     },
+    "/backend/player/GetChatLog": {
+      "post": {
+        "tags": [
+          "backend/player"
+        ],
+        "operationId": "backend/player/GetChatLog",
+        "requestBody": {
+          "description": "Req<GetChatLog>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/backend_player_PtlGetChatLog_ReqGetChatLog"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResGetChatLog>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/backend_player_PtlGetChatLog_ResGetChatLog"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
     "/backend/player/GetMatchLog": {
       "post": {
         "tags": [
@@ -838,6 +885,100 @@
                     },
                     "res": {
                       "$ref": "#/components/schemas/backend_rank_PtlGet_ResGet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/backend/store/Add": {
+      "post": {
+        "tags": [
+          "backend/store"
+        ],
+        "operationId": "backend/store/Add",
+        "requestBody": {
+          "description": "Req<Add>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/backend_store_PtlAdd_ReqAdd"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResAdd>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/backend_store_PtlAdd_ResAdd"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/backend/store/Delete": {
+      "post": {
+        "tags": [
+          "backend/store"
+        ],
+        "operationId": "backend/store/Delete",
+        "requestBody": {
+          "description": "Req<Delete>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/backend_store_PtlDelete_ReqDelete"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResDelete>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/backend_store_PtlDelete_ResDelete"
                     }
                   }
                 }
@@ -1832,6 +1973,10 @@
           {
             "type": "object",
             "properties": {
+              "canDisbandRoom": {
+                "type": "boolean",
+                "description": "能否解散房间"
+              },
               "groupGold": {
                 "type": "number",
                 "description": "团队金额"
@@ -1996,6 +2141,10 @@
           {
             "type": "object",
             "properties": {
+              "canDisbandRoom": {
+                "type": "boolean",
+                "description": "能否解散房间"
+              },
               "groupGold": {
                 "type": "number",
                 "description": "团队金额"
@@ -2028,6 +2177,7 @@
               }
             },
             "required": [
+              "canDisbandRoom",
               "groupGold",
               "childAgent",
               "childPlayer",
@@ -2234,6 +2384,10 @@
                 "type": "boolean",
                 "description": "是否是代理"
               },
+              "parentUID": {
+                "type": "number",
+                "description": "上级代理uid"
+              },
               "canDisbandRoom": {
                 "type": "boolean",
                 "description": "能否解散房间"
@@ -2247,6 +2401,7 @@
               "uid",
               "rebates",
               "isAgent",
+              "parentUID",
               "canDisbandRoom",
               "rebateType"
             ]
@@ -2513,41 +2668,41 @@
                 "type": "number",
                 "description": "总付费玩家数"
               },
-              "totalSend": {
+              "totalCharge": {
                 "type": "number",
-                "description": "总赠送金币"
+                "description": "总充值金额"
               },
-              "totalGold": {
+              "totalTax": {
                 "type": "number",
-                "description": "玩家总持有金币"
+                "description": "累计抽水金额"
               },
-              "filteredSend": {
+              "totalRebate": {
                 "type": "number",
-                "description": "时间段内赠送的金币"
+                "description": "累计返利金额"
               },
-              "games": {
+              "custom": {
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/______interface_GameSummary_GameSummary"
                 },
-                "description": "游戏盈亏"
+                "description": "自定义房间信息"
               },
-              "rooms": {
+              "official": {
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/______interface_GameSummary_GameSummary"
                 },
-                "description": "房间盈亏"
+                "description": "官方房间信息"
               }
             },
             "required": [
               "totalPlayer",
               "totalPayedPlayer",
-              "totalSend",
-              "totalGold",
-              "filteredSend",
-              "games",
-              "rooms"
+              "totalCharge",
+              "totalTax",
+              "totalRebate",
+              "custom",
+              "official"
             ]
           }
         ]
@@ -2668,14 +2823,10 @@
             "properties": {
               "game": {
                 "type": "string"
-              },
-              "scene": {
-                "type": "string"
               }
             },
             "required": [
-              "game",
-              "scene"
+              "game"
             ]
           }
         ],
@@ -2690,7 +2841,10 @@
             "type": "object",
             "properties": {
               "room": {
-                "$ref": "#/components/schemas/______interface_Game_CreateRoomOptions"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______interface_Game_CreateRoomOptions"
+                }
               }
             },
             "required": [
@@ -3022,16 +3176,15 @@
               "game": {
                 "type": "string"
               },
-              "scene": {
-                "type": "string"
-              },
               "room": {
-                "$ref": "#/components/schemas/______interface_Game_CreateRoomOptions"
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______interface_Game_CreateRoomOptions"
+                }
               }
             },
             "required": [
               "game",
-              "scene",
               "room"
             ]
           }
@@ -3137,6 +3290,13 @@
                       "type": "number"
                     },
                     "description": "以玩家uid查询"
+                  },
+                  "phoneNumber": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "以手机号查询"
                   },
                   "account": {
                     "type": "string",
@@ -3333,6 +3493,97 @@
                 "$ref": "#/components/schemas/?mongodb_ObjectId"
               }
             }
+          }
+        ]
+      },
+      "backend_player_PtlGetChatLog_ReqGetChatLog": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "filter": {
+                "type": "object",
+                "properties": {
+                  "uid": {
+                    "type": "number"
+                  },
+                  "dateStart": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "dateEnd": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                },
+                "required": [
+                  "uid",
+                  "dateStart",
+                  "dateEnd"
+                ]
+              },
+              "page": {
+                "$ref": "#/components/schemas/___base_ReqPageBase"
+              }
+            },
+            "required": [
+              "filter",
+              "page"
+            ]
+          }
+        ],
+        "description": "获取聊天记录"
+      },
+      "backend_player_PtlGetChatLog_ResGetChatLog": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "list": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "uid": {
+                      "type": "number",
+                      "description": "uid"
+                    },
+                    "nickName": {
+                      "type": "string",
+                      "description": "昵称"
+                    },
+                    "date": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "发送时间"
+                    },
+                    "context": {
+                      "type": "string",
+                      "description": "聊天记录内容"
+                    }
+                  },
+                  "required": [
+                    "uid",
+                    "nickName",
+                    "date",
+                    "context"
+                  ]
+                }
+              },
+              "page": {
+                "$ref": "#/components/schemas/___base_ResPageBase"
+              }
+            },
+            "required": [
+              "list",
+              "page"
+            ]
           }
         ]
       },
@@ -3741,13 +3992,36 @@
                   "type": "number"
                 }
               },
-              "lock": {
-                "type": "boolean"
+              "state": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "normal"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "lock"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "ban"
+                    ]
+                  }
+                ],
+                "description": "玩家状态：正常，锁定，冻结"
+              },
+              "password": {
+                "type": "string",
+                "description": "密码"
               }
             },
             "required": [
-              "UID",
-              "lock"
+              "UID"
             ]
           }
         ],
@@ -3775,6 +4049,29 @@
               "filter": {
                 "type": "object",
                 "properties": {
+                  "leaderboard": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "winner"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "loser"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "total"
+                        ]
+                      }
+                    ],
+                    "description": "赢钱榜，输钱榜，流水榜"
+                  },
                   "date": {
                     "type": "string",
                     "format": "date-time",
@@ -3808,6 +4105,7 @@
                   }
                 },
                 "required": [
+                  "leaderboard",
                   "date"
                 ]
               },
@@ -3891,12 +4189,141 @@
           "result": {
             "type": "number",
             "description": "输赢情况"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "手机号"
+          },
+          "matchSource": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "game": {
+                  "type": "string",
+                  "description": "游戏名"
+                },
+                "gold": {
+                  "type": "number",
+                  "description": "输赢金额"
+                }
+              },
+              "required": [
+                "game",
+                "gold"
+              ]
+            },
+            "description": "金钱来源"
           }
         },
         "required": [
           "date"
         ],
         "description": "玩家每日记录"
+      },
+      "backend_store_PtlAdd_ReqAdd": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "commodity": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/______interface_Store_Commodity"
+                },
+                "description": "商品信息"
+              }
+            },
+            "required": [
+              "commodity"
+            ]
+          }
+        ],
+        "description": "添加商品"
+      },
+      "______interface_Store_Commodity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "description": "商品id"
+          },
+          "itemId": {
+            "type": "number",
+            "description": "道具id"
+          },
+          "name": {
+            "type": "string",
+            "description": "名称"
+          },
+          "desc": {
+            "type": "string",
+            "description": "描述"
+          },
+          "icon": {
+            "type": "string",
+            "description": "描述"
+          },
+          "price": {
+            "type": "number",
+            "description": "价格"
+          },
+          "discount": {
+            "type": "number",
+            "description": "折扣"
+          }
+        },
+        "required": [
+          "id",
+          "itemId",
+          "price",
+          "discount"
+        ]
+      },
+      "backend_store_PtlAdd_ResAdd": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
+      },
+      "backend_store_PtlDelete_ReqDelete": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "description": "商品id"
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        ],
+        "description": "移除商品"
+      },
+      "backend_store_PtlDelete_ResDelete": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {}
+          }
+        ]
       },
       "backend_store_PtlGet_ReqGet": {
         "allOf": [
@@ -3976,45 +4403,6 @@
           }
         ]
       },
-      "______interface_Store_Commodity": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "number",
-            "description": "商品id"
-          },
-          "itemId": {
-            "type": "number",
-            "description": "道具id"
-          },
-          "name": {
-            "type": "string",
-            "description": "名称"
-          },
-          "desc": {
-            "type": "string",
-            "description": "描述"
-          },
-          "icon": {
-            "type": "string",
-            "description": "描述"
-          },
-          "price": {
-            "type": "number",
-            "description": "价格"
-          },
-          "discount": {
-            "type": "number",
-            "description": "折扣"
-          }
-        },
-        "required": [
-          "id",
-          "itemId",
-          "price",
-          "discount"
-        ]
-      },
       "backend_store_PtlSet_ReqSet": {
         "allOf": [
           {
@@ -4057,21 +4445,44 @@
             "type": "object",
             "properties": {
               "title": {
-                "type": "string"
+                "type": "string",
+                "description": "标题"
               },
               "content": {
-                "type": "string"
+                "type": "string",
+                "description": "内容"
               },
               "targetUID": {
                 "type": "array",
                 "items": {
                   "type": "number"
-                }
+                },
+                "description": "目标，不填则全部玩家"
+              },
+              "reward": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "itemId": {
+                      "type": "number"
+                    },
+                    "count": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "itemId",
+                    "count"
+                  ]
+                },
+                "description": "奖励：道具id,数量"
               }
             },
             "required": [
               "title",
-              "content"
+              "content",
+              "reward"
             ]
           }
         ],
