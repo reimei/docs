@@ -4663,7 +4663,8 @@
               }
             }
           }
-        ]
+        ],
+        "description": "爆发记录"
       },
       "data_PtlGetBoomLogs_ResGetBoomLogs": {
         "allOf": [
@@ -5693,7 +5694,8 @@
               }
             }
           }
-        ]
+        ],
+        "description": "礼包兑换"
       },
       "data_PtlGetGiftExchange_ResGetGiftExchange": {
         "allOf": [
@@ -11476,7 +11478,8 @@
               }
             }
           }
-        ]
+        ],
+        "description": "禁言"
       },
       "game_PtlGetShieldSpeak_ResGetShieldSpeak": {
         "allOf": [
@@ -11995,7 +11998,8 @@
               "action"
             ]
           }
-        ]
+        ],
+        "description": "邮件申请"
       },
       "game_PtlSetEmailApply_ResSetEmailApply": {
         "allOf": [
@@ -12175,7 +12179,8 @@
               "froze"
             ]
           }
-        ]
+        ],
+        "description": "封号"
       },
       "game_PtlSetFroze_ResSetFroze": {
         "allOf": [
@@ -12208,7 +12213,8 @@
               "playerIds"
             ]
           }
-        ]
+        ],
+        "description": "踢人"
       },
       "game_PtlSetKickOut_ResSetKickOut": {
         "allOf": [
@@ -12246,7 +12252,8 @@
               "approved"
             ]
           }
-        ]
+        ],
+        "description": "邮件审核"
       },
       "game_PtlSetMailAudit_ResSetMailAudit": {
         "allOf": [
@@ -13609,7 +13616,8 @@
             "type": "object",
             "properties": {}
           }
-        ]
+        ],
+        "description": "总数据"
       },
       "PtlTotalData_ResTotalData": {
         "allOf": [

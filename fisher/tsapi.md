@@ -12,7 +12,7 @@
 - data
     - [背包道具总计](#/data/GetBackCount)
     - [救济金](#/data/GetBenefits)
-    - [GetBoomLogs](#/data/GetBoomLogs)
+    - [爆发记录](#/data/GetBoomLogs)
     - [爆发统计](#/data/GetBoomStat)
     - [玩家爆发值](#/data/GetBoomValue)
     - [弹头消耗](#/data/GetBulletConsume)
@@ -21,7 +21,7 @@
     - [鱼雷奖金统计](#/data/GetFishBonusCount)
     - [鱼雷排行榜](#/data/GetFishChars)
     - [渔场输赢](#/data/GetFishWin)
-    - [GetGiftExchange](#/data/GetGiftExchange)
+    - [礼包兑换](#/data/GetGiftExchange)
     - [礼包概况](#/data/GetGiftSummary)
     - [积分信息](#/data/GetIntegral)
     - [积分统计](#/data/GetIntegralCount)
@@ -67,20 +67,20 @@
     - [屏蔽兑换道具](#/game/GetShieldExchangeProp)
     - [屏蔽充值](#/game/GetShieldPay)
     - [屏蔽赠送](#/game/GetShieldPresent)
-    - [GetShieldSpeak](#/game/GetShieldSpeak)
+    - [禁言](#/game/GetShieldSpeak)
     - [系统入口开关设置](#/game/GetSysEntry)
     - [绑定解绑账号](#/game/SetBindSdkId)
     - [操作发送列表](#/game/SetBulletinList)
     - [设置已发送公告状态](#/game/SetBulletins)
     - [sdkid角色渠道设置](#/game/SetChannel)
     - [兑换码生成](#/game/SetDhmsc)
-    - [SetEmailApply](#/game/SetEmailApply)
+    - [邮件申请](#/game/SetEmailApply)
     - [推广号设置](#/game/SetExtend)
     - [模拟充值](#/game/SetFishRecharge)
     - [清理鱼雷](#/game/SetFlushFish)
-    - [SetFroze](#/game/SetFroze)
-    - [SetKickOut](#/game/SetKickOut)
-    - [SetMailAudit](#/game/SetMailAudit)
+    - [封号](#/game/SetFroze)
+    - [踢人](#/game/SetKickOut)
+    - [邮件审核](#/game/SetMailAudit)
     - [刷新配置](#/game/SetRefreshConfig)
     - [重置账号密码](#/game/SetResetPassword)
     - [重置账号密码](#/game/SetResetPresentPassword)
@@ -103,7 +103,7 @@
     - [钻石排行榜](#/player/GetRankRing)
     - [鱼雷排行榜](#/player/GetRankTorpedo)
     - [vip排行榜](#/player/GetRankVIP)
-- [TotalData](#/TotalData)
+- [总数据](#/TotalData)
 
 ---
 
@@ -251,7 +251,7 @@ interface ResGetBenefits {
 
 ---
 
-### GetBoomLogs <a id="/data/GetBoomLogs"></a>
+### 爆发记录 <a id="/data/GetBoomLogs"></a>
 
 **路径**
 - POST `/data/GetBoomLogs`
@@ -892,7 +892,7 @@ interface ResGetFishWin {
 
 ---
 
-### GetGiftExchange <a id="/data/GetGiftExchange"></a>
+### 礼包兑换 <a id="/data/GetGiftExchange"></a>
 
 **路径**
 - POST `/data/GetGiftExchange`
@@ -4230,7 +4230,7 @@ interface ResGetShieldPresent {
 
 ---
 
-### GetShieldSpeak <a id="/game/GetShieldSpeak"></a>
+### 禁言 <a id="/game/GetShieldSpeak"></a>
 
 **路径**
 - POST `/game/GetShieldSpeak`
@@ -4529,7 +4529,7 @@ interface ResSetDhmsc {
 
 ---
 
-### SetEmailApply <a id="/game/SetEmailApply"></a>
+### 邮件申请 <a id="/game/SetEmailApply"></a>
 
 **路径**
 - POST `/game/SetEmailApply`
@@ -4698,7 +4698,7 @@ interface ResSetFlushFish {
 
 ---
 
-### SetFroze <a id="/game/SetFroze"></a>
+### 封号 <a id="/game/SetFroze"></a>
 
 **路径**
 - POST `/game/SetFroze`
@@ -4732,7 +4732,7 @@ interface ResSetFroze {
 
 ---
 
-### SetKickOut <a id="/game/SetKickOut"></a>
+### 踢人 <a id="/game/SetKickOut"></a>
 
 **路径**
 - POST `/game/SetKickOut`
@@ -4762,7 +4762,7 @@ interface ResSetKickOut {
 
 ---
 
-### SetMailAudit <a id="/game/SetMailAudit"></a>
+### 邮件审核 <a id="/game/SetMailAudit"></a>
 
 **路径**
 - POST `/game/SetMailAudit`
@@ -5760,7 +5760,7 @@ interface ResGetRankVIP {
 
 ---
 
-## TotalData <a id="/TotalData"></a>
+## 总数据 <a id="/TotalData"></a>
 
 **路径**
 - POST `/TotalData`
