@@ -10,66 +10,66 @@
 ## 目录
 
 - data
-    - [背包道具总计](#/data/GetBackCount)
-    - [救济金](#/data/GetBenefits)
-    - [爆发记录](#/data/GetBoomLogs)
-    - [爆发统计](#/data/GetBoomStat)
-    - [玩家爆发值](#/data/GetBoomValue)
-    - [弹头消耗](#/data/GetBulletConsume)
-    - [货币统计](#/data/GetCurrencyCount)
-    - [玩家分布](#/data/GetDistribution)
-    - [鱼雷奖金统计](#/data/GetFishBonusCount)
-    - [鱼雷排行榜](#/data/GetFishChars)
-    - [渔场输赢](#/data/GetFishWin)
-    - [礼包兑换](#/data/GetGiftExchange)
-    - [礼包概况](#/data/GetGiftSummary)
-    - [积分信息](#/data/GetIntegral)
-    - [积分统计](#/data/GetIntegralCount)
-    - [登录日志](#/data/GetLoginLog)
-    - [嘉年华数据监控](#/data/GetMiniGameHappy)
-    - [水浒数据监控](#/data/GetMiniGameShuiHu)
-    - [在线人数](#/data/GetOnline)
-    - [商城购买](#/data/GetPaid)
-    - [小游戏输赢](#/data/GetPlayWin)
-    - [玩家信息](#/data/GetPlayers)
-    - [赠送记录](#/data/GetPresentLogs)
-    - [道具消耗](#/data/GetPropConsume)
-    - [道具购买](#/data/GetPropPurchaseLogs)
-    - [充值明细](#/data/GetRecharges)
-    - [iOS充值明细](#/data/GetRechargesIOS)
-    - [充值统计](#/data/GetRechargesMore)
-    - [模拟充值明细](#/data/GetRechargesSimu)
-    - [玩家操作记录](#/data/GetResLog)
-    - [背包资源信息](#/data/GetResources)
-    - [仓库存取日志](#/data/GetSafeLog)
-    - [仓库资源信息](#/data/GetSafeResources)
-    - [仓库道具总计](#/data/GetStoreCount)
-    - [金币统计](#/data/GoldCount)
-    - [核心用户统计](#/data/Vips)
+    - [获取背包道具总计](#/data/GetBackCount)
+    - [获取救济金](#/data/GetBenefits)
+    - [获取爆发记录](#/data/GetBoomLogs)
+    - [获取爆发统计](#/data/GetBoomStat)
+    - [获取玩家爆发值](#/data/GetBoomValue)
+    - [获取弹头消耗](#/data/GetBulletConsume)
+    - [获取货币统计](#/data/GetCurrencyCount)
+    - [获取玩家分布](#/data/GetDistribution)
+    - [获取鱼雷奖金统计](#/data/GetFishBonusCount)
+    - [获取鱼雷排行榜](#/data/GetFishChars)
+    - [获取渔场输赢](#/data/GetFishWin)
+    - [获取礼包兑换](#/data/GetGiftExchange)
+    - [获取礼包概况](#/data/GetGiftSummary)
+    - [获取积分信息](#/data/GetIntegral)
+    - [获取积分统计](#/data/GetIntegralCount)
+    - [获取登录日志](#/data/GetLoginLog)
+    - [获取嘉年华数据监控](#/data/GetMiniGameHappy)
+    - [获取水浒数据监控](#/data/GetMiniGameShuiHu)
+    - [获取在线人数](#/data/GetOnline)
+    - [获取商城购买](#/data/GetPaid)
+    - [获取小游戏输赢](#/data/GetPlayWin)
+    - [获取玩家信息](#/data/GetPlayers)
+    - [获取赠送记录](#/data/GetPresentLogs)
+    - [获取道具消耗](#/data/GetPropConsume)
+    - [获取道具购买](#/data/GetPropPurchaseLogs)
+    - [获取充值明细](#/data/GetRecharges)
+    - [获取iOS充值明细](#/data/GetRechargesIOS)
+    - [获取充值统计](#/data/GetRechargesMore)
+    - [获取模拟充值明细](#/data/GetRechargesSimu)
+    - [获取资源日志](#/data/GetResLog)
+    - [获取背包资源信息](#/data/GetResources)
+    - [获取仓库存取日志](#/data/GetSafeLog)
+    - [获取仓库资源信息](#/data/GetSafeResources)
+    - [获取仓库道具总计](#/data/GetStoreCount)
+    - [获取金币统计](#/data/GoldCount)
+    - [获取核心用户统计](#/data/Vips)
 - game
-    - [绑定解绑账号](#/game/GetBindSdkId)
-    - [公告发送列表](#/game/GetBulletinList)
-    - [已发送公告列表](#/game/GetBulletins)
-    - [兑换码总览](#/game/GetDhmzl)
-    - [邮件申请列表](#/game/GetEmailApplyList)
-    - [兑换管理](#/game/GetExchange)
-    - [兑换记录](#/game/GetExchangeRecord)
-    - [清理鱼雷](#/game/GetFlushFish)
-    - [封号](#/game/GetFroze)
-    - [踢人](#/game/GetKickOut)
+    - [获取绑定解绑账号](#/game/GetBindSdkId)
+    - [获取公告发送列表](#/game/GetBulletinList)
+    - [获取已发送公告列表](#/game/GetBulletins)
+    - [获取兑换码总览](#/game/GetDhmzl)
+    - [获取邮件申请列表](#/game/GetEmailApplyList)
+    - [获取兑换管理](#/game/GetExchange)
+    - [获取兑换记录](#/game/GetExchangeRecord)
+    - [获取清理鱼雷](#/game/GetFlushFish)
+    - [获取封号](#/game/GetFroze)
+    - [获取踢人](#/game/GetKickOut)
     - [获取邮件审核列表](#/game/GetMailAudit)
-    - [刷新配置](#/game/GetRefreshConfig)
-    - [充值账号密码](#/game/GetResetPassword)
-    - [重置赠送密码](#/game/GetResetPresentPassword)
+    - [获取刷新配置](#/game/GetRefreshConfig)
+    - [获取充值账号密码](#/game/GetResetPassword)
+    - [获取重置赠送密码](#/game/GetResetPresentPassword)
     - [获取SDK角色](#/game/GetSdkRole)
-    - [设置角色类型](#/game/GetSetRole)
-    - [屏蔽兑换码](#/game/GetShieldExchange)
-    - [屏蔽兑换道具](#/game/GetShieldExchangeProp)
-    - [屏蔽充值](#/game/GetShieldPay)
-    - [屏蔽赠送](#/game/GetShieldPresent)
-    - [禁言](#/game/GetShieldSpeak)
-    - [系统入口开关设置](#/game/GetSysEntry)
-    - [绑定解绑账号](#/game/SetBindSdkId)
+    - [获取设置角色类型](#/game/GetSetRole)
+    - [获取屏蔽兑换码](#/game/GetShieldExchange)
+    - [获取屏蔽兑换道具](#/game/GetShieldExchangeProp)
+    - [获取屏蔽充值](#/game/GetShieldPay)
+    - [获取屏蔽赠送](#/game/GetShieldPresent)
+    - [获取禁言](#/game/GetShieldSpeak)
+    - [获取系统入口开关设置](#/game/GetSysEntry)
+    - [修改绑定解绑账号](#/game/SetBindSdkId)
     - [操作发送列表](#/game/SetBulletinList)
     - [设置已发送公告状态](#/game/SetBulletins)
     - [sdkid角色渠道设置](#/game/SetChannel)
@@ -96,20 +96,20 @@
     - [屏蔽发言](#/game/SetShieldSpeak)
     - [系统入口开关设置](#/game/SetSysEntry)
 - player
-    - [经验值排行榜](#/player/GetRankExp)
-    - [金币排行榜](#/player/GetRankGold)
-    - [魔力排行榜](#/player/GetRankMagic)
-    - [充值排行榜](#/player/GetRankRecharge)
-    - [钻石排行榜](#/player/GetRankRing)
-    - [鱼雷排行榜](#/player/GetRankTorpedo)
-    - [vip排行榜](#/player/GetRankVIP)
-- [总数据](#/TotalData)
+    - [获取经验值排行榜](#/player/GetRankExp)
+    - [获取金币排行榜](#/player/GetRankGold)
+    - [获取魔力排行榜](#/player/GetRankMagic)
+    - [获取充值排行榜](#/player/GetRankRecharge)
+    - [获取钻石排行榜](#/player/GetRankRing)
+    - [获取鱼雷排行榜](#/player/GetRankTorpedo)
+    - [获取vip排行榜](#/player/GetRankVIP)
+- [获取总数据](#/TotalData)
 
 ---
 
 ## data
 
-### 背包道具总计 <a id="/data/GetBackCount"></a>
+### 获取背包道具总计 <a id="/data/GetBackCount"></a>
 
 **路径**
 - POST `/data/GetBackCount`
@@ -187,7 +187,7 @@ interface ResGetBackCount {
 
 ---
 
-### 救济金 <a id="/data/GetBenefits"></a>
+### 获取救济金 <a id="/data/GetBenefits"></a>
 
 **路径**
 - POST `/data/GetBenefits`
@@ -251,7 +251,7 @@ interface ResGetBenefits {
 
 ---
 
-### 爆发记录 <a id="/data/GetBoomLogs"></a>
+### 获取爆发记录 <a id="/data/GetBoomLogs"></a>
 
 **路径**
 - POST `/data/GetBoomLogs`
@@ -329,7 +329,7 @@ interface ResGetBoomLogs {
 
 ---
 
-### 爆发统计 <a id="/data/GetBoomStat"></a>
+### 获取爆发统计 <a id="/data/GetBoomStat"></a>
 
 **路径**
 - POST `/data/GetBoomStat`
@@ -399,7 +399,7 @@ interface ResGetBoomStat {
 
 ---
 
-### 玩家爆发值 <a id="/data/GetBoomValue"></a>
+### 获取玩家爆发值 <a id="/data/GetBoomValue"></a>
 
 **路径**
 - POST `/data/GetBoomValue`
@@ -473,7 +473,7 @@ interface ResGetBoomValue {
 
 ---
 
-### 弹头消耗 <a id="/data/GetBulletConsume"></a>
+### 获取弹头消耗 <a id="/data/GetBulletConsume"></a>
 
 **路径**
 - POST `/data/GetBulletConsume`
@@ -569,7 +569,7 @@ interface ResGetBulletConsume {
 
 ---
 
-### 货币统计 <a id="/data/GetCurrencyCount"></a>
+### 获取货币统计 <a id="/data/GetCurrencyCount"></a>
 
 **路径**
 - POST `/data/GetCurrencyCount`
@@ -629,7 +629,7 @@ interface ResGetCurrencyCount {
 
 ---
 
-### 玩家分布 <a id="/data/GetDistribution"></a>
+### 获取玩家分布 <a id="/data/GetDistribution"></a>
 
 **路径**
 - POST `/data/GetDistribution`
@@ -695,7 +695,7 @@ interface ResGetDistribution {
 
 ---
 
-### 鱼雷奖金统计 <a id="/data/GetFishBonusCount"></a>
+### 获取鱼雷奖金统计 <a id="/data/GetFishBonusCount"></a>
 
 **路径**
 - POST `/data/GetFishBonusCount`
@@ -753,7 +753,7 @@ interface ResGetFishBonusCount {
 
 ---
 
-### 鱼雷排行榜 <a id="/data/GetFishChars"></a>
+### 获取鱼雷排行榜 <a id="/data/GetFishChars"></a>
 
 **路径**
 - POST `/data/GetFishChars`
@@ -818,7 +818,7 @@ interface ResGetFishChars {
 
 ---
 
-### 渔场输赢 <a id="/data/GetFishWin"></a>
+### 获取渔场输赢 <a id="/data/GetFishWin"></a>
 
 **路径**
 - POST `/data/GetFishWin`
@@ -892,7 +892,7 @@ interface ResGetFishWin {
 
 ---
 
-### 礼包兑换 <a id="/data/GetGiftExchange"></a>
+### 获取礼包兑换 <a id="/data/GetGiftExchange"></a>
 
 **路径**
 - POST `/data/GetGiftExchange`
@@ -966,7 +966,7 @@ interface ResGetGiftExchange {
 
 ---
 
-### 礼包概况 <a id="/data/GetGiftSummary"></a>
+### 获取礼包概况 <a id="/data/GetGiftSummary"></a>
 
 **路径**
 - POST `/data/GetGiftSummary`
@@ -1032,7 +1032,7 @@ interface ResGetGiftSummary {
 
 ---
 
-### 积分信息 <a id="/data/GetIntegral"></a>
+### 获取积分信息 <a id="/data/GetIntegral"></a>
 
 **路径**
 - POST `/data/GetIntegral`
@@ -1102,7 +1102,7 @@ interface ResGetIntegral {
 
 ---
 
-### 积分统计 <a id="/data/GetIntegralCount"></a>
+### 获取积分统计 <a id="/data/GetIntegralCount"></a>
 
 **路径**
 - POST `/data/GetIntegralCount`
@@ -1160,7 +1160,7 @@ interface ResGetIntegralCount {
 
 ---
 
-### 登录日志 <a id="/data/GetLoginLog"></a>
+### 获取登录日志 <a id="/data/GetLoginLog"></a>
 
 **路径**
 - POST `/data/GetLoginLog`
@@ -1230,7 +1230,7 @@ interface ResGetLoginLog {
 
 ---
 
-### 嘉年华数据监控 <a id="/data/GetMiniGameHappy"></a>
+### 获取嘉年华数据监控 <a id="/data/GetMiniGameHappy"></a>
 
 **路径**
 - POST `/data/GetMiniGameHappy`
@@ -1287,7 +1287,7 @@ interface ResGetMiniGameHappy {
 
 ---
 
-### 水浒数据监控 <a id="/data/GetMiniGameShuiHu"></a>
+### 获取水浒数据监控 <a id="/data/GetMiniGameShuiHu"></a>
 
 **路径**
 - POST `/data/GetMiniGameShuiHu`
@@ -1342,7 +1342,7 @@ interface ResGetMiniGameShuiHu {
 
 ---
 
-### 在线人数 <a id="/data/GetOnline"></a>
+### 获取在线人数 <a id="/data/GetOnline"></a>
 
 **路径**
 - POST `/data/GetOnline`
@@ -1404,7 +1404,7 @@ interface ResGetOnline {
 
 ---
 
-### 商城购买 <a id="/data/GetPaid"></a>
+### 获取商城购买 <a id="/data/GetPaid"></a>
 
 **路径**
 - POST `/data/GetPaid`
@@ -1468,7 +1468,7 @@ interface ResGetPaid {
 
 ---
 
-### 小游戏输赢 <a id="/data/GetPlayWin"></a>
+### 获取小游戏输赢 <a id="/data/GetPlayWin"></a>
 
 **路径**
 - POST `/data/GetPlayWin`
@@ -1538,7 +1538,7 @@ interface ResGetPlayWin {
 
 ---
 
-### 玩家信息 <a id="/data/GetPlayers"></a>
+### 获取玩家信息 <a id="/data/GetPlayers"></a>
 
 **路径**
 - POST `/data/GetPlayers`
@@ -1636,7 +1636,7 @@ interface ResGetPlayers {
 
 ---
 
-### 赠送记录 <a id="/data/GetPresentLogs"></a>
+### 获取赠送记录 <a id="/data/GetPresentLogs"></a>
 
 **路径**
 - POST `/data/GetPresentLogs`
@@ -1710,7 +1710,7 @@ interface ResGetPresentLogs {
 
 ---
 
-### 道具消耗 <a id="/data/GetPropConsume"></a>
+### 获取道具消耗 <a id="/data/GetPropConsume"></a>
 
 **路径**
 - POST `/data/GetPropConsume`
@@ -1826,7 +1826,7 @@ interface ResGetPropConsume {
 
 ---
 
-### 道具购买 <a id="/data/GetPropPurchaseLogs"></a>
+### 获取道具购买 <a id="/data/GetPropPurchaseLogs"></a>
 
 **路径**
 - POST `/data/GetPropPurchaseLogs`
@@ -1900,7 +1900,7 @@ interface ResGetPropPurchaseLogs {
 
 ---
 
-### 充值明细 <a id="/data/GetRecharges"></a>
+### 获取充值明细 <a id="/data/GetRecharges"></a>
 
 **路径**
 - POST `/data/GetRecharges`
@@ -1992,7 +1992,7 @@ interface ResGetRecharges {
 
 ---
 
-### iOS充值明细 <a id="/data/GetRechargesIOS"></a>
+### 获取iOS充值明细 <a id="/data/GetRechargesIOS"></a>
 
 **路径**
 - POST `/data/GetRechargesIOS`
@@ -2080,7 +2080,7 @@ interface ResGetRechargesIOS {
 
 ---
 
-### 充值统计 <a id="/data/GetRechargesMore"></a>
+### 获取充值统计 <a id="/data/GetRechargesMore"></a>
 
 **路径**
 - POST `/data/GetRechargesMore`
@@ -2154,7 +2154,7 @@ interface ResGetRechargesMore {
 
 ---
 
-### 模拟充值明细 <a id="/data/GetRechargesSimu"></a>
+### 获取模拟充值明细 <a id="/data/GetRechargesSimu"></a>
 
 **路径**
 - POST `/data/GetRechargesSimu`
@@ -2242,9 +2242,7 @@ interface ResGetRechargesSimu {
 
 ---
 
-### 玩家操作记录 <a id="/data/GetResLog"></a>
-
-资源日志
+### 获取资源日志 <a id="/data/GetResLog"></a>
 
 **路径**
 - POST `/data/GetResLog`
@@ -2326,7 +2324,7 @@ interface ResGetResLog {
 
 ---
 
-### 背包资源信息 <a id="/data/GetResources"></a>
+### 获取背包资源信息 <a id="/data/GetResources"></a>
 
 **路径**
 - POST `/data/GetResources`
@@ -2406,7 +2404,7 @@ interface ResGetResources {
 
 ---
 
-### 仓库存取日志 <a id="/data/GetSafeLog"></a>
+### 获取仓库存取日志 <a id="/data/GetSafeLog"></a>
 
 **路径**
 - POST `/data/GetSafeLog`
@@ -2506,7 +2504,7 @@ interface ResGetSafeLog {
 
 ---
 
-### 仓库资源信息 <a id="/data/GetSafeResources"></a>
+### 获取仓库资源信息 <a id="/data/GetSafeResources"></a>
 
 **路径**
 - POST `/data/GetSafeResources`
@@ -2587,7 +2585,7 @@ interface ResGetSafeResources {
 
 ---
 
-### 仓库道具总计 <a id="/data/GetStoreCount"></a>
+### 获取仓库道具总计 <a id="/data/GetStoreCount"></a>
 
 **路径**
 - POST `/data/GetStoreCount`
@@ -2663,7 +2661,7 @@ interface ResGetStoreCount {
 
 ---
 
-### 金币统计 <a id="/data/GoldCount"></a>
+### 获取金币统计 <a id="/data/GoldCount"></a>
 
 **路径**
 - POST `/data/GoldCount`
@@ -2825,7 +2823,7 @@ interface ResGoldCount {
 
 ---
 
-### 核心用户统计 <a id="/data/Vips"></a>
+### 获取核心用户统计 <a id="/data/Vips"></a>
 
 **路径**
 - POST `/data/Vips`
@@ -2897,7 +2895,7 @@ interface ResVips {
 
 ## game
 
-### 绑定解绑账号 <a id="/game/GetBindSdkId"></a>
+### 获取绑定解绑账号 <a id="/game/GetBindSdkId"></a>
 
 **路径**
 - POST `/game/GetBindSdkId`
@@ -2959,7 +2957,7 @@ interface ResGetBindSdkId {
 
 ---
 
-### 公告发送列表 <a id="/game/GetBulletinList"></a>
+### 获取公告发送列表 <a id="/game/GetBulletinList"></a>
 
 **路径**
 - POST `/game/GetBulletinList`
@@ -3033,7 +3031,7 @@ interface ResGetBulletinList {
 
 ---
 
-### 已发送公告列表 <a id="/game/GetBulletins"></a>
+### 获取已发送公告列表 <a id="/game/GetBulletins"></a>
 
 **路径**
 - POST `/game/GetBulletins`
@@ -3107,7 +3105,7 @@ interface ResGetBulletins {
 
 ---
 
-### 兑换码总览 <a id="/game/GetDhmzl"></a>
+### 获取兑换码总览 <a id="/game/GetDhmzl"></a>
 
 **路径**
 - POST `/game/GetDhmzl`
@@ -3196,7 +3194,7 @@ interface ResGetDhmzl {
 
 ---
 
-### 邮件申请列表 <a id="/game/GetEmailApplyList"></a>
+### 获取邮件申请列表 <a id="/game/GetEmailApplyList"></a>
 
 **路径**
 - POST `/game/GetEmailApplyList`
@@ -3268,7 +3266,7 @@ interface ResGetEmailApplyList {
 
 ---
 
-### 兑换管理 <a id="/game/GetExchange"></a>
+### 获取兑换管理 <a id="/game/GetExchange"></a>
 
 **路径**
 - POST `/game/GetExchange`
@@ -3358,7 +3356,7 @@ interface ResGetExchange {
 
 ---
 
-### 兑换记录 <a id="/game/GetExchangeRecord"></a>
+### 获取兑换记录 <a id="/game/GetExchangeRecord"></a>
 
 **路径**
 - POST `/game/GetExchangeRecord`
@@ -3448,7 +3446,7 @@ interface ResGetExchangeRecord {
 
 ---
 
-### 清理鱼雷 <a id="/game/GetFlushFish"></a>
+### 获取清理鱼雷 <a id="/game/GetFlushFish"></a>
 
 **路径**
 - POST `/game/GetFlushFish`
@@ -3520,7 +3518,7 @@ interface ResGetFlushFish {
 
 ---
 
-### 封号 <a id="/game/GetFroze"></a>
+### 获取封号 <a id="/game/GetFroze"></a>
 
 **路径**
 - POST `/game/GetFroze`
@@ -3588,7 +3586,7 @@ interface ResGetFroze {
 
 ---
 
-### 踢人 <a id="/game/GetKickOut"></a>
+### 获取踢人 <a id="/game/GetKickOut"></a>
 
 **路径**
 - POST `/game/GetKickOut`
@@ -3722,7 +3720,7 @@ interface ResGetMailAudit {
 
 ---
 
-### 刷新配置 <a id="/game/GetRefreshConfig"></a>
+### 获取刷新配置 <a id="/game/GetRefreshConfig"></a>
 
 **路径**
 - POST `/game/GetRefreshConfig`
@@ -3776,7 +3774,7 @@ interface ResGetRefreshConfig {
 
 ---
 
-### 充值账号密码 <a id="/game/GetResetPassword"></a>
+### 获取充值账号密码 <a id="/game/GetResetPassword"></a>
 
 **路径**
 - POST `/game/GetResetPassword`
@@ -3838,7 +3836,7 @@ interface ResGetResetPassword {
 
 ---
 
-### 重置赠送密码 <a id="/game/GetResetPresentPassword"></a>
+### 获取重置赠送密码 <a id="/game/GetResetPresentPassword"></a>
 
 其实是充值角色密码
 
@@ -3964,7 +3962,7 @@ interface ResGetSdkRole {
 
 ---
 
-### 设置角色类型 <a id="/game/GetSetRole"></a>
+### 获取设置角色类型 <a id="/game/GetSetRole"></a>
 
 **路径**
 - POST `/game/GetSetRole`
@@ -4030,7 +4028,7 @@ interface ResGetSetRole {
 
 ---
 
-### 屏蔽兑换码 <a id="/game/GetShieldExchange"></a>
+### 获取屏蔽兑换码 <a id="/game/GetShieldExchange"></a>
 
 **路径**
 - POST `/game/GetShieldExchange`
@@ -4080,7 +4078,7 @@ interface ResGetShieldExchange {
 
 ---
 
-### 屏蔽兑换道具 <a id="/game/GetShieldExchangeProp"></a>
+### 获取屏蔽兑换道具 <a id="/game/GetShieldExchangeProp"></a>
 
 **路径**
 - POST `/game/GetShieldExchangeProp`
@@ -4130,7 +4128,7 @@ interface ResGetShieldExchangeProp {
 
 ---
 
-### 屏蔽充值 <a id="/game/GetShieldPay"></a>
+### 获取屏蔽充值 <a id="/game/GetShieldPay"></a>
 
 **路径**
 - POST `/game/GetShieldPay`
@@ -4180,7 +4178,7 @@ interface ResGetShieldPay {
 
 ---
 
-### 屏蔽赠送 <a id="/game/GetShieldPresent"></a>
+### 获取屏蔽赠送 <a id="/game/GetShieldPresent"></a>
 
 **路径**
 - POST `/game/GetShieldPresent`
@@ -4230,7 +4228,7 @@ interface ResGetShieldPresent {
 
 ---
 
-### 禁言 <a id="/game/GetShieldSpeak"></a>
+### 获取禁言 <a id="/game/GetShieldSpeak"></a>
 
 **路径**
 - POST `/game/GetShieldSpeak`
@@ -4284,7 +4282,7 @@ interface ResGetShieldSpeak {
 
 ---
 
-### 系统入口开关设置 <a id="/game/GetSysEntry"></a>
+### 获取系统入口开关设置 <a id="/game/GetSysEntry"></a>
 
 **路径**
 - POST `/game/GetSysEntry`
@@ -4344,7 +4342,7 @@ interface ResGetSysEntry {
 
 ---
 
-### 绑定解绑账号 <a id="/game/SetBindSdkId"></a>
+### 修改绑定解绑账号 <a id="/game/SetBindSdkId"></a>
 
 **路径**
 - POST `/game/SetBindSdkId`
@@ -5284,7 +5282,7 @@ interface ResSetSysEntry {
 
 ## player
 
-### 经验值排行榜 <a id="/player/GetRankExp"></a>
+### 获取经验值排行榜 <a id="/player/GetRankExp"></a>
 
 **路径**
 - POST `/player/GetRankExp`
@@ -5352,7 +5350,7 @@ interface ResGetRankExp {
 
 ---
 
-### 金币排行榜 <a id="/player/GetRankGold"></a>
+### 获取金币排行榜 <a id="/player/GetRankGold"></a>
 
 **路径**
 - POST `/player/GetRankGold`
@@ -5420,7 +5418,7 @@ interface ResGetRankGold {
 
 ---
 
-### 魔力排行榜 <a id="/player/GetRankMagic"></a>
+### 获取魔力排行榜 <a id="/player/GetRankMagic"></a>
 
 **路径**
 - POST `/player/GetRankMagic`
@@ -5486,7 +5484,7 @@ interface ResGetRankMagic {
 
 ---
 
-### 充值排行榜 <a id="/player/GetRankRecharge"></a>
+### 获取充值排行榜 <a id="/player/GetRankRecharge"></a>
 
 **路径**
 - POST `/player/GetRankRecharge`
@@ -5552,7 +5550,7 @@ interface ResGetRankRecharge {
 
 ---
 
-### 钻石排行榜 <a id="/player/GetRankRing"></a>
+### 获取钻石排行榜 <a id="/player/GetRankRing"></a>
 
 **路径**
 - POST `/player/GetRankRing`
@@ -5618,7 +5616,7 @@ interface ResGetRankRing {
 
 ---
 
-### 鱼雷排行榜 <a id="/player/GetRankTorpedo"></a>
+### 获取鱼雷排行榜 <a id="/player/GetRankTorpedo"></a>
 
 **路径**
 - POST `/player/GetRankTorpedo`
@@ -5696,7 +5694,7 @@ interface ResGetRankTorpedo {
 
 ---
 
-### vip排行榜 <a id="/player/GetRankVIP"></a>
+### 获取vip排行榜 <a id="/player/GetRankVIP"></a>
 
 **路径**
 - POST `/player/GetRankVIP`
@@ -5760,7 +5758,7 @@ interface ResGetRankVIP {
 
 ---
 
-## 总数据 <a id="/TotalData"></a>
+## 获取总数据 <a id="/TotalData"></a>
 
 **路径**
 - POST `/TotalData`

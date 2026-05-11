@@ -4358,7 +4358,7 @@
             }
           }
         ],
-        "description": "背包道具总计"
+        "description": "获取背包道具总计"
       },
       "___base_BaseRequest": {
         "type": "object",
@@ -4562,7 +4562,7 @@
             }
           }
         ],
-        "description": "救济金"
+        "description": "获取救济金"
       },
       "data_PtlGetBenefits_ResGetBenefits": {
         "allOf": [
@@ -4664,7 +4664,7 @@
             }
           }
         ],
-        "description": "爆发记录"
+        "description": "获取爆发记录"
       },
       "data_PtlGetBoomLogs_ResGetBoomLogs": {
         "allOf": [
@@ -4788,7 +4788,7 @@
             }
           }
         ],
-        "description": "爆发统计"
+        "description": "获取爆发统计"
       },
       "data_PtlGetBoomStat_ResGetBoomStat": {
         "allOf": [
@@ -4891,7 +4891,7 @@
             }
           }
         ],
-        "description": "玩家爆发值"
+        "description": "获取玩家爆发值"
       },
       "data_PtlGetBoomValue_ResGetBoomValue": {
         "allOf": [
@@ -5014,7 +5014,7 @@
             }
           }
         ],
-        "description": "弹头消耗"
+        "description": "获取弹头消耗"
       },
       "data_PtlGetBulletConsume_ResGetBulletConsume": {
         "allOf": [
@@ -5180,7 +5180,7 @@
             }
           }
         ],
-        "description": "货币统计"
+        "description": "获取货币统计"
       },
       "data_PtlGetCurrencyCount_ResGetCurrencyCount": {
         "allOf": [
@@ -5287,7 +5287,7 @@
             }
           }
         ],
-        "description": "玩家分布"
+        "description": "获取玩家分布"
       },
       "data_PtlGetDistribution_ResGetDistribution": {
         "allOf": [
@@ -5374,7 +5374,7 @@
             }
           }
         ],
-        "description": "鱼雷奖金统计"
+        "description": "获取鱼雷奖金统计"
       },
       "data_PtlGetFishBonusCount_ResGetFishBonusCount": {
         "allOf": [
@@ -5449,7 +5449,7 @@
             }
           }
         ],
-        "description": "鱼雷排行榜"
+        "description": "获取鱼雷排行榜"
       },
       "data_PtlGetFishChars_ResGetFishChars": {
         "allOf": [
@@ -5564,7 +5564,7 @@
             }
           }
         ],
-        "description": "渔场输赢"
+        "description": "获取渔场输赢"
       },
       "data_PtlGetFishWin_ResGetFishWin": {
         "allOf": [
@@ -5695,7 +5695,7 @@
             }
           }
         ],
-        "description": "礼包兑换"
+        "description": "获取礼包兑换"
       },
       "data_PtlGetGiftExchange_ResGetGiftExchange": {
         "allOf": [
@@ -5802,7 +5802,7 @@
             }
           }
         ],
-        "description": "礼包概况"
+        "description": "获取礼包概况"
       },
       "data_PtlGetGiftSummary_ResGetGiftSummary": {
         "allOf": [
@@ -5903,7 +5903,7 @@
             }
           }
         ],
-        "description": "积分信息"
+        "description": "获取积分信息"
       },
       "data_PtlGetIntegral_ResGetIntegral": {
         "allOf": [
@@ -6003,7 +6003,7 @@
             }
           }
         ],
-        "description": "积分统计"
+        "description": "获取积分统计"
       },
       "data_PtlGetIntegralCount_ResGetIntegralCount": {
         "allOf": [
@@ -6100,7 +6100,7 @@
             }
           }
         ],
-        "description": "登录日志"
+        "description": "获取登录日志"
       },
       "data_PtlGetLoginLog_ResGetLoginLog": {
         "allOf": [
@@ -6184,7 +6184,7 @@
             }
           }
         ],
-        "description": "嘉年华数据监控"
+        "description": "获取嘉年华数据监控"
       },
       "data_PtlGetMiniGameHappy_ResGetMiniGameHappy": {
         "allOf": [
@@ -6263,7 +6263,7 @@
             }
           }
         ],
-        "description": "水浒数据监控"
+        "description": "获取水浒数据监控"
       },
       "data_PtlGetMiniGameShuiHu_ResGetMiniGameShuiHu": {
         "allOf": [
@@ -6351,7 +6351,7 @@
             }
           }
         ],
-        "description": "在线人数"
+        "description": "获取在线人数"
       },
       "data_PtlGetOnline_ResGetOnline": {
         "allOf": [
@@ -6440,7 +6440,7 @@
             }
           }
         ],
-        "description": "商城购买"
+        "description": "获取商城购买"
       },
       "data_PtlGetPaid_ResGetPaid": {
         "allOf": [
@@ -6539,7 +6539,7 @@
             }
           }
         ],
-        "description": "玩家信息"
+        "description": "获取玩家信息"
       },
       "data_PtlGetPlayers_ResGetPlayers": {
         "allOf": [
@@ -6703,7 +6703,7 @@
             }
           }
         ],
-        "description": "小游戏输赢"
+        "description": "获取小游戏输赢"
       },
       "data_PtlGetPlayWin_ResGetPlayWin": {
         "allOf": [
@@ -6825,7 +6825,7 @@
             }
           }
         ],
-        "description": "赠送记录"
+        "description": "获取赠送记录"
       },
       "data_PtlGetPresentLogs_ResGetPresentLogs": {
         "allOf": [
@@ -6934,7 +6934,7 @@
             }
           }
         ],
-        "description": "道具消耗"
+        "description": "获取道具消耗"
       },
       "data_PtlGetPropConsume_ResGetPropConsume": {
         "allOf": [
@@ -7161,7 +7161,7 @@
             }
           }
         ],
-        "description": "道具购买"
+        "description": "获取道具购买"
       },
       "data_PtlGetPropPurchaseLogs_ResGetPropPurchaseLogs": {
         "allOf": [
@@ -7339,7 +7339,7 @@
             }
           }
         ],
-        "description": "充值明细"
+        "description": "获取充值明细"
       },
       "data_PtlGetRecharges_ResGetRecharges": {
         "allOf": [
@@ -7552,7 +7552,7 @@
             }
           }
         ],
-        "description": "iOS充值明细"
+        "description": "获取iOS充值明细"
       },
       "data_PtlGetRechargesIOS_ResGetRechargesIOS": {
         "allOf": [
@@ -7700,7 +7700,7 @@
             }
           }
         ],
-        "description": "充值统计"
+        "description": "获取充值统计"
       },
       "data_PtlGetRechargesMore_ResGetRechargesMore": {
         "allOf": [
@@ -7854,7 +7854,7 @@
             }
           }
         ],
-        "description": "模拟充值明细"
+        "description": "获取模拟充值明细"
       },
       "data_PtlGetRechargesSimu_ResGetRechargesSimu": {
         "allOf": [
@@ -8014,7 +8014,7 @@
             }
           }
         ],
-        "description": "玩家操作记录\n资源日志"
+        "description": "获取资源日志"
       },
       "data_PtlGetResLog_ResGetResLog": {
         "allOf": [
@@ -8192,7 +8192,7 @@
             }
           }
         ],
-        "description": "背包资源信息"
+        "description": "获取背包资源信息"
       },
       "data_PtlGetResources_ResGetResources": {
         "allOf": [
@@ -8355,7 +8355,7 @@
             }
           }
         ],
-        "description": "仓库存取日志"
+        "description": "获取仓库存取日志"
       },
       "data_PtlGetSafeLog_ResGetSafeLog": {
         "allOf": [
@@ -8565,7 +8565,7 @@
             }
           }
         ],
-        "description": "仓库资源信息"
+        "description": "获取仓库资源信息"
       },
       "data_PtlGetSafeResources_ResGetSafeResources": {
         "allOf": [
@@ -8662,7 +8662,7 @@
             }
           }
         ],
-        "description": "仓库道具总计"
+        "description": "获取仓库道具总计"
       },
       "data_PtlGetStoreCount_ResGetStoreCount": {
         "allOf": [
@@ -8796,7 +8796,7 @@
             }
           }
         ],
-        "description": "金币统计"
+        "description": "获取金币统计"
       },
       "data_PtlGoldCount_ResGoldCount": {
         "allOf": [
@@ -9127,7 +9127,7 @@
             }
           }
         ],
-        "description": "核心用户统计"
+        "description": "获取核心用户统计"
       },
       "data_PtlVips_ResVips": {
         "allOf": [
@@ -9239,7 +9239,7 @@
             }
           }
         ],
-        "description": "绑定解绑账号"
+        "description": "获取绑定解绑账号"
       },
       "game_PtlGetBindSdkId_ResGetBindSdkId": {
         "allOf": [
@@ -9332,7 +9332,7 @@
             }
           }
         ],
-        "description": "公告发送列表"
+        "description": "获取公告发送列表"
       },
       "game_PtlGetBulletinList_ResGetBulletinList": {
         "allOf": [
@@ -9454,7 +9454,7 @@
             }
           }
         ],
-        "description": "已发送公告列表"
+        "description": "获取已发送公告列表"
       },
       "game_PtlGetBulletins_ResGetBulletins": {
         "allOf": [
@@ -9605,7 +9605,7 @@
             }
           }
         ],
-        "description": "兑换码总览"
+        "description": "获取兑换码总览"
       },
       "game_PtlGetDhmzl_ResGetDhmzl": {
         "allOf": [
@@ -9749,7 +9749,7 @@
             }
           }
         ],
-        "description": "邮件申请列表"
+        "description": "获取邮件申请列表"
       },
       "game_PtlGetEmailApplyList_ResGetEmailApplyList": {
         "allOf": [
@@ -9899,7 +9899,7 @@
             }
           }
         ],
-        "description": "兑换管理"
+        "description": "获取兑换管理"
       },
       "game_PtlGetExchange_ResGetExchange": {
         "allOf": [
@@ -10056,7 +10056,7 @@
             }
           }
         ],
-        "description": "兑换记录"
+        "description": "获取兑换记录"
       },
       "game_PtlGetExchangeRecord_ResGetExchangeRecord": {
         "allOf": [
@@ -10201,7 +10201,7 @@
             }
           }
         ],
-        "description": "清理鱼雷"
+        "description": "获取清理鱼雷"
       },
       "game_PtlGetFlushFish_ResGetFlushFish": {
         "allOf": [
@@ -10313,7 +10313,7 @@
             }
           }
         ],
-        "description": "封号"
+        "description": "获取封号"
       },
       "game_PtlGetFroze_ResGetFroze": {
         "allOf": [
@@ -10430,7 +10430,7 @@
             }
           }
         ],
-        "description": "踢人"
+        "description": "获取踢人"
       },
       "game_PtlGetKickOut_ResGetKickOut": {
         "allOf": [
@@ -10627,7 +10627,7 @@
             }
           }
         ],
-        "description": "刷新配置"
+        "description": "获取刷新配置"
       },
       "game_PtlGetRefreshConfig_ResGetRefreshConfig": {
         "allOf": [
@@ -10721,7 +10721,7 @@
             }
           }
         ],
-        "description": "充值账号密码"
+        "description": "获取充值账号密码"
       },
       "game_PtlGetResetPassword_ResGetResetPassword": {
         "allOf": [
@@ -10811,7 +10811,7 @@
             }
           }
         ],
-        "description": "重置赠送密码\n其实是充值角色密码"
+        "description": "获取重置赠送密码\n其实是充值角色密码"
       },
       "game_PtlGetResetPresentPassword_ResGetResetPresentPassword": {
         "allOf": [
@@ -10994,7 +10994,7 @@
             }
           }
         ],
-        "description": "设置角色类型"
+        "description": "获取设置角色类型"
       },
       "game_PtlGetSetRole_ResGetSetRole": {
         "allOf": [
@@ -11083,7 +11083,7 @@
             }
           }
         ],
-        "description": "屏蔽兑换码"
+        "description": "获取屏蔽兑换码"
       },
       "game_PtlGetShieldExchange_ResGetShieldExchange": {
         "allOf": [
@@ -11182,7 +11182,7 @@
             }
           }
         ],
-        "description": "屏蔽兑换道具"
+        "description": "获取屏蔽兑换道具"
       },
       "game_PtlGetShieldExchangeProp_ResGetShieldExchangeProp": {
         "allOf": [
@@ -11281,7 +11281,7 @@
             }
           }
         ],
-        "description": "屏蔽充值"
+        "description": "获取屏蔽充值"
       },
       "game_PtlGetShieldPay_ResGetShieldPay": {
         "allOf": [
@@ -11380,7 +11380,7 @@
             }
           }
         ],
-        "description": "屏蔽赠送"
+        "description": "获取屏蔽赠送"
       },
       "game_PtlGetShieldPresent_ResGetShieldPresent": {
         "allOf": [
@@ -11479,7 +11479,7 @@
             }
           }
         ],
-        "description": "禁言"
+        "description": "获取禁言"
       },
       "game_PtlGetShieldSpeak_ResGetShieldSpeak": {
         "allOf": [
@@ -11588,7 +11588,7 @@
             }
           }
         ],
-        "description": "系统入口开关设置"
+        "description": "获取系统入口开关设置"
       },
       "game_PtlGetSysEntry_ResGetSysEntry": {
         "allOf": [
@@ -11667,7 +11667,7 @@
             ]
           }
         ],
-        "description": "绑定解绑账号"
+        "description": "修改绑定解绑账号"
       },
       "game_PtlSetBindSdkId_ResSetBindSdkId": {
         "allOf": [
@@ -12924,7 +12924,7 @@
             }
           }
         ],
-        "description": "经验值排行榜"
+        "description": "获取经验值排行榜"
       },
       "player_PtlGetRankExp_ResGetRankExp": {
         "allOf": [
@@ -13026,7 +13026,7 @@
             }
           }
         ],
-        "description": "金币排行榜"
+        "description": "获取金币排行榜"
       },
       "player_PtlGetRankGold_ResGetRankGold": {
         "allOf": [
@@ -13128,7 +13128,7 @@
             }
           }
         ],
-        "description": "魔力排行榜"
+        "description": "获取魔力排行榜"
       },
       "player_PtlGetRankMagic_ResGetRankMagic": {
         "allOf": [
@@ -13225,7 +13225,7 @@
             }
           }
         ],
-        "description": "充值排行榜"
+        "description": "获取充值排行榜"
       },
       "player_PtlGetRankRecharge_ResGetRankRecharge": {
         "allOf": [
@@ -13322,7 +13322,7 @@
             }
           }
         ],
-        "description": "钻石排行榜"
+        "description": "获取钻石排行榜"
       },
       "player_PtlGetRankRing_ResGetRankRing": {
         "allOf": [
@@ -13419,7 +13419,7 @@
             }
           }
         ],
-        "description": "鱼雷排行榜"
+        "description": "获取鱼雷排行榜"
       },
       "player_PtlGetRankTorpedo_ResGetRankTorpedo": {
         "allOf": [
@@ -13546,7 +13546,7 @@
             }
           }
         ],
-        "description": "vip排行榜"
+        "description": "获取vip排行榜"
       },
       "player_PtlGetRankVIP_ResGetRankVIP": {
         "allOf": [
@@ -13617,7 +13617,7 @@
             "properties": {}
           }
         ],
-        "description": "总数据"
+        "description": "获取总数据"
       },
       "PtlTotalData_ResTotalData": {
         "allOf": [
