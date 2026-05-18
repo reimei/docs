@@ -3013,6 +3013,53 @@
         }
       }
     },
+    "/game/SetExchange": {
+      "post": {
+        "tags": [
+          "game"
+        ],
+        "operationId": "game/SetExchange",
+        "requestBody": {
+          "description": "Req<SetExchange>",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/game_PtlSetExchange_ReqSetExchange"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "ApiReturn<ResSetExchange>",
+                  "properties": {
+                    "isSucc": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ],
+                      "default": true
+                    },
+                    "res": {
+                      "$ref": "#/components/schemas/game_PtlSetExchange_ResSetExchange"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
     "/game/SetExtend": {
       "post": {
         "tags": [
@@ -9740,6 +9787,10 @@
                   "playerName": {
                     "type": "string",
                     "description": "账号"
+                  },
+                  "mailId": {
+                    "type": "string",
+                    "description": "邮件id"
                   }
                 }
               },
@@ -9785,9 +9836,13 @@
                       "type": "string",
                       "description": "子渠道"
                     },
-                    "recipient": {
+                    "recipientPlayerName": {
                       "type": "string",
-                      "description": "接收人"
+                      "description": "接收人账号名"
+                    },
+                    "recipientAccountId": {
+                      "type": "number",
+                      "description": "接收人账号id"
                     },
                     "attachment": {
                       "type": "string",
@@ -9829,6 +9884,29 @@
                         }
                       ],
                       "description": "状态：草稿，审核中，审核通过，驳回"
+                    },
+                    "emailType": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "personal"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "multi"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "global"
+                          ]
+                        }
+                      ],
+                      "description": "邮件类型\n个人邮件，多人邮件，全服邮件"
                     }
                   },
                   "required": [
@@ -9837,11 +9915,13 @@
                     "applicant",
                     "channelId",
                     "subChannelId",
-                    "recipient",
+                    "recipientPlayerName",
+                    "recipientAccountId",
                     "attachment",
                     "title",
                     "content",
-                    "status"
+                    "status",
+                    "emailType"
                   ]
                 }
               },
@@ -9890,6 +9970,35 @@
                   "phone": {
                     "type": "string",
                     "description": "电话号码"
+                  },
+                  "status": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "all"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "pending"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "handled"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "failed"
+                        ]
+                      }
+                    ],
+                    "description": "订单状态\n全部\n待处理\n已处理\n处理失败"
                   }
                 }
               },
@@ -9978,6 +10087,12 @@
                           "type": "string",
                           "enum": [
                             "handled"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "failed"
                           ]
                         }
                       ],
@@ -11575,10 +11690,6 @@
                   "channelId": {
                     "type": "string",
                     "description": "渠道id"
-                  },
-                  "subChannelId": {
-                    "type": "string",
-                    "description": "子渠道id"
                   }
                 }
               },
@@ -11894,7 +12005,15 @@
           },
           {
             "type": "object",
-            "properties": {}
+            "properties": {
+              "batchId": {
+                "type": "number",
+                "description": "批次id"
+              }
+            },
+            "required": [
+              "batchId"
+            ]
           }
         ]
       },
@@ -12002,6 +12121,74 @@
         "description": "邮件申请"
       },
       "game_PtlSetEmailApply_ResSetEmailApply": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___base_BaseResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "mailId": {
+                "type": "string",
+                "description": "邮件id，用于修改驳回的邮件"
+              }
+            }
+          }
+        ]
+      },
+      "game_PtlSetExchange_ReqSetExchange": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/___base_BaseRequest"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "orderIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "订单ID"
+              },
+              "action": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "handle"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "reject"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "restore"
+                    ]
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "resendSms"
+                    ]
+                  }
+                ],
+                "description": "操作\n处理\n驳回\n恢复\n短信重发"
+              }
+            },
+            "required": [
+              "orderIds",
+              "action"
+            ]
+          }
+        ]
+      },
+      "game_PtlSetExchange_ResSetExchange": {
         "allOf": [
           {
             "$ref": "#/components/schemas/___base_BaseResponse"
@@ -12536,7 +12723,12 @@
           },
           {
             "type": "object",
-            "properties": {}
+            "properties": {
+              "bulletinId": {
+                "type": "string",
+                "description": "公告id，修改公告时调用"
+              }
+            }
           }
         ]
       },

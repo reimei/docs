@@ -75,6 +75,7 @@
     - [sdkid角色渠道设置](#/game/SetChannel)
     - [兑换码生成](#/game/SetDhmsc)
     - [邮件申请](#/game/SetEmailApply)
+    - [SetExchange](#/game/SetExchange)
     - [推广号设置](#/game/SetExtend)
     - [模拟充值](#/game/SetFishRecharge)
     - [清理鱼雷](#/game/SetFlushFish)
@@ -3208,7 +3209,9 @@ interface ReqGetEmailApplyList {
         /** 子渠道id */
         subChannelId?: string,
         /** 账号 */
-        playerName?: string
+        playerName?: string,
+        /** 邮件id */
+        mailId?: string
     },
     /** 请求分页 */
     page?: {
@@ -3241,8 +3244,10 @@ interface ResGetEmailApplyList {
         channelId: string,
         /** 子渠道 */
         subChannelId: string,
-        /** 接收人 */
-        recipient: string,
+        /** 接收人账号名 */
+        recipientPlayerName: string,
+        /** 接收人账号id */
+        recipientAccountId: number,
         /** 附件 */
         attachment: string,
         /** 标题 */
@@ -3250,7 +3255,12 @@ interface ResGetEmailApplyList {
         /** 内容 */
         content: string,
         /** 状态：草稿，审核中，审核通过，驳回 */
-        status: "draft" | "pending" | "approved" | "rejected"
+        status: "draft" | "pending" | "approved" | "rejected",
+        /**
+        * 邮件类型
+        * 个人邮件，多人邮件，全服邮件
+        */
+        emailType: "personal" | "multi" | "global"
     }[],
     /** 返回分页 */
     page: {
@@ -3286,7 +3296,15 @@ interface ReqGetExchange {
         /** 账号 */
         playerName?: string,
         /** 电话号码 */
-        phone?: string
+        phone?: string,
+        /**
+        * 订单状态
+        * 全部
+        * 待处理
+        * 已处理
+        * 处理失败
+        */
+        status?: "all" | "pending" | "handled" | "failed"
     },
     /** 请求分页 */
     page?: {
@@ -3340,7 +3358,7 @@ interface ResGetExchange {
         * 待处理
         * 已处理
         */
-        status: "pending" | "handled"
+        status: "pending" | "handled" | "failed"
     }[],
     /** 返回分页 */
     page: {
@@ -4290,11 +4308,8 @@ interface ResGetShieldSpeak {
 **请求**
 ```ts
 interface ReqGetSysEntry {
-    filter?: {
-        /** 渠道id */
-        channelId?: string,
-        /** 子渠道id */
-        subChannelId?: string
+    filter?: {/** 渠道id */
+        channelId?: string
     },
     /** 请求分页 */
     page?: {
@@ -4521,6 +4536,8 @@ interface ReqSetDhmsc {
 **响应**
 ```ts
 interface ResSetDhmsc {
+    /** 批次id */
+    batchId: number,
     __authToken?: string
 }
 ```
@@ -4579,6 +4596,46 @@ interface ReqSetEmailApply {
 **响应**
 ```ts
 interface ResSetEmailApply {
+    /** 邮件id，用于修改驳回的邮件 */
+    mailId?: string,
+    __authToken?: string
+}
+```
+
+---
+
+### SetExchange <a id="/game/SetExchange"></a>
+
+**路径**
+- POST `/game/SetExchange`
+
+**请求**
+```ts
+interface ReqSetExchange {
+    /** 订单ID */
+    orderIds: string[],
+    /**
+    * 操作
+    * 处理
+    * 驳回
+    * 恢复
+    * 短信重发
+    */
+    action: "handle" | "reject" | "restore" | "resendSms",
+    /** 鉴权token，登录后的接口都需要填写 */
+    __authToken?: string,
+    /** 用户昵称 */
+    __nickname?: string,
+    /** 时间戳 */
+    __timestamp?: number,
+    /** 操作者ip */
+    __ip?: string
+}
+```
+
+**响应**
+```ts
+interface ResSetExchange {
     __authToken?: string
 }
 ```
@@ -5020,6 +5077,8 @@ interface ReqSetSendBulletin {
 **响应**
 ```ts
 interface ResSetSendBulletin {
+    /** 公告id，修改公告时调用 */
+    bulletinId?: string,
     __authToken?: string
 }
 ```
