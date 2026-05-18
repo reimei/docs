@@ -11714,6 +11714,10 @@
                 "items": {
                   "type": "object",
                   "properties": {
+                    "channelId": {
+                      "type": "string",
+                      "description": "主渠道id"
+                    },
                     "subChannelId": {
                       "type": "string",
                       "description": "子渠道id"
@@ -11736,6 +11740,7 @@
                     }
                   },
                   "required": [
+                    "channelId",
                     "subChannelId",
                     "miniGame",
                     "fishingLottery",
@@ -12186,7 +12191,8 @@
               "action"
             ]
           }
-        ]
+        ],
+        "description": "兑换管理操作"
       },
       "game_PtlSetExchange_ResSetExchange": {
         "allOf": [

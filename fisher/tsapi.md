@@ -75,7 +75,7 @@
     - [sdkid角色渠道设置](#/game/SetChannel)
     - [兑换码生成](#/game/SetDhmsc)
     - [邮件申请](#/game/SetEmailApply)
-    - [SetExchange](#/game/SetExchange)
+    - [兑换管理操作](#/game/SetExchange)
     - [推广号设置](#/game/SetExtend)
     - [模拟充值](#/game/SetFishRecharge)
     - [清理鱼雷](#/game/SetFlushFish)
@@ -4332,6 +4332,8 @@ interface ReqGetSysEntry {
 ```ts
 interface ResGetSysEntry {
     list: {
+        /** 主渠道id */
+        channelId: string,
         /** 子渠道id */
         subChannelId: string,
         /** 小游戏开关 */
@@ -4604,7 +4606,7 @@ interface ResSetEmailApply {
 
 ---
 
-### SetExchange <a id="/game/SetExchange"></a>
+### 兑换管理操作 <a id="/game/SetExchange"></a>
 
 **路径**
 - POST `/game/SetExchange`
