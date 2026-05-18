@@ -4308,8 +4308,11 @@ interface ResGetShieldSpeak {
 **请求**
 ```ts
 interface ReqGetSysEntry {
-    filter?: {/** 渠道id */
-        channelId?: string
+    filter?: {
+        /** 渠道id */
+        channelId?: string,
+        /** 子渠道id */
+        subChannelId: string
     },
     /** 请求分页 */
     page?: {

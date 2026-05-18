@@ -11690,8 +11690,15 @@
                   "channelId": {
                     "type": "string",
                     "description": "渠道id"
+                  },
+                  "subChannelId": {
+                    "type": "string",
+                    "description": "子渠道id"
                   }
-                }
+                },
+                "required": [
+                  "subChannelId"
+                ]
               },
               "page": {
                 "$ref": "#/components/schemas/___base_ReqPageBase"
